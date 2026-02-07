@@ -28,8 +28,15 @@ export const AnnotationPanel: React.FC<AnnotationPanelProps> = ({ paper }) => {
   const handleEditComment = async (highlightId: string) => {
     try {
       await api.updateHighlight(paper.id, highlightId, { comment: editComment });
-      const updatedPaper = await api.getPaper(paper.id);
-      setCurrentPaper(updatedPaper);
+
+      // Refresh paper
+      if ((window as any).refreshPaper) {
+        await (window as any).refreshPaper(paper.id);
+      } else {
+        const updatedPaper = await api.getPaper(paper.id);
+        setCurrentPaper(updatedPaper);
+      }
+
       setEditingId(null);
       setEditComment('');
     } catch (err) {
@@ -43,8 +50,14 @@ export const AnnotationPanel: React.FC<AnnotationPanelProps> = ({ paper }) => {
 
     try {
       await api.deleteHighlight(paper.id, highlightId);
-      const updatedPaper = await api.getPaper(paper.id);
-      setCurrentPaper(updatedPaper);
+
+      // Refresh paper
+      if ((window as any).refreshPaper) {
+        await (window as any).refreshPaper(paper.id);
+      } else {
+        const updatedPaper = await api.getPaper(paper.id);
+        setCurrentPaper(updatedPaper);
+      }
     } catch (err) {
       console.error('Error deleting highlight:', err);
       alert('Failed to delete highlight');

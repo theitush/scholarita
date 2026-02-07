@@ -14,6 +14,7 @@ function App() {
     tabs,
     activeTabId,
     setConfig,
+    setCurrentPaper,
   } = useAppStore();
 
   const [importInput, setImportInput] = useState('');
@@ -61,6 +62,21 @@ function App() {
       console.error('Error loading paper:', error);
     }
   };
+
+  const refreshPaper = async (paperId: string) => {
+    try {
+      const paper = await api.getPaper(paperId);
+      setLoadedPapers(new Map(loadedPapers.set(paperId, paper)));
+      setCurrentPaper(paper);
+    } catch (error) {
+      console.error('Error refreshing paper:', error);
+    }
+  };
+
+  // Make refreshPaper available globally via window
+  useEffect(() => {
+    (window as any).refreshPaper = refreshPaper;
+  }, [loadedPapers]);
 
   const handleImport = async () => {
     if (!importInput.trim()) return;

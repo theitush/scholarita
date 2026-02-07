@@ -98,7 +98,12 @@ export const PDFViewer: React.FC<PDFViewerProps> = ({ paper }) => {
 
   useEffect(() => {
     // Add mouseup listener for text selection
-    const handleMouseUp = () => {
+    const handleMouseUp = (event: MouseEvent) => {
+      // Ignore mouseup events from the popover to prevent it from closing
+      const target = event.target;
+      if (target instanceof HTMLElement && target.closest('.highlight-popover')) {
+        return;
+      }
       handleTextSelection();
     };
 
@@ -144,14 +149,20 @@ export const PDFViewer: React.FC<PDFViewerProps> = ({ paper }) => {
     if (rects.length === 0) return;
 
     // Position popover below the selection
+    // Get the last rect (end of selection) and the container position
     const lastRect = rects[rects.length - 1];
-    const scrollTop = containerRef.current?.scrollTop || 0;
-    const scrollLeft = containerRef.current?.scrollLeft || 0;
+    const containerRect = containerRef.current?.getBoundingClientRect();
+
+    if (!containerRect) return;
+
+    // Calculate position relative to the container
+    const x = lastRect.right - containerRect.left;
+    const y = lastRect.bottom - containerRect.top + 5;
 
     setPopover({
       visible: true,
-      x: lastRect.right + scrollLeft,
-      y: lastRect.bottom + scrollTop + 5,
+      x,
+      y,
       selectedText,
       pageNumber,
       rects: rects as DOMRect[]
@@ -159,7 +170,17 @@ export const PDFViewer: React.FC<PDFViewerProps> = ({ paper }) => {
   };
 
   const createHighlight = async () => {
-    if (!popover.visible || !popover.selectedText) return;
+    if (!popover.visible || !popover.selectedText) {
+      console.log('Cannot create highlight: popover not visible or no text selected');
+      return;
+    }
+
+    console.log('Creating highlight:', {
+      page: popover.pageNumber,
+      color: selectedColor,
+      text: popover.selectedText.substring(0, 50) + '...',
+      comment: comment
+    });
 
     try {
       // Calculate anchor positions (simplified - using character offsets)
@@ -174,11 +195,18 @@ export const PDFViewer: React.FC<PDFViewerProps> = ({ paper }) => {
         comment: comment || undefined
       };
 
-      await api.createHighlight(paper.id, highlight);
+      const result = await api.createHighlight(paper.id, highlight);
+      console.log('Highlight created successfully:', result);
 
       // Refresh paper to get updated highlights
-      const updatedPaper = await api.getPaper(paper.id);
-      setCurrentPaper(updatedPaper);
+      if ((window as any).refreshPaper) {
+        await (window as any).refreshPaper(paper.id);
+        console.log('Paper refreshed via global function');
+      } else {
+        const updatedPaper = await api.getPaper(paper.id);
+        console.log('Paper refreshed, highlights count:', updatedPaper.highlights?.length || 0);
+        setCurrentPaper(updatedPaper);
+      }
 
       // Remember color if config says so
       if (config?.remember_last_color) {
@@ -191,7 +219,7 @@ export const PDFViewer: React.FC<PDFViewerProps> = ({ paper }) => {
       setComment('');
     } catch (err) {
       console.error('Error creating highlight:', err);
-      alert('Failed to create highlight');
+      alert(`Failed to create highlight: ${err instanceof Error ? err.message : String(err)}`);
     }
   };
 
@@ -314,7 +342,7 @@ export const PDFViewer: React.FC<PDFViewerProps> = ({ paper }) => {
           context.fillText(String(renderError), 20, 80);
         }
 
-        // Add text layer
+        // Add text layer using PDF.js TextLayer
         const textLayerDiv = document.createElement('div');
         textLayerDiv.className = 'pdf-text-layer';
         textLayerDiv.style.width = `${viewport.width}px`;
@@ -322,27 +350,38 @@ export const PDFViewer: React.FC<PDFViewerProps> = ({ paper }) => {
 
         try {
           const textContent = await page.getTextContent();
+          const pdfjsLib = (window as any).pdfjsLib;
 
-          // Simple text layer rendering
-          textContent.items.forEach((item: any) => {
-            if (!item.str) return;
+          // Use PDF.js renderTextLayer for proper positioning
+          if (pdfjsLib && pdfjsLib.renderTextLayer) {
+            pdfjsLib.renderTextLayer({
+              textContentSource: textContent,
+              container: textLayerDiv,
+              viewport: viewport,
+              textDivs: []
+            });
+          } else {
+            // Fallback to manual rendering if renderTextLayer not available
+            textContent.items.forEach((item: any) => {
+              if (!item.str) return;
 
-            const span = document.createElement('span');
-            span.textContent = item.str;
-
-            if (item.transform) {
               const tx = item.transform[4];
               const ty = item.transform[5];
+              const angle = Math.atan2(item.transform[1], item.transform[0]);
               const fontSize = Math.sqrt(item.transform[0] * item.transform[0] + item.transform[1] * item.transform[1]);
 
+              const span = document.createElement('span');
+              span.textContent = item.str;
+              span.style.position = 'absolute';
               span.style.left = `${tx}px`;
               span.style.top = `${viewport.height - ty}px`;
               span.style.fontSize = `${fontSize}px`;
-              span.style.fontFamily = item.fontName || 'sans-serif';
-            }
+              span.style.transform = `scaleX(${item.width / (fontSize * item.str.length)}) rotate(${angle}rad)`;
+              span.style.transformOrigin = '0 0';
 
-            textLayerDiv.appendChild(span);
-          });
+              textLayerDiv.appendChild(span);
+            });
+          }
         } catch (textError) {
           console.warn(`Error rendering text layer for page ${pageNum}:`, textError);
         }

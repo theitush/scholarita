@@ -109,12 +109,12 @@
 
 ## What's Not Implemented (But Specified)
 
-### Phase 4: Highlighting ✅ COMPLETE
-- ✅ Text selection to highlight conversion
-- ✅ Highlight popover UI
-- ✅ Highlight rendering on PDF
-- ✅ Comment editing UI
-- ❌ E2E tests for highlighting features (next priority)
+### Phase 4: Highlighting ❌ IN PROGRESS
+- ⚠️ Text selection to highlight conversion (improved text layer rendering)
+- ⚠️ Highlight popover UI (positioning fixed)
+- ❌ Highlight rendering on PDF (needs work)
+- ⚠️ Comment editing UI (API calls fixed, needs testing)
+- ❌ E2E tests for highlighting features (tests need debugging)
 
 ### Phase 5: Search & Tags UI
 - ❌ Search tab component
@@ -123,7 +123,15 @@
 - ❌ Tag filter functionality
 - ❌ E2E tests for search and tags
 
-### Phase 6: Polish
+### Phase 6: Git-Friendly Storage Separation
+- ❌ Separate PDFs into library/pdfs/ directory
+- ❌ Keep metadata JSON files in library/ for git tracking
+- ❌ Update storage.py to handle split directory structure
+- ❌ Add .gitignore for library/pdfs/
+- ❌ Migration script to move existing PDFs
+- ❌ Update API to serve PDFs from new location
+
+### Phase 7: Polish
 - ❌ Keyboard shortcuts (Ctrl+F, Ctrl+1-4, etc.)
 - ❌ Right-click context menus
 - ❌ Manual save button visual feedback
@@ -230,15 +238,15 @@ From Spec.md:
 
 - [x] Can import paper by DOI/URL with metadata and PDF
 - [x] Can view PDF
-- [x] Can create highlights with colors and comments
-- [x] Highlights persist and re-render correctly
+- [ ] Can create highlights with colors and comments (partially implemented, needs testing)
+- [ ] Highlights persist and re-render correctly (needs verification)
 - [ ] Can search across papers (API ready, UI pending)
 - [ ] Can tag papers (API ready, UI pending)
 - [x] All API endpoints work
 - [x] Backend tests pass
-- [ ] Frontend e2e tests for highlighting
+- [ ] Frontend e2e tests for highlighting (in progress)
 
-**Overall completion**: ~75% of MVP features
+**Overall completion**: ~70% of MVP features (Phase 4 in progress, needs debugging)
 
 ## Conclusion
 
