@@ -114,6 +114,7 @@
 - ⚠️ Highlight popover UI (positioning fixed)
 - ❌ Highlight rendering on PDF (needs work)
 - ⚠️ Comment editing UI (API calls fixed, needs testing)
+- ❌ Resizable annotation panel/bottom bar
 - ❌ E2E tests for highlighting features (tests need debugging)
 
 ### Phase 5: Search & Tags UI
