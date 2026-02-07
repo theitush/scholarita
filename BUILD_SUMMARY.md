@@ -105,23 +105,21 @@
 - ❌ Highlight popover UI
 - ❌ Highlight rendering on PDF
 - ❌ Comment editing UI
+- ❌ E2E tests for highlighting features
 
 ### Phase 5: Search & Tags UI
 - ❌ Search tab component
 - ❌ Tag editor dialog
 - ❌ Bulk tagging UI
 - ❌ Tag filter functionality
+- ❌ E2E tests for search and tags
 
 ### Phase 6: Polish
 - ❌ Keyboard shortcuts (Ctrl+F, Ctrl+1-4, etc.)
 - ❌ Right-click context menus
 - ❌ Manual save button visual feedback
 - ❌ Resizable annotation panel
-
-### Phase 7: Testing
-- ❌ Complete backend test suite
-- ❌ Frontend component tests
-- ❌ E2E tests with Playwright
+- ❌ E2E tests for polish features
 
 ## Architecture Decisions
 
@@ -181,26 +179,25 @@ To get to a fully functional MVP, implement in this order:
    - Highlight popover component
    - Highlight rendering layer
    - Integration with backend API
+   - E2E tests for highlighting
 
 2. **Search UI**
    - Search tab component
    - Results display
    - Click-to-navigate
+   - E2E tests for search
 
 3. **Tag Management**
    - Tag editor dialog
    - Autocomplete for tags
    - Bulk tagging UI
+   - E2E tests for tags
 
 4. **Polish**
    - Keyboard shortcuts
    - Context menus
    - UI refinements
-
-5. **Testing**
-   - Write tests
-   - Manual testing
-   - Bug fixes
+   - E2E tests for polish features
 
 ## Development Time
 
