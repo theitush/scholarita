@@ -1,9 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useAppStore } from './stores/appStore';
 import { Sidebar } from './components/Sidebar';
 import { TabBar } from './components/TabBar';
 import { PDFViewer } from './components/PDFViewer';
-import { PDFViewerTest } from './components/PDFViewerTest';
 import { AnnotationPanel } from './components/AnnotationPanel';
 import { api } from './services/api';
 import './App.css';

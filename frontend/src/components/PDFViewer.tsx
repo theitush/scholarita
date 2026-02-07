@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Paper } from '../types';
 import { api } from '../services/api';
+import { useAppStore } from '../stores/appStore';
 
 // Type definitions for PDF.js loaded from CDN
 interface PDFDocumentProxy {
@@ -52,12 +53,32 @@ const loadPDFJS = (): Promise<any> => {
   });
 };
 
+interface HighlightPopoverState {
+  visible: boolean;
+  x: number;
+  y: number;
+  selectedText: string;
+  pageNumber: number;
+  rects: DOMRect[];
+}
+
 export const PDFViewer: React.FC<PDFViewerProps> = ({ paper }) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const [pdfDoc, setPdfDoc] = useState<PDFDocumentProxy | null>(null);
-  const [numPages, setNumPages] = useState(0);
+  const [, setNumPages] = useState(0);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [popover, setPopover] = useState<HighlightPopoverState>({
+    visible: false,
+    x: 0,
+    y: 0,
+    selectedText: '',
+    pageNumber: 0,
+    rects: []
+  });
+  const [comment, setComment] = useState('');
+  const { config, lastUsedHighlightColor, setLastUsedHighlightColor, setCurrentPaper } = useAppStore();
+  const [selectedColor, setSelectedColor] = useState(lastUsedHighlightColor || 'yellow');
 
   useEffect(() => {
     loadPDF();
@@ -67,6 +88,149 @@ export const PDFViewer: React.FC<PDFViewerProps> = ({ paper }) => {
       }
     };
   }, [paper.id]);
+
+  useEffect(() => {
+    // Render highlights when paper changes
+    if (pdfDoc && paper.highlights) {
+      renderHighlights();
+    }
+  }, [paper.highlights, pdfDoc]);
+
+  useEffect(() => {
+    // Add mouseup listener for text selection
+    const handleMouseUp = () => {
+      handleTextSelection();
+    };
+
+    document.addEventListener('mouseup', handleMouseUp);
+    return () => {
+      document.removeEventListener('mouseup', handleMouseUp);
+    };
+  }, []);
+
+  const handleTextSelection = () => {
+    const selection = window.getSelection();
+    if (!selection || selection.isCollapsed || !selection.rangeCount) {
+      setPopover({ ...popover, visible: false });
+      return;
+    }
+
+    const selectedText = selection.toString().trim();
+    if (selectedText.length < 3) {
+      setPopover({ ...popover, visible: false });
+      return;
+    }
+
+    // Check if selection is within PDF text layer
+    const range = selection.getRangeAt(0);
+    const container = range.commonAncestorContainer;
+    const textLayer = (container.nodeType === Node.ELEMENT_NODE
+      ? container as Element
+      : container.parentElement)?.closest('.pdf-text-layer');
+
+    if (!textLayer) {
+      setPopover({ ...popover, visible: false });
+      return;
+    }
+
+    // Get page number
+    const pageContainer = textLayer.closest('.pdf-page');
+    const pageNumber = pageContainer ? parseInt(pageContainer.getAttribute('data-page-number') || '0') : 0;
+
+    if (!pageNumber) return;
+
+    // Get selection rectangles
+    const rects = Array.from(range.getClientRects());
+    if (rects.length === 0) return;
+
+    // Position popover below the selection
+    const lastRect = rects[rects.length - 1];
+    const scrollTop = containerRef.current?.scrollTop || 0;
+    const scrollLeft = containerRef.current?.scrollLeft || 0;
+
+    setPopover({
+      visible: true,
+      x: lastRect.right + scrollLeft,
+      y: lastRect.bottom + scrollTop + 5,
+      selectedText,
+      pageNumber,
+      rects: rects as DOMRect[]
+    });
+  };
+
+  const createHighlight = async () => {
+    if (!popover.visible || !popover.selectedText) return;
+
+    try {
+      // Calculate anchor positions (simplified - using character offsets)
+      const highlight = {
+        page: popover.pageNumber,
+        color: selectedColor,
+        text: popover.selectedText,
+        anchor: {
+          start: { page: popover.pageNumber, offset: 0 },
+          end: { page: popover.pageNumber, offset: popover.selectedText.length }
+        },
+        comment: comment || undefined
+      };
+
+      await api.createHighlight(paper.id, highlight);
+
+      // Refresh paper to get updated highlights
+      const updatedPaper = await api.getPaper(paper.id);
+      setCurrentPaper(updatedPaper);
+
+      // Remember color if config says so
+      if (config?.remember_last_color) {
+        setLastUsedHighlightColor(selectedColor);
+      }
+
+      // Clear selection and popover
+      window.getSelection()?.removeAllRanges();
+      setPopover({ ...popover, visible: false });
+      setComment('');
+    } catch (err) {
+      console.error('Error creating highlight:', err);
+      alert('Failed to create highlight');
+    }
+  };
+
+  const renderHighlights = () => {
+    if (!containerRef.current) return;
+
+    // Clear existing highlights
+    const highlightLayers = containerRef.current.querySelectorAll('.highlight-layer');
+    highlightLayers.forEach(layer => {
+      layer.innerHTML = '';
+    });
+
+    // Render each highlight
+    paper.highlights?.forEach(highlight => {
+      const highlightLayer = containerRef.current?.querySelector(
+        `.highlight-layer[data-page="${highlight.page}"]`
+      ) as HTMLElement;
+
+      if (!highlightLayer) return;
+
+      // Create highlight element (simplified - using full page width for now)
+      const highlightEl = document.createElement('div');
+      highlightEl.className = `highlight ${highlight.color}`;
+      highlightEl.style.left = '0';
+      highlightEl.style.top = '0';
+      highlightEl.style.width = '100%';
+      highlightEl.style.height = '20px';
+      highlightEl.title = highlight.text;
+      highlightEl.setAttribute('data-highlight-id', highlight.id);
+
+      // Add click handler to show highlight details
+      highlightEl.addEventListener('click', () => {
+        // Could open a dialog to edit/delete highlight
+        console.log('Highlight clicked:', highlight);
+      });
+
+      highlightLayer.appendChild(highlightEl);
+    });
+  };
 
   const loadPDF = async () => {
     try {
@@ -210,6 +374,59 @@ export const PDFViewer: React.FC<PDFViewerProps> = ({ paper }) => {
   return (
     <div className="pdf-container">
       <div className="pdf-canvas-wrapper" ref={containerRef} />
+
+      {popover.visible && (
+        <div
+          className="highlight-popover"
+          style={{
+            left: `${popover.x}px`,
+            top: `${popover.y}px`
+          }}
+        >
+          <div className="color-picker">
+            {(config?.highlight_colors || ['#ffeb3b', '#4caf50', '#f44336', '#2196f3']).map(color => (
+              <div
+                key={color}
+                className={`color-btn ${selectedColor === color ? 'selected' : ''}`}
+                style={{ background: color }}
+                onClick={() => setSelectedColor(color)}
+              />
+            ))}
+          </div>
+
+          <input
+            type="text"
+            className="comment-input"
+            placeholder="Add a comment (optional)"
+            value={comment}
+            onChange={(e) => setComment(e.target.value)}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter') {
+                createHighlight();
+              } else if (e.key === 'Escape') {
+                setPopover({ ...popover, visible: false });
+                setComment('');
+              }
+            }}
+          />
+
+          <div style={{ display: 'flex', gap: '0.5rem' }}>
+            <button className="btn" onClick={createHighlight}>
+              Highlight
+            </button>
+            <button
+              className="btn btn-secondary"
+              onClick={() => {
+                setPopover({ ...popover, visible: false });
+                setComment('');
+                window.getSelection()?.removeAllRanges();
+              }}
+            >
+              Cancel
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

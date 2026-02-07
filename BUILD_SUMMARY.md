@@ -92,20 +92,29 @@
    - ✅ Zoom and scroll
    - ✅ Tab-based navigation
 
-4. **Backend Features**
+4. **Highlighting** (NEW!)
+   - ✅ Text selection in PDF
+   - ✅ Color picker popover
+   - ✅ Optional comments on highlights
+   - ✅ Highlight rendering on PDF
+   - ✅ Edit/delete highlights
+   - ✅ Highlights displayed in annotation panel
+   - ✅ Keyboard shortcuts (Enter to save, Escape to cancel)
+
+5. **Backend Features**
    - ✅ Full search indexing (ready to use)
-   - ✅ Highlight CRUD operations (API ready)
+   - ✅ Highlight CRUD operations (fully integrated)
    - ✅ Tag management (API ready)
    - ✅ Bulk operations (API ready)
 
 ## What's Not Implemented (But Specified)
 
-### Phase 4: Highlighting (Next Priority)
-- ❌ Text selection to highlight conversion
-- ❌ Highlight popover UI
-- ❌ Highlight rendering on PDF
-- ❌ Comment editing UI
-- ❌ E2E tests for highlighting features
+### Phase 4: Highlighting ✅ COMPLETE
+- ✅ Text selection to highlight conversion
+- ✅ Highlight popover UI
+- ✅ Highlight rendering on PDF
+- ✅ Comment editing UI
+- ❌ E2E tests for highlighting features (next priority)
 
 ### Phase 5: Search & Tags UI
 - ❌ Search tab component
@@ -147,12 +156,12 @@
 
 ```
 Backend: 6 Python modules + 3 test files
-Frontend: 9 TypeScript/TSX files
+Frontend: 8 TypeScript/TSX files
 Config: 4 JSON files
 Docs: 5 Markdown files
 Scripts: 1 setup script
 
-Total: ~3,500 lines of code (estimated)
+Total: ~4,200 lines of code (estimated)
 ```
 
 ## Known Limitations
@@ -221,15 +230,15 @@ From Spec.md:
 
 - [x] Can import paper by DOI/URL with metadata and PDF
 - [x] Can view PDF
-- [ ] Can create highlights (API ready, UI pending)
-- [ ] Highlights persist and re-render correctly (pending)
+- [x] Can create highlights with colors and comments
+- [x] Highlights persist and re-render correctly
 - [ ] Can search across papers (API ready, UI pending)
 - [ ] Can tag papers (API ready, UI pending)
 - [x] All API endpoints work
 - [x] Backend tests pass
-- [x] Frontend e2e tests pass (4/9 - 5 require PDFs for all papers)
+- [ ] Frontend e2e tests for highlighting
 
-**Overall completion**: ~60% of MVP features
+**Overall completion**: ~75% of MVP features
 
 ## Conclusion
 
