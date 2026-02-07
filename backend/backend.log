@@ -1,0 +1,10 @@
+INFO:     Will watch for changes in these directories: ['/home/ita/scholarita/backend']
+INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+INFO:     Started reloader process [16665] using WatchFiles
+INFO:     Started server process [16670]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [16670]
