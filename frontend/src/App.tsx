@@ -157,7 +157,10 @@ function App() {
             return (
               <div
                 key={tab.id}
-                style={{ display: isActive ? 'contents' : 'none' }}
+                style={{
+                  display: isActive ? 'contents' : 'none',
+                  pointerEvents: isActive ? 'auto' : 'none'
+                }}
               >
                 <PDFViewer paper={paper} />
                 <AnnotationPanel paper={paper} />

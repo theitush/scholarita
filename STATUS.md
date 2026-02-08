@@ -72,21 +72,15 @@ Scholarita is a functional local-first research paper annotation tool with a wor
 
 ## Known Issues
 
-1. **Pin Position Jumping (CRITICAL):**
-   - After moving a pin, it sometimes jumps back to its original position
-   - Issue appears to be triggered when changing tabs
-   - Works correctly initially but stops persisting position after some time
-   - Needs investigation of tab switching logic and position update timing
-
-2. **E2E Test Failures:**
+1. **E2E Test Failures:**
    - Highlight popover not appearing reliably (text layer timing)
    - Some pin tests flaky due to PDF rendering timing
    - Need to add better wait conditions
 
-3. **Pin System:**
+2. **Pin System:**
    - Missing backend Pin model (currently using Highlight model - works fine for now)
 
-4. **Highlight System:**
+3. **Highlight System:**
    - Text selection to highlight flow incomplete
    - Highlight rendering overlay not visible
    - Missing highlight edit/delete in UI

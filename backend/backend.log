@@ -1,10 +1,1876 @@
 INFO:     Will watch for changes in these directories: ['/home/ita/scholarita/backend']
-INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
-INFO:     Started reloader process [16665] using WatchFiles
-INFO:     Started server process [16670]
+INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
+INFO:     Started reloader process [130540] using WatchFiles
+INFO:     Started server process [130542]
 INFO:     Waiting for application startup.
 INFO:     Application startup complete.
+INFO:     127.0.0.1:58486 - "GET /api/papers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:44144 - "GET /api/papers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:44158 - "GET /api/config HTTP/1.1" 200 OK
+INFO:     127.0.0.1:44164 - "GET /api/papers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:44176 - "GET /api/config HTTP/1.1" 200 OK
+INFO:     127.0.0.1:44180 - "GET /api/papers/10-7554-elife-99545-4 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:44184 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 200 OK
+INFO:     127.0.0.1:44192 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 200 OK
+INFO:     127.0.0.1:44206 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:44220 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:44236 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:44250 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:44252 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:44258 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:41594 - "GET /api/papers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:41608 - "GET /api/config HTTP/1.1" 200 OK
+INFO:     127.0.0.1:41610 - "GET /api/papers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:41624 - "GET /api/config HTTP/1.1" 200 OK
+INFO:     127.0.0.1:41632 - "GET /api/papers/10-7554-elife-99545-4 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:41642 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 200 OK
+INFO:     127.0.0.1:41650 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 200 OK
+INFO:     127.0.0.1:41658 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:41668 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:41678 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:41680 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:41694 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:39066 - "PUT /api/papers/10-7554-elife-99545-4/highlights/h_035cc4341b04 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:39070 - "GET /api/papers/10-7554-elife-99545-4 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43996 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:44010 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:33184 - "GET /api/papers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:33192 - "GET /api/config HTTP/1.1" 200 OK
+INFO:     127.0.0.1:33196 - "GET /api/papers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:33204 - "GET /api/config HTTP/1.1" 200 OK
+INFO:     127.0.0.1:33212 - "GET /api/papers/10-7554-elife-99545-4 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:33216 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 200 OK
+INFO:     127.0.0.1:33234 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:33222 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 200 OK
+INFO:     127.0.0.1:33242 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:33244 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:33252 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:33260 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:33264 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:33268 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:52874 - "GET /api/papers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52884 - "GET /api/config HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52888 - "GET /api/papers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52892 - "GET /api/config HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52908 - "GET /api/papers/10-7554-elife-99545-4 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52912 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52920 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52928 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:52942 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:52958 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:52972 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:52984 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:52996 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:53010 - "GET /api/papers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53012 - "GET /api/config HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53026 - "GET /api/papers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53040 - "GET /api/config HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38126 - "GET /api/papers/10-7554-elife-99545-4 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38134 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38146 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38154 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:38156 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:38170 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:38184 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:38200 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:38188 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:38216 - "GET /api/papers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38232 - "GET /api/config HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38242 - "GET /api/papers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38258 - "GET /api/config HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38266 - "GET /api/papers/10-7554-elife-99545-4 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38276 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38286 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38288 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:38302 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:38310 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:38322 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:38332 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:41220 - "PUT /api/papers/10-7554-elife-99545-4/highlights/h_04370698dbbd HTTP/1.1" 200 OK
+INFO:     127.0.0.1:41230 - "GET /api/papers/10-7554-elife-99545-4 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:41246 - "POST /api/papers/10-7554-elife-99545-4/highlights HTTP/1.1" 200 OK
+INFO:     127.0.0.1:41256 - "GET /api/papers/10-7554-elife-99545-4 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:41268 - "GET /api/papers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:41274 - "GET /api/config HTTP/1.1" 200 OK
+INFO:     127.0.0.1:41276 - "GET /api/papers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:41278 - "GET /api/config HTTP/1.1" 200 OK
+INFO:     127.0.0.1:41294 - "GET /api/papers/10-7554-elife-99545-4 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:41298 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 200 OK
+INFO:     127.0.0.1:41312 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 200 OK
+INFO:     127.0.0.1:41322 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:41326 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:41342 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:41348 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:41354 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:41368 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:38074 - "PUT /api/papers/10-7554-elife-99545-4/highlights/h_09420818e75d HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38082 - "GET /api/papers/10-7554-elife-99545-4 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38098 - "POST /api/papers/10-7554-elife-99545-4/highlights HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38106 - "GET /api/papers/10-7554-elife-99545-4 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38116 - "GET /api/papers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38124 - "GET /api/config HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38140 - "GET /api/papers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38156 - "GET /api/config HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38158 - "GET /api/papers/10-7554-elife-99545-4 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38168 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38188 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:38176 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38202 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:38218 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:38222 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:38230 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:38234 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:53134 - "PUT /api/papers/10-7554-elife-99545-4/highlights/h_2fb682f96b9c HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53136 - "GET /api/papers/10-7554-elife-99545-4 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53148 - "POST /api/papers/10-7554-elife-99545-4/highlights HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53164 - "GET /api/papers/10-7554-elife-99545-4 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53176 - "GET /api/papers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53180 - "GET /api/config HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53184 - "GET /api/papers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53188 - "GET /api/config HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53192 - "GET /api/papers/10-7554-elife-99545-4 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53200 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53226 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:53216 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53238 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:53250 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:53254 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:47780 - "GET /api/papers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:47792 - "GET /api/config HTTP/1.1" 200 OK
+INFO:     127.0.0.1:47796 - "GET /api/papers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:47802 - "GET /api/config HTTP/1.1" 200 OK
+INFO:     127.0.0.1:47814 - "GET /api/papers/10-7554-elife-99545-4 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:47830 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 200 OK
+INFO:     127.0.0.1:47852 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:47846 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 200 OK
+INFO:     127.0.0.1:47860 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:47858 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:47862 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:47866 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:47872 - "GET /api/papers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:47878 - "GET /api/config HTTP/1.1" 200 OK
+INFO:     127.0.0.1:47882 - "GET /api/papers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:47886 - "GET /api/config HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53858 - "GET /api/papers/10-7554-elife-99545-4 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53870 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53886 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:53880 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53900 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:53916 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:53932 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:53940 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:53942 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:53956 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:53958 - "GET /api/papers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53972 - "GET /api/config HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53978 - "GET /api/papers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53990 - "GET /api/config HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54006 - "GET /api/papers/10-7554-elife-99545-4 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54008 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54038 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:54024 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54062 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:54050 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:54064 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:54884 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:54892 - "GET /api/papers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54898 - "GET /api/config HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54908 - "GET /api/papers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54914 - "GET /api/config HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54928 - "GET /api/papers/10-7554-elife-99545-4 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54938 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54962 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:54954 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54966 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:54974 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:54982 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:54986 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:54998 - "GET /api/papers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55006 - "GET /api/config HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55016 - "GET /api/papers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55028 - "GET /api/config HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43722 - "GET /api/papers/10-7554-elife-99545-4 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43724 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43732 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43748 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:43758 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:43770 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:43774 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:43784 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:43786 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:43792 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:40932 - "GET /api/papers/10-1371-journal-pcbi-1000239 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:40944 - "GET /api/papers/10-1371-journal-pcbi-1000239/pdf HTTP/1.1" 200 OK
+INFO:     127.0.0.1:40960 - "GET /api/papers/10-1371-journal-pcbi-1000239/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:40962 - "GET /api/papers/10-1371-journal-pcbi-1000239/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:39238 - "GET /api/papers/10-1523-jneurosci-0268-15-2015/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:39244 - "GET /api/papers/10-1523-jneurosci-0268-15-2015/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:39258 - "PUT /api/papers/10-1523-jneurosci-0268-15-2015/highlights/h_8390afdca4b2 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:39262 - "GET /api/papers/10-1523-jneurosci-0268-15-2015 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55454 - "PUT /api/papers/10-1523-jneurosci-0268-15-2015/highlights/h_8390afdca4b2 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55468 - "GET /api/papers/10-1523-jneurosci-0268-15-2015 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55474 - "PUT /api/papers/10-1523-jneurosci-0268-15-2015/highlights/h_8390afdca4b2 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55482 - "GET /api/papers/10-1523-jneurosci-0268-15-2015 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55484 - "PUT /api/papers/10-1523-jneurosci-0268-15-2015/highlights/h_8390afdca4b2 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55492 - "GET /api/papers/10-1523-jneurosci-0268-15-2015 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38810 - "PUT /api/papers/10-1523-jneurosci-0268-15-2015/highlights/h_8390afdca4b2 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38812 - "GET /api/papers/10-1523-jneurosci-0268-15-2015 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38828 - "PUT /api/papers/10-1523-jneurosci-0268-15-2015/highlights/h_8390afdca4b2 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38842 - "GET /api/papers/10-1523-jneurosci-0268-15-2015 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:34556 - "GET /api/papers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:34564 - "GET /api/config HTTP/1.1" 200 OK
+INFO:     127.0.0.1:34566 - "GET /api/papers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:34580 - "GET /api/config HTTP/1.1" 200 OK
+INFO:     127.0.0.1:34588 - "GET /api/papers/10-7554-elife-99545-4 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:34600 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:34604 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:34616 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:38700 - "PUT /api/papers/10-7554-elife-99545-4/highlights/h_f72ec48c9d41 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38706 - "GET /api/papers/10-7554-elife-99545-4 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38714 - "PUT /api/papers/10-7554-elife-99545-4/highlights/h_09840681a3c6 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38720 - "GET /api/papers/10-7554-elife-99545-4 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38736 - "PUT /api/papers/10-7554-elife-99545-4/highlights/h_09840681a3c6 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38740 - "GET /api/papers/10-7554-elife-99545-4 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38744 - "PUT /api/papers/10-7554-elife-99545-4/highlights/h_09840681a3c6 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38758 - "GET /api/papers/10-7554-elife-99545-4 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38250 - "PUT /api/papers/10-7554-elife-99545-4/highlights/h_7829eb6218d2 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38262 - "GET /api/papers/10-7554-elife-99545-4 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38268 - "PUT /api/papers/10-7554-elife-99545-4/highlights/h_7829eb6218d2 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38280 - "GET /api/papers/10-7554-elife-99545-4 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:45830 - "PUT /api/papers/10-7554-elife-99545-4/highlights/h_7829eb6218d2 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:45844 - "GET /api/papers/10-7554-elife-99545-4 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48802 - "PUT /api/papers/10-7554-elife-99545-4/highlights/h_7829eb6218d2 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48804 - "GET /api/papers/10-7554-elife-99545-4 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48814 - "PUT /api/papers/10-7554-elife-99545-4/highlights/h_09840681a3c6 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48824 - "GET /api/papers/10-7554-elife-99545-4 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48830 - "PUT /api/papers/10-7554-elife-99545-4/highlights/h_09840681a3c6 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48844 - "GET /api/papers/10-7554-elife-99545-4 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:35692 - "PUT /api/papers/10-7554-elife-99545-4/highlights/h_09840681a3c6 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:35702 - "GET /api/papers/10-7554-elife-99545-4 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:35712 - "DELETE /api/papers/10-7554-elife-99545-4/highlights/h_09840681a3c6 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:35726 - "GET /api/papers/10-7554-elife-99545-4 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:35738 - "PUT /api/papers/10-7554-elife-99545-4/highlights/h_09420818e75d HTTP/1.1" 200 OK
+INFO:     127.0.0.1:35752 - "GET /api/papers/10-7554-elife-99545-4 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57192 - "DELETE /api/papers/10-7554-elife-99545-4/highlights/h_09420818e75d HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57200 - "GET /api/papers/10-7554-elife-99545-4 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57208 - "PUT /api/papers/10-7554-elife-99545-4/highlights/h_2fb682f96b9c HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57210 - "GET /api/papers/10-7554-elife-99545-4 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57224 - "DELETE /api/papers/10-7554-elife-99545-4/highlights/h_2fb682f96b9c HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57230 - "GET /api/papers/10-7554-elife-99545-4 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57238 - "PUT /api/papers/10-7554-elife-99545-4/highlights/h_7ebb68e87f77 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57242 - "GET /api/papers/10-7554-elife-99545-4 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57248 - "PUT /api/papers/10-7554-elife-99545-4/highlights/h_7ebb68e87f77 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57258 - "GET /api/papers/10-7554-elife-99545-4 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48978 - "DELETE /api/papers/10-7554-elife-99545-4/highlights/h_7ebb68e87f77 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48990 - "GET /api/papers/10-7554-elife-99545-4 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48998 - "PUT /api/papers/10-7554-elife-99545-4/highlights/h_4b45344b9154 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49010 - "GET /api/papers/10-7554-elife-99545-4 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49020 - "DELETE /api/papers/10-7554-elife-99545-4/highlights/h_4b45344b9154 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49024 - "GET /api/papers/10-7554-elife-99545-4 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49026 - "PUT /api/papers/10-7554-elife-99545-4/highlights/h_035cc4341b04 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49034 - "GET /api/papers/10-7554-elife-99545-4 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49038 - "DELETE /api/papers/10-7554-elife-99545-4/highlights/h_035cc4341b04 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49048 - "GET /api/papers/10-7554-elife-99545-4 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:47300 - "PUT /api/papers/10-7554-elife-99545-4/highlights/h_04370698dbbd HTTP/1.1" 200 OK
+INFO:     127.0.0.1:47306 - "GET /api/papers/10-7554-elife-99545-4 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:47318 - "PUT /api/papers/10-7554-elife-99545-4/highlights/h_04370698dbbd HTTP/1.1" 200 OK
+INFO:     127.0.0.1:47330 - "GET /api/papers/10-7554-elife-99545-4 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:47878 - "PUT /api/papers/10-7554-elife-99545-4/highlights/h_04370698dbbd HTTP/1.1" 200 OK
+INFO:     127.0.0.1:47888 - "GET /api/papers/10-7554-elife-99545-4 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43258 - "DELETE /api/papers/10-7554-elife-99545-4/highlights/h_04370698dbbd HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43260 - "GET /api/papers/10-7554-elife-99545-4 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43272 - "PUT /api/papers/10-7554-elife-99545-4/highlights/h_7829eb6218d2 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43274 - "GET /api/papers/10-7554-elife-99545-4 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43276 - "DELETE /api/papers/10-7554-elife-99545-4/highlights/h_7829eb6218d2 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43282 - "GET /api/papers/10-7554-elife-99545-4 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43292 - "PUT /api/papers/10-7554-elife-99545-4/highlights/h_f72ec48c9d41 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43302 - "GET /api/papers/10-7554-elife-99545-4 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56146 - "DELETE /api/papers/10-7554-elife-99545-4/highlights/h_f72ec48c9d41 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56154 - "GET /api/papers/10-7554-elife-99545-4 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56164 - "GET /api/papers/10-1523-jneurosci-0268-15-2015 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56168 - "PUT /api/papers/10-1523-jneurosci-0268-15-2015/highlights/h_9693fdd1028c HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56178 - "GET /api/papers/10-1523-jneurosci-0268-15-2015 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43564 - "PUT /api/papers/10-1523-jneurosci-0268-15-2015/highlights/h_8390afdca4b2 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43566 - "GET /api/papers/10-1523-jneurosci-0268-15-2015 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43568 - "GET /api/papers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43580 - "GET /api/config HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43592 - "GET /api/papers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43604 - "GET /api/config HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43608 - "GET /api/papers/10-7554-elife-99545-4 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43624 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:43638 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:43644 - "GET /api/papers/10-1523-jneurosci-0268-15-2015 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43654 - "GET /api/papers/10-1523-jneurosci-0268-15-2015/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:40976 - "PUT /api/papers/10-1523-jneurosci-0268-15-2015/highlights/h_8390afdca4b2 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:40992 - "GET /api/papers/10-1523-jneurosci-0268-15-2015 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:41004 - "PUT /api/papers/10-1523-jneurosci-0268-15-2015/highlights/h_8390afdca4b2 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:41010 - "GET /api/papers/10-1523-jneurosci-0268-15-2015 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:41014 - "PUT /api/papers/10-1523-jneurosci-0268-15-2015/highlights/h_8390afdca4b2 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:41018 - "GET /api/papers/10-1523-jneurosci-0268-15-2015 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:41022 - "PUT /api/papers/10-1523-jneurosci-0268-15-2015/highlights/h_9693fdd1028c HTTP/1.1" 200 OK
+INFO:     127.0.0.1:41032 - "GET /api/papers/10-1523-jneurosci-0268-15-2015 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:41034 - "PUT /api/papers/10-1523-jneurosci-0268-15-2015/highlights/h_9693fdd1028c HTTP/1.1" 200 OK
+INFO:     127.0.0.1:41036 - "GET /api/papers/10-1523-jneurosci-0268-15-2015 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56956 - "DELETE /api/papers/10-1523-jneurosci-0268-15-2015/highlights/h_9693fdd1028c HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56968 - "GET /api/papers/10-1523-jneurosci-0268-15-2015 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55512 - "PUT /api/papers/10-1523-jneurosci-0268-15-2015/highlights/h_8390afdca4b2 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55528 - "GET /api/papers/10-1523-jneurosci-0268-15-2015 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55544 - "GET /api/papers/10-1371-journal-pcbi-1000239 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55548 - "GET /api/papers/10-1371-journal-pcbi-1000239/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:48000 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:48012 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:48020 - "GET /api/papers/10-1371-journal-pcbi-1000239/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:48032 - "GET /api/papers/10-1371-journal-pcbi-1000239/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:59854 - "GET /api/papers/10-1371-journal-pcbi-1000239/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:59856 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:59858 - "GET /api/papers/10-1523-jneurosci-0268-15-2015/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:51680 - "GET /api/papers/10-1523-jneurosci-0268-15-2015/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:51692 - "GET /api/papers/10-1371-journal-pcbi-1000239/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:51700 - "GET /api/papers/10-1371-journal-pcbi-1000239/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:51714 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:51728 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:39664 - "GET /api/papers/10-1371-journal-pcbi-1000239/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:39668 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:39684 - "GET /api/papers/10-1523-jneurosci-0268-15-2015/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:50044 - "GET /api/papers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50046 - "GET /api/config HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50054 - "GET /api/papers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50056 - "GET /api/config HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50070 - "GET /api/papers/10-7554-elife-99545-4 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50084 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50094 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50108 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:50122 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:50130 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:50134 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:50150 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:36572 - "GET /api/papers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:36574 - "GET /api/config HTTP/1.1" 200 OK
+INFO:     127.0.0.1:36578 - "GET /api/papers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:36588 - "GET /api/config HTTP/1.1" 200 OK
+INFO:     127.0.0.1:36604 - "GET /api/papers/10-7554-elife-99545-4 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:36616 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 200 OK
+INFO:     127.0.0.1:36622 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 200 OK
+INFO:     127.0.0.1:36636 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:36642 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:36650 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:36652 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:36662 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:36676 - "GET /api/papers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:36686 - "GET /api/config HTTP/1.1" 200 OK
+INFO:     127.0.0.1:36698 - "GET /api/papers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:36714 - "GET /api/config HTTP/1.1" 200 OK
+INFO:     127.0.0.1:36720 - "GET /api/papers/10-7554-elife-99545-4 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:40554 - "GET /api/papers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:40562 - "GET /api/config HTTP/1.1" 200 OK
+INFO:     127.0.0.1:40578 - "GET /api/papers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:40594 - "GET /api/config HTTP/1.1" 200 OK
+INFO:     127.0.0.1:40608 - "GET /api/papers/10-7554-elife-99545-4 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:40612 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 200 OK
+INFO:     127.0.0.1:40626 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 200 OK
+INFO:     127.0.0.1:40628 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:40636 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:40646 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:40660 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:40676 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:40692 - "GET /api/papers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:40698 - "GET /api/config HTTP/1.1" 200 OK
+INFO:     127.0.0.1:40710 - "GET /api/papers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:40718 - "GET /api/config HTTP/1.1" 200 OK
+INFO:     127.0.0.1:40726 - "GET /api/papers/10-7554-elife-99545-4 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:40742 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 200 OK
+INFO:     127.0.0.1:40754 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 200 OK
+INFO:     127.0.0.1:40758 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:40760 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:57708 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:57716 - "GET /api/papers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57718 - "GET /api/config HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57720 - "GET /api/config HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57728 - "GET /api/papers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57734 - "GET /api/papers/10-7554-elife-99545-4 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57740 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57752 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57764 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:57776 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:57774 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:57788 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:57804 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:57810 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:41686 - "POST /api/papers/10-7554-elife-99545-4/highlights HTTP/1.1" 200 OK
+INFO:     127.0.0.1:41692 - "GET /api/papers/10-7554-elife-99545-4 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:41696 - "GET /api/papers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:41706 - "GET /api/config HTTP/1.1" 200 OK
+INFO:     127.0.0.1:41716 - "GET /api/papers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:41728 - "GET /api/config HTTP/1.1" 200 OK
+INFO:     127.0.0.1:41732 - "GET /api/papers/10-7554-elife-99545-4 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:41742 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 200 OK
+INFO:     127.0.0.1:41752 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 200 OK
+INFO:     127.0.0.1:41756 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:41770 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:41786 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:41800 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:41810 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:41820 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:50678 - "POST /api/papers/10-7554-elife-99545-4/highlights HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50692 - "GET /api/papers/10-7554-elife-99545-4 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50696 - "GET /api/papers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50698 - "GET /api/config HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50712 - "GET /api/papers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50724 - "GET /api/config HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50734 - "GET /api/papers/10-7554-elife-99545-4 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50738 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50756 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:50744 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50772 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:50776 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:50780 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:50792 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:50794 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:50806 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:35000 - "POST /api/papers/10-7554-elife-99545-4/highlights HTTP/1.1" 200 OK
+INFO:     127.0.0.1:35006 - "GET /api/papers/10-7554-elife-99545-4 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:35012 - "GET /api/papers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:35018 - "GET /api/config HTTP/1.1" 200 OK
+INFO:     127.0.0.1:35026 - "GET /api/papers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:35042 - "GET /api/config HTTP/1.1" 200 OK
+INFO:     127.0.0.1:35050 - "GET /api/papers/10-7554-elife-99545-4 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:35060 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 200 OK
+INFO:     127.0.0.1:35076 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 200 OK
+INFO:     127.0.0.1:35088 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:35098 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:35114 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:35116 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:35130 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:35136 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:35150 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:56350 - "GET /api/papers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56366 - "GET /api/config HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56374 - "GET /api/papers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56376 - "GET /api/config HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56382 - "GET /api/papers/10-7554-elife-99545-4 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56384 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56392 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56404 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:56418 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:56432 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:56448 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:56458 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:49576 - "GET /api/papers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49592 - "GET /api/config HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49606 - "GET /api/papers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49610 - "GET /api/config HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49618 - "GET /api/papers/10-7554-elife-99545-4 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49624 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49640 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49646 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:49652 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:49660 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:49674 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:49680 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:49692 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:49700 - "GET /api/papers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49712 - "GET /api/config HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49722 - "GET /api/papers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49734 - "GET /api/config HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50068 - "GET /api/papers/10-7554-elife-99545-4 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50080 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50086 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50090 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:50106 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:50112 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:50128 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:50142 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:50150 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:50156 - "GET /api/papers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50168 - "GET /api/config HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50184 - "GET /api/papers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50190 - "GET /api/config HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50200 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:50202 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:50212 - "GET /api/papers/10-7554-elife-99545-4 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50222 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50250 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:50234 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50252 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:50254 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:50256 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:50270 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:50278 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:57446 - "GET /api/papers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57448 - "GET /api/config HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57450 - "GET /api/papers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57462 - "GET /api/config HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57472 - "GET /api/papers/10-7554-elife-99545-4 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57476 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57488 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:57484 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57504 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:57508 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:57516 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:57520 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:57532 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:57548 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:57556 - "POST /api/papers/10-7554-elife-99545-4/highlights HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57564 - "GET /api/papers/10-7554-elife-99545-4 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57574 - "PUT /api/papers/10-7554-elife-99545-4/highlights/h_16379bbd6ed4 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57576 - "GET /api/papers/10-7554-elife-99545-4 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57584 - "PUT /api/papers/10-7554-elife-99545-4/highlights/h_16379bbd6ed4 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57592 - "GET /api/papers/10-7554-elife-99545-4 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56320 - "PUT /api/papers/10-7554-elife-99545-4/highlights/h_16379bbd6ed4 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56330 - "GET /api/papers/10-7554-elife-99545-4 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56338 - "PUT /api/papers/10-7554-elife-99545-4/highlights/h_16379bbd6ed4 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56344 - "GET /api/papers/10-7554-elife-99545-4 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56358 - "GET /api/papers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56362 - "GET /api/config HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56372 - "GET /api/papers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56386 - "GET /api/config HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56400 - "PUT /api/papers/10-7554-elife-99545-4/highlights/h_178ff1dd53e5 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56412 - "GET /api/papers/10-7554-elife-99545-4 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56422 - "GET /api/papers/10-7554-elife-99545-4 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56436 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56452 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56468 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:56482 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:56498 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:56508 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:56522 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:56536 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:56546 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:56548 - "PUT /api/papers/10-7554-elife-99545-4/highlights/h_178ff1dd53e5 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56564 - "GET /api/papers/10-7554-elife-99545-4 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56648 - "PUT /api/papers/10-7554-elife-99545-4/highlights/h_45dd10beecbf HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56664 - "GET /api/papers/10-7554-elife-99545-4 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56668 - "PUT /api/papers/10-7554-elife-99545-4/highlights/h_16379bbd6ed4 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56680 - "GET /api/papers/10-7554-elife-99545-4 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56686 - "PUT /api/papers/10-7554-elife-99545-4/highlights/h_45dd10beecbf HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56702 - "GET /api/papers/10-7554-elife-99545-4 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56708 - "PUT /api/papers/10-7554-elife-99545-4/highlights/h_45dd10beecbf HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56710 - "GET /api/papers/10-7554-elife-99545-4 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56712 - "GET /api/papers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56724 - "GET /api/config HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56740 - "GET /api/papers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56750 - "GET /api/config HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56752 - "PUT /api/papers/10-7554-elife-99545-4/highlights/h_178ff1dd53e5 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56758 - "GET /api/papers/10-7554-elife-99545-4 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56766 - "GET /api/papers/10-7554-elife-99545-4 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56776 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56796 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:56786 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56806 - "PUT /api/papers/10-7554-elife-99545-4/highlights/h_16379bbd6ed4 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56818 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:56830 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:56844 - "GET /api/papers/10-7554-elife-99545-4 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56850 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:56856 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:56864 - "PUT /api/papers/10-7554-elife-99545-4/highlights/h_16379bbd6ed4 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56880 - "GET /api/papers/10-7554-elife-99545-4 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56888 - "PUT /api/papers/10-7554-elife-99545-4/highlights/h_16379bbd6ed4 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56896 - "GET /api/papers/10-7554-elife-99545-4 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48300 - "PUT /api/papers/10-7554-elife-99545-4/highlights/h_16379bbd6ed4 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48308 - "GET /api/papers/10-7554-elife-99545-4 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48314 - "PUT /api/papers/10-7554-elife-99545-4/highlights/h_16379bbd6ed4 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48328 - "GET /api/papers/10-7554-elife-99545-4 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48336 - "PUT /api/papers/10-7554-elife-99545-4/highlights/h_16379bbd6ed4 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48348 - "GET /api/papers/10-7554-elife-99545-4 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54556 - "PUT /api/papers/10-1523-jneurosci-0268-15-2015/highlights/h_8390afdca4b2 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54558 - "GET /api/papers/10-1523-jneurosci-0268-15-2015 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54572 - "PUT /api/papers/10-1523-jneurosci-0268-15-2015/highlights/h_8390afdca4b2 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54576 - "GET /api/papers/10-1523-jneurosci-0268-15-2015 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54580 - "PUT /api/papers/10-1523-jneurosci-0268-15-2015/highlights/h_8390afdca4b2 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54586 - "GET /api/papers/10-1523-jneurosci-0268-15-2015 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54602 - "PUT /api/papers/10-1523-jneurosci-0268-15-2015/highlights/h_8390afdca4b2 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54616 - "GET /api/papers/10-1523-jneurosci-0268-15-2015 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:35006 - "GET /api/papers/10-1371-journal-pcbi-1000239/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:35010 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:34906 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:34914 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:34928 - "GET /api/papers/10-1371-journal-pcbi-1000239/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:34940 - "GET /api/papers/10-1523-jneurosci-0268-15-2015/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:46832 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:46842 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:45036 - "GET /api/papers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:45048 - "GET /api/config HTTP/1.1" 200 OK
+INFO:     127.0.0.1:45054 - "GET /api/papers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:45068 - "GET /api/config HTTP/1.1" 200 OK
+INFO:     127.0.0.1:45076 - "GET /api/papers/10-7554-elife-99545-4 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:45092 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 200 OK
+INFO:     127.0.0.1:45096 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 200 OK
+INFO:     127.0.0.1:45110 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:45118 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:45134 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:45148 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:45152 - "PUT /api/papers/10-7554-elife-99545-4/highlights/h_16379bbd6ed4 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:45168 - "GET /api/papers/10-7554-elife-99545-4 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:45172 - "GET /api/papers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:45174 - "GET /api/config HTTP/1.1" 200 OK
+INFO:     127.0.0.1:45186 - "GET /api/papers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:45202 - "GET /api/config HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53404 - "GET /api/papers/10-7554-elife-99545-4 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53416 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:53428 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:53440 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:53448 - "PUT /api/papers/10-7554-elife-99545-4/highlights/h_16379bbd6ed4 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53462 - "GET /api/papers/10-7554-elife-99545-4 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49430 - "GET /api/papers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49436 - "GET /api/config HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49444 - "GET /api/papers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49446 - "GET /api/config HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49458 - "GET /api/papers/10-7554-elife-99545-4 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49464 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49480 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49488 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:49490 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:49496 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:48694 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:48700 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:48706 - "PUT /api/papers/10-7554-elife-99545-4/highlights/h_1cd8e913d9b2 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48718 - "GET /api/papers/10-7554-elife-99545-4 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48734 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:48748 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:48750 - "GET /api/papers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48762 - "GET /api/config HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48764 - "GET /api/papers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48766 - "GET /api/config HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48780 - "PUT /api/papers/10-7554-elife-99545-4/highlights/h_1cd8e913d9b2 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48786 - "GET /api/papers/10-7554-elife-99545-4 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48788 - "GET /api/papers/10-7554-elife-99545-4 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48802 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48806 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48820 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:48826 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:48832 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:48836 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:48844 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:59734 - "GET /api/papers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59746 - "GET /api/config HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59758 - "GET /api/papers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59760 - "GET /api/config HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59764 - "GET /api/papers/10-7554-elife-99545-4 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59768 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59784 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59796 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:59798 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:59810 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:59814 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:59828 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:59834 - "PUT /api/papers/10-7554-elife-99545-4/highlights/h_178ff1dd53e5 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59850 - "GET /api/papers/10-7554-elife-99545-4 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:46266 - "POST /api/papers/10-7554-elife-99545-4/highlights HTTP/1.1" 200 OK
+INFO:     127.0.0.1:46274 - "GET /api/papers/10-7554-elife-99545-4 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:46286 - "GET /api/papers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:46288 - "GET /api/config HTTP/1.1" 200 OK
+INFO:     127.0.0.1:46298 - "GET /api/papers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:46312 - "GET /api/config HTTP/1.1" 200 OK
+INFO:     127.0.0.1:46318 - "GET /api/papers/10-7554-elife-99545-4 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:46330 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 200 OK
+INFO:     127.0.0.1:46340 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 200 OK
+INFO:     127.0.0.1:46350 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:46360 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:46362 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:46364 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:46372 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:46388 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:46392 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:46408 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:46418 - "PUT /api/papers/10-7554-elife-99545-4/highlights/h_178ff1dd53e5 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:46432 - "GET /api/papers/10-7554-elife-99545-4 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57844 - "POST /api/papers/10-7554-elife-99545-4/highlights HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57860 - "GET /api/papers/10-7554-elife-99545-4 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57868 - "GET /api/papers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57882 - "GET /api/config HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57886 - "GET /api/papers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57902 - "GET /api/config HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57912 - "GET /api/papers/10-1523-jneurosci-0268-15-2015 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57922 - "GET /api/papers/10-7554-elife-99545-4 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57934 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57938 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57940 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:57948 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:57954 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:57968 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:57978 - "PUT /api/papers/10-7554-elife-99545-4/highlights/h_8390afdca4b2 HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:43136 - "POST /api/papers/10-7554-elife-99545-4/highlights HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43152 - "GET /api/papers/10-7554-elife-99545-4 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43166 - "PUT /api/papers/10-7554-elife-99545-4/highlights/h_8390afdca4b2 HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:43174 - "GET /api/papers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43184 - "GET /api/config HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43192 - "GET /api/papers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43206 - "GET /api/config HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43208 - "GET /api/papers/10-7554-elife-99545-4 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43210 - "GET /api/papers/10-1371-journal-pcbi-1000239 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43222 - "GET /api/papers/10-1371-journal-pcbi-1000239/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:43230 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43244 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43260 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:43270 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:43282 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:43294 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:43296 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:55486 - "PUT /api/papers/10-7554-elife-99545-4/highlights/h_8390afdca4b2 HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:55494 - "GET /api/papers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55496 - "GET /api/config HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55508 - "GET /api/papers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55514 - "GET /api/config HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55524 - "GET /api/papers/10-7554-elife-99545-4 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55536 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55550 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:55546 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55556 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:55570 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:55586 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:55598 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:55610 - "PUT /api/papers/10-1371-journal-pcbi-1000239/highlights/h_8390afdca4b2 HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:55620 - "GET /api/papers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55628 - "GET /api/config HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55642 - "GET /api/papers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55656 - "GET /api/config HTTP/1.1" 200 OK
+INFO:     127.0.0.1:34680 - "GET /api/papers/10-7554-elife-99545-4 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:34682 - "PUT /api/papers/10-7554-elife-99545-4/highlights/h_8390afdca4b2 HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:34692 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 200 OK
+INFO:     127.0.0.1:34696 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 200 OK
+INFO:     127.0.0.1:34702 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:34710 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:34720 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:34722 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:34724 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:34726 - "PUT /api/papers/10-1371-journal-pcbi-1000239/highlights/h_8390afdca4b2 HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:34732 - "GET /api/papers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:34746 - "GET /api/config HTTP/1.1" 200 OK
+INFO:     127.0.0.1:34756 - "GET /api/papers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:34762 - "GET /api/config HTTP/1.1" 200 OK
+INFO:     127.0.0.1:34770 - "GET /api/papers/10-7554-elife-99545-4 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49392 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49416 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:49400 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49418 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:49422 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:49434 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:49450 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:49456 - "PUT /api/papers/10-7554-elife-99545-4/highlights/h_8390afdca4b2 HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:49468 - "GET /api/papers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49484 - "GET /api/config HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49498 - "GET /api/papers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49500 - "GET /api/config HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49506 - "GET /api/papers/10-7554-elife-99545-4 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49516 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49518 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49524 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:49522 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:49532 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:49534 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:38212 - "GET /api/papers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38218 - "GET /api/config HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38232 - "GET /api/papers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38238 - "GET /api/config HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38242 - "GET /api/papers/10-7554-elife-99545-4 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38256 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38258 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38260 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:38272 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:38284 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:38292 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:38308 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:38322 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:38338 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:38344 - "PUT /api/papers/10-7554-elife-99545-4/highlights/h_16379bbd6ed4 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38350 - "GET /api/papers/10-7554-elife-99545-4 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:32872 - "GET /api/papers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:32882 - "GET /api/config HTTP/1.1" 200 OK
+INFO:     127.0.0.1:32890 - "GET /api/papers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:32892 - "GET /api/config HTTP/1.1" 200 OK
+INFO:     127.0.0.1:32908 - "GET /api/papers/10-7554-elife-99545-4 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:32924 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 200 OK
+INFO:     127.0.0.1:32928 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 200 OK
+INFO:     127.0.0.1:32936 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:32952 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:32966 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:32974 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:32976 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:32978 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:32994 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:34824 - "PUT /api/papers/10-7554-elife-99545-4/highlights/h_16379bbd6ed4 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:34828 - "GET /api/papers/10-7554-elife-99545-4 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:34834 - "GET /api/papers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:34838 - "GET /api/config HTTP/1.1" 200 OK
+INFO:     127.0.0.1:34840 - "GET /api/papers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:34848 - "GET /api/config HTTP/1.1" 200 OK
+INFO:     127.0.0.1:34850 - "GET /api/papers/10-7554-elife-99545-4 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:34858 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 200 OK
+INFO:     127.0.0.1:34860 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 200 OK
+INFO:     127.0.0.1:34870 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:34890 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:34880 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:34900 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:34912 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:34918 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:41196 - "GET /api/config HTTP/1.1" 200 OK
+INFO:     127.0.0.1:41210 - "GET /api/papers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:41216 - "GET /api/config HTTP/1.1" 200 OK
+INFO:     127.0.0.1:41232 - "GET /api/papers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51982 - "GET /api/papers/10-7554-elife-99545-4 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51998 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:52006 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:56796 - "PUT /api/papers/10-7554-elife-99545-4/highlights/h_16379bbd6ed4 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56808 - "GET /api/papers/10-7554-elife-99545-4 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56822 - "PUT /api/papers/10-7554-elife-99545-4/highlights/h_16379bbd6ed4 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56828 - "GET /api/papers/10-7554-elife-99545-4 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:37280 - "PUT /api/papers/10-7554-elife-99545-4/highlights/h_16379bbd6ed4 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:37296 - "GET /api/papers/10-7554-elife-99545-4 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:37312 - "PUT /api/papers/10-7554-elife-99545-4/highlights/h_16379bbd6ed4 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:37320 - "GET /api/papers/10-7554-elife-99545-4 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:37334 - "PUT /api/papers/10-7554-elife-99545-4/highlights/h_6ceaba288787 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:37344 - "GET /api/papers/10-7554-elife-99545-4 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56132 - "PUT /api/papers/10-7554-elife-99545-4/highlights/h_45dd10beecbf HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56136 - "GET /api/papers/10-7554-elife-99545-4 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56140 - "PUT /api/papers/10-7554-elife-99545-4/highlights/h_8cfac58973f2 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56152 - "GET /api/papers/10-7554-elife-99545-4 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56154 - "PUT /api/papers/10-7554-elife-99545-4/highlights/h_a95b034361ef HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56160 - "GET /api/papers/10-7554-elife-99545-4 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:45486 - "PUT /api/papers/10-7554-elife-99545-4/highlights/h_1cd8e913d9b2 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:45496 - "GET /api/papers/10-7554-elife-99545-4 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:45502 - "GET /api/papers/10-1523-jneurosci-0268-15-2015 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:45512 - "PUT /api/papers/10-7554-elife-99545-4/highlights/h_8390afdca4b2 HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:51398 - "PUT /api/papers/10-7554-elife-99545-4/highlights/h_8390afdca4b2 HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:54862 - "PUT /api/papers/10-7554-elife-99545-4/highlights/h_8390afdca4b2 HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:54866 - "PUT /api/papers/10-1523-jneurosci-0268-15-2015/highlights/h_6ceaba288787 HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:44768 - "PUT /api/papers/10-1523-jneurosci-0268-15-2015/highlights/h_6ceaba288787 HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:44778 - "PUT /api/papers/10-1523-jneurosci-0268-15-2015/highlights/h_45dd10beecbf HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:33906 - "PUT /api/papers/10-1523-jneurosci-0268-15-2015/highlights/h_1cd8e913d9b2 HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:33916 - "DELETE /api/papers/10-7554-elife-99545-4/highlights/h_1cd8e913d9b2 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:33932 - "GET /api/papers/10-7554-elife-99545-4 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:33936 - "DELETE /api/papers/10-7554-elife-99545-4/highlights/h_45dd10beecbf HTTP/1.1" 200 OK
+INFO:     127.0.0.1:33950 - "GET /api/papers/10-7554-elife-99545-4 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:46460 - "DELETE /api/papers/10-7554-elife-99545-4/highlights/h_178ff1dd53e5 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:46466 - "GET /api/papers/10-7554-elife-99545-4 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:46468 - "DELETE /api/papers/10-7554-elife-99545-4/highlights/h_a95b034361ef HTTP/1.1" 200 OK
+INFO:     127.0.0.1:46480 - "GET /api/papers/10-7554-elife-99545-4 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:46494 - "DELETE /api/papers/10-7554-elife-99545-4/highlights/h_6ceaba288787 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:46506 - "GET /api/papers/10-7554-elife-99545-4 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:46510 - "DELETE /api/papers/10-7554-elife-99545-4/highlights/h_16379bbd6ed4 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:46520 - "GET /api/papers/10-7554-elife-99545-4 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:46530 - "DELETE /api/papers/10-7554-elife-99545-4/highlights/h_8cfac58973f2 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:46540 - "GET /api/papers/10-7554-elife-99545-4 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:45832 - "GET /api/papers/10-1371-journal-pcbi-1000239 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:45836 - "GET /api/papers/10-1371-journal-pcbi-1000239/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:44564 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:48642 - "GET /api/papers/10-1523-jneurosci-0268-15-2015/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:48656 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:48662 - "GET /api/papers/10-1371-journal-pcbi-1000239/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:53624 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:53626 - "GET /api/papers/10-1371-journal-pcbi-1000239/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:54556 - "GET /api/papers/10-1371-journal-pcbi-1000239/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:54572 - "GET /api/papers/10-1523-jneurosci-0268-15-2015/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:54580 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:49102 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:49112 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:49128 - "GET /api/papers/10-1523-jneurosci-0268-15-2015/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:38482 - "GET /api/papers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38490 - "GET /api/config HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38498 - "GET /api/papers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38512 - "GET /api/config HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38526 - "GET /api/papers/10-7554-elife-99545-4 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38540 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38550 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38552 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:38568 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:38584 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:38590 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:38594 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:38596 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:38610 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:49984 - "GET /api/papers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49990 - "GET /api/config HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50006 - "GET /api/papers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50010 - "GET /api/config HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50020 - "GET /api/papers/10-7554-elife-99545-4 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50030 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50038 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50050 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:50074 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:50064 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:50080 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:50094 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:50096 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:50098 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:43768 - "GET /api/papers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43778 - "GET /api/config HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43792 - "GET /api/papers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43804 - "GET /api/config HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43814 - "GET /api/papers/10-7554-elife-99545-4 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43830 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43846 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43852 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:43864 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:43866 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:43870 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:43874 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:40286 - "POST /api/papers/10-7554-elife-99545-4/highlights HTTP/1.1" 200 OK
+INFO:     127.0.0.1:40296 - "GET /api/papers/10-7554-elife-99545-4 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:40300 - "DELETE /api/papers/10-7554-elife-99545-4/highlights/h_de77318a9c9a HTTP/1.1" 200 OK
+INFO:     127.0.0.1:40304 - "GET /api/papers/10-7554-elife-99545-4 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:41394 - "GET /api/papers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:41406 - "GET /api/config HTTP/1.1" 200 OK
+INFO:     127.0.0.1:41408 - "GET /api/papers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:41416 - "GET /api/config HTTP/1.1" 200 OK
+INFO:     127.0.0.1:41426 - "GET /api/papers/10-7554-elife-99545-4 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:41434 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 200 OK
+INFO:     127.0.0.1:41444 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 200 OK
+INFO:     127.0.0.1:41450 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:41466 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:41464 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:41474 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:41486 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:41502 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:41504 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:41516 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:41526 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:41528 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:41536 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:36904 - "POST /api/papers/10-7554-elife-99545-4/highlights HTTP/1.1" 200 OK
+INFO:     127.0.0.1:36906 - "GET /api/papers/10-7554-elife-99545-4 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:36908 - "DELETE /api/papers/10-7554-elife-99545-4/highlights/h_a9ac0485afda HTTP/1.1" 200 OK
+INFO:     127.0.0.1:36918 - "GET /api/papers/10-7554-elife-99545-4 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:36934 - "GET /api/papers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:36946 - "GET /api/config HTTP/1.1" 200 OK
+INFO:     127.0.0.1:36948 - "GET /api/papers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:36960 - "GET /api/config HTTP/1.1" 200 OK
+INFO:     127.0.0.1:36964 - "GET /api/papers/10-7554-elife-99545-4 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:36974 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 200 OK
+INFO:     127.0.0.1:36980 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 200 OK
+INFO:     127.0.0.1:36984 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:37010 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:37000 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:37018 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:37022 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:37024 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:37040 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:36668 - "GET /api/papers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:36674 - "GET /api/config HTTP/1.1" 200 OK
+INFO:     127.0.0.1:36684 - "GET /api/papers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:36696 - "GET /api/config HTTP/1.1" 200 OK
+INFO:     127.0.0.1:36704 - "POST /api/papers/10-7554-elife-99545-4/highlights HTTP/1.1" 200 OK
+INFO:     127.0.0.1:36716 - "GET /api/papers/10-7554-elife-99545-4 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:36726 - "GET /api/papers/10-7554-elife-99545-4 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:36736 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:36748 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:36758 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:36766 - "GET /api/papers/10-1523-jneurosci-0268-15-2015 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56072 - "DELETE /api/papers/10-7554-elife-99545-4/highlights/h_59379a3f3aaa HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56088 - "GET /api/papers/10-7554-elife-99545-4 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56102 - "PUT /api/papers/10-7554-elife-99545-4/highlights/h_8390afdca4b2 HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:56112 - "GET /api/papers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56126 - "GET /api/config HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56132 - "GET /api/papers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56142 - "GET /api/config HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56150 - "GET /api/papers/10-7554-elife-99545-4 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56158 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56172 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56188 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:56204 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:56206 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:56222 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:56230 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:56236 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:56250 - "PUT /api/papers/10-7554-elife-99545-4/highlights/h_8390afdca4b2 HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:40444 - "PUT /api/papers/10-1523-jneurosci-0268-15-2015/highlights/h_8390afdca4b2 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:40458 - "GET /api/papers/10-1523-jneurosci-0268-15-2015 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:40472 - "GET /api/papers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:40480 - "GET /api/config HTTP/1.1" 200 OK
+INFO:     127.0.0.1:40486 - "GET /api/papers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:40498 - "GET /api/config HTTP/1.1" 200 OK
+INFO:     127.0.0.1:40508 - "GET /api/papers/10-7554-elife-99545-4 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:40518 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 200 OK
+INFO:     127.0.0.1:40526 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 200 OK
+INFO:     127.0.0.1:40534 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:40544 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:40546 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:40558 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:40560 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:34570 - "PUT /api/papers/10-1523-jneurosci-0268-15-2015/highlights/h_8390afdca4b2 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:34576 - "GET /api/papers/10-1523-jneurosci-0268-15-2015 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:34586 - "GET /api/papers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:34598 - "GET /api/config HTTP/1.1" 200 OK
+INFO:     127.0.0.1:34602 - "GET /api/papers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:34608 - "GET /api/config HTTP/1.1" 200 OK
+INFO:     127.0.0.1:34622 - "GET /api/papers/10-7554-elife-99545-4 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:34636 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 200 OK
+INFO:     127.0.0.1:34640 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 200 OK
+INFO:     127.0.0.1:34656 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:34668 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:34660 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:34672 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:34678 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:34692 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:50496 - "GET /api/papers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50510 - "GET /api/config HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50516 - "GET /api/papers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50518 - "GET /api/config HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51542 - "GET /api/papers/10-7554-elife-99545-4 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51546 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51552 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51564 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:51568 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:51592 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:51580 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:51596 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:51608 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:51624 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:53246 - "GET /api/papers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53254 - "GET /api/config HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53264 - "GET /api/config HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53266 - "GET /api/papers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53272 - "GET /api/papers/10-7554-elife-99545-4 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53284 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53290 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53304 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:53312 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:53316 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:53332 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:53340 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:53354 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:53360 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:59746 - "POST /api/papers/10-7554-elife-99545-4/highlights HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59748 - "GET /api/papers/10-7554-elife-99545-4 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59760 - "DELETE /api/papers/10-7554-elife-99545-4/highlights/h_91d59340d902 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59770 - "GET /api/papers/10-7554-elife-99545-4 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:33734 - "GET /api/papers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:33750 - "GET /api/config HTTP/1.1" 200 OK
+INFO:     127.0.0.1:33760 - "GET /api/papers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:33764 - "GET /api/config HTTP/1.1" 200 OK
+INFO:     127.0.0.1:33766 - "GET /api/papers/10-7554-elife-99545-4 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:33770 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 200 OK
+INFO:     127.0.0.1:33782 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 200 OK
+INFO:     127.0.0.1:33786 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:33788 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:33790 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:33796 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:33798 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:33804 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:33818 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:54182 - "GET /api/papers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54192 - "GET /api/config HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54196 - "GET /api/papers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54198 - "GET /api/config HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54210 - "GET /api/papers/10-7554-elife-99545-4 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43156 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:43166 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:43182 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:43194 - "GET /api/papers/10-1523-jneurosci-0268-15-2015 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43196 - "GET /api/papers/10-1523-jneurosci-0268-15-2015/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:43212 - "GET /api/papers/10-1371-journal-pcbi-1000239 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43226 - "GET /api/papers/10-1371-journal-pcbi-1000239/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:56156 - "PUT /api/papers/10-1523-jneurosci-0268-15-2015/highlights/h_8390afdca4b2 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56162 - "GET /api/papers/10-1523-jneurosci-0268-15-2015 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56164 - "PUT /api/papers/10-7554-elife-99545-4/highlights/h_8390afdca4b2 HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:55308 - "PUT /api/papers/10-1371-journal-pcbi-1000239/highlights/h_8390afdca4b2 HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:55324 - "GET /api/papers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55328 - "GET /api/config HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55344 - "GET /api/papers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55358 - "GET /api/config HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55362 - "GET /api/papers/10-1523-jneurosci-0268-15-2015 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55370 - "GET /api/papers/10-7554-elife-99545-4 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55378 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:55388 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:37240 - "POST /api/papers/10-7554-elife-99545-4/highlights HTTP/1.1" 200 OK
+INFO:     127.0.0.1:37246 - "GET /api/papers/10-7554-elife-99545-4 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55348 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:55356 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:55364 - "PUT /api/papers/10-1523-jneurosci-0268-15-2015/highlights/h_1604b065926f HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:41660 - "POST /api/papers/10-7554-elife-99545-4/highlights HTTP/1.1" 200 OK
+INFO:     127.0.0.1:41668 - "GET /api/papers/10-7554-elife-99545-4 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:41672 - "PUT /api/papers/10-1523-jneurosci-0268-15-2015/highlights/h_1604b065926f HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:41682 - "PUT /api/papers/10-1523-jneurosci-0268-15-2015/highlights/h_35868a4127f4 HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:55606 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:55618 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:55630 - "PUT /api/papers/10-1523-jneurosci-0268-15-2015/highlights/h_1604b065926f HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:52620 - "PUT /api/papers/10-1523-jneurosci-0268-15-2015/highlights/h_1604b065926f HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:52624 - "PUT /api/papers/10-1523-jneurosci-0268-15-2015/highlights/h_35868a4127f4 HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:57676 - "PUT /api/papers/10-7554-elife-99545-4/highlights/h_8390afdca4b2 HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:57686 - "PUT /api/papers/10-7554-elife-99545-4/highlights/h_8390afdca4b2 HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:33688 - "DELETE /api/papers/10-7554-elife-99545-4/highlights/h_35868a4127f4 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:33700 - "GET /api/papers/10-7554-elife-99545-4 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56452 - "PUT /api/papers/10-1523-jneurosci-0268-15-2015/highlights/h_1604b065926f HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:51350 - "PUT /api/papers/10-1523-jneurosci-0268-15-2015/highlights/h_1604b065926f HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:51360 - "PUT /api/papers/10-1523-jneurosci-0268-15-2015/highlights/h_1604b065926f HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:51362 - "PUT /api/papers/10-1523-jneurosci-0268-15-2015/highlights/h_1604b065926f HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:51372 - "PUT /api/papers/10-1523-jneurosci-0268-15-2015/highlights/h_1604b065926f HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:39140 - "POST /api/papers/10-7554-elife-99545-4/highlights HTTP/1.1" 200 OK
+INFO:     127.0.0.1:39144 - "GET /api/papers/10-7554-elife-99545-4 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:39570 - "PUT /api/papers/10-1523-jneurosci-0268-15-2015/highlights/h_f576d5ece7a6 HTTP/1.1" 404 Not Found
+Sci-Hub error: [Errno -2] Name or service not known
+INFO:     127.0.0.1:34328 - "POST /api/papers/import HTTP/1.1" 200 OK
+INFO:     127.0.0.1:34332 - "GET /api/papers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:34338 - "GET /api/papers/10-1093-eep-dvaf022 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:34344 - "GET /api/papers/10-1093-eep-dvaf022/pdf HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:34352 - "GET /api/papers/10-1093-eep-dvaf022/pdf HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:47450 - "PUT /api/papers/10-1523-jneurosci-0268-15-2015/highlights/h_f576d5ece7a6 HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:33596 - "PUT /api/papers/10-1093-eep-dvaf022/highlights/h_1604b065926f HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:33608 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:33610 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:56496 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:56504 - "GET /api/papers/10-1093-eep-dvaf022/pdf HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:59860 - "GET /api/papers/10-1371-journal-pcbi-1000239 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:40968 - "PUT /api/papers/10-1093-eep-dvaf022/highlights/h_8390afdca4b2 HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:40982 - "PUT /api/papers/10-7554-elife-99545-4/highlights/h_8390afdca4b2 HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:51888 - "PUT /api/papers/10-1371-journal-pcbi-1000239/highlights/h_8390afdca4b2 HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:52206 - "GET /api/papers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52214 - "GET /api/config HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52218 - "GET /api/papers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52230 - "GET /api/config HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52244 - "GET /api/papers/10-1093-eep-dvaf022 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52256 - "GET /api/papers/10-1093-eep-dvaf022/pdf HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:52268 - "GET /api/papers/10-1093-eep-dvaf022/pdf HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:34156 - "GET /api/papers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:34158 - "GET /api/config HTTP/1.1" 200 OK
+INFO:     127.0.0.1:34164 - "GET /api/papers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:34170 - "GET /api/config HTTP/1.1" 200 OK
+INFO:     127.0.0.1:34184 - "GET /api/papers/10-1093-eep-dvaf022 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:34188 - "GET /api/papers/10-1093-eep-dvaf022/pdf HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:34196 - "GET /api/papers/10-1093-eep-dvaf022/pdf HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:33060 - "GET /api/papers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:33068 - "GET /api/config HTTP/1.1" 200 OK
+INFO:     127.0.0.1:33078 - "GET /api/config HTTP/1.1" 200 OK
+INFO:     127.0.0.1:33080 - "GET /api/papers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:33086 - "GET /api/papers/10-1093-eep-dvaf022 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:33092 - "GET /api/papers/10-1093-eep-dvaf022/pdf HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:33098 - "GET /api/papers/10-1093-eep-dvaf022/pdf HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:37220 - "GET /api/papers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:37226 - "GET /api/config HTTP/1.1" 200 OK
+INFO:     127.0.0.1:37230 - "GET /api/papers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:37244 - "GET /api/config HTTP/1.1" 200 OK
+INFO:     127.0.0.1:37260 - "GET /api/papers/10-1093-eep-dvaf022 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:37272 - "GET /api/papers/10-1093-eep-dvaf022/pdf HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:37278 - "GET /api/papers/10-1093-eep-dvaf022/pdf HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:57844 - "GET /api/papers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57858 - "GET /api/config HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57864 - "GET /api/papers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57872 - "GET /api/config HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57880 - "GET /api/papers/10-1093-eep-dvaf022 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57884 - "GET /api/papers/10-1093-eep-dvaf022/pdf HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:57888 - "GET /api/papers/10-1093-eep-dvaf022/pdf HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:46212 - "GET /api/papers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:46224 - "GET /api/config HTTP/1.1" 200 OK
+INFO:     127.0.0.1:46240 - "GET /api/papers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:46248 - "GET /api/config HTTP/1.1" 200 OK
+INFO:     127.0.0.1:46264 - "GET /api/papers/10-1093-eep-dvaf022 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:46278 - "GET /api/papers/10-1093-eep-dvaf022/pdf HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:46284 - "GET /api/papers/10-1093-eep-dvaf022/pdf HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:47590 - "GET /api/papers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:47604 - "GET /api/config HTTP/1.1" 200 OK
+INFO:     127.0.0.1:47612 - "GET /api/papers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:47616 - "GET /api/config HTTP/1.1" 200 OK
+INFO:     127.0.0.1:47628 - "GET /api/papers/10-1093-eep-dvaf022 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:47632 - "GET /api/papers/10-1093-eep-dvaf022/pdf HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:47634 - "GET /api/papers/10-1093-eep-dvaf022/pdf HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:56322 - "GET /api/papers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56332 - "GET /api/config HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56340 - "GET /api/papers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56354 - "GET /api/config HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56358 - "GET /api/papers/10-1093-eep-dvaf022 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56368 - "GET /api/papers/10-1093-eep-dvaf022/pdf HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:56384 - "GET /api/papers/10-1093-eep-dvaf022/pdf HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:34946 - "GET /api/papers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:34950 - "GET /api/config HTTP/1.1" 200 OK
+INFO:     127.0.0.1:34960 - "GET /api/papers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:34966 - "GET /api/config HTTP/1.1" 200 OK
+INFO:     127.0.0.1:34982 - "GET /api/papers/10-1093-eep-dvaf022 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:34996 - "GET /api/papers/10-1093-eep-dvaf022/pdf HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:34998 - "GET /api/papers/10-1093-eep-dvaf022/pdf HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:35010 - "GET /api/papers/10-7554-elife-99545-4 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:35020 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:35024 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:42064 - "PUT /api/papers/10-1093-eep-dvaf022/highlights/h_f576d5ece7a6 HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:60286 - "PUT /api/papers/10-1093-eep-dvaf022/highlights/h_1604b065926f HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:60290 - "PUT /api/papers/10-1093-eep-dvaf022/highlights/h_1604b065926f HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:60296 - "PUT /api/papers/10-1093-eep-dvaf022/highlights/h_1604b065926f HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:50246 - "GET /api/papers/10-1523-jneurosci-0268-15-2015 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50254 - "GET /api/papers/10-1523-jneurosci-0268-15-2015/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:50268 - "PUT /api/papers/10-1093-eep-dvaf022/highlights/h_f576d5ece7a6 HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:34878 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:34894 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:34896 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:34900 - "PUT /api/papers/10-1523-jneurosci-0268-15-2015/highlights/h_1604b065926f HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:34914 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:34926 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:34928 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:48448 - "GET /api/papers/10-1093-eep-dvaf022/pdf HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:48462 - "GET /api/papers/10-1523-jneurosci-0268-15-2015/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:48468 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+WARNING:  WatchFiles detected changes in 'storage.py'. Reloading...
 INFO:     Shutting down
 INFO:     Waiting for application shutdown.
 INFO:     Application shutdown complete.
-INFO:     Finished server process [16670]
+INFO:     Finished server process [130542]
+INFO:     Started server process [159832]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     127.0.0.1:53074 - "GET /api/papers/10-1093-eep-dvaf022/pdf HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:53088 - "GET /api/papers/10-1523-jneurosci-0268-15-2015/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:53102 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:56256 - "GET /api/papers/10-1093-eep-dvaf022/pdf HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:56260 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:39134 - "GET /api/papers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:39136 - "GET /api/config HTTP/1.1" 200 OK
+INFO:     127.0.0.1:39146 - "GET /api/papers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:39162 - "GET /api/config HTTP/1.1" 200 OK
+INFO:     127.0.0.1:39166 - "GET /api/papers/10-7554-elife-99545-4 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:39172 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:39178 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:39186 - "PUT /api/papers/10-7554-elife-99545-4/highlights/h_1604b065926f HTTP/1.1" 500 Internal Server Error
+ERROR:    Exception in ASGI application
+Traceback (most recent call last):
+  File "/home/ita/scholarita/backend/venv/lib/python3.11/site-packages/uvicorn/protocols/http/httptools_impl.py", line 416, in run_asgi
+    result = await app(  # type: ignore[func-returns-value]
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ita/scholarita/backend/venv/lib/python3.11/site-packages/uvicorn/middleware/proxy_headers.py", line 60, in __call__
+    return await self.app(scope, receive, send)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ita/scholarita/backend/venv/lib/python3.11/site-packages/fastapi/applications.py", line 1138, in __call__
+    await super().__call__(scope, receive, send)
+  File "/home/ita/scholarita/backend/venv/lib/python3.11/site-packages/starlette/applications.py", line 107, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/home/ita/scholarita/backend/venv/lib/python3.11/site-packages/starlette/middleware/errors.py", line 186, in __call__
+    raise exc
+  File "/home/ita/scholarita/backend/venv/lib/python3.11/site-packages/starlette/middleware/errors.py", line 164, in __call__
+    await self.app(scope, receive, _send)
+  File "/home/ita/scholarita/backend/venv/lib/python3.11/site-packages/starlette/middleware/cors.py", line 95, in __call__
+    await self.simple_response(scope, receive, send, request_headers=headers)
+  File "/home/ita/scholarita/backend/venv/lib/python3.11/site-packages/starlette/middleware/cors.py", line 153, in simple_response
+    await self.app(scope, receive, send)
+  File "/home/ita/scholarita/backend/venv/lib/python3.11/site-packages/starlette/middleware/exceptions.py", line 63, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "/home/ita/scholarita/backend/venv/lib/python3.11/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/home/ita/scholarita/backend/venv/lib/python3.11/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/home/ita/scholarita/backend/venv/lib/python3.11/site-packages/fastapi/middleware/asyncexitstack.py", line 18, in __call__
+    await self.app(scope, receive, send)
+  File "/home/ita/scholarita/backend/venv/lib/python3.11/site-packages/starlette/routing.py", line 716, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/home/ita/scholarita/backend/venv/lib/python3.11/site-packages/starlette/routing.py", line 736, in app
+    await route.handle(scope, receive, send)
+  File "/home/ita/scholarita/backend/venv/lib/python3.11/site-packages/starlette/routing.py", line 290, in handle
+    await self.app(scope, receive, send)
+  File "/home/ita/scholarita/backend/venv/lib/python3.11/site-packages/fastapi/routing.py", line 124, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "/home/ita/scholarita/backend/venv/lib/python3.11/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/home/ita/scholarita/backend/venv/lib/python3.11/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/home/ita/scholarita/backend/venv/lib/python3.11/site-packages/fastapi/routing.py", line 110, in app
+    response = await f(request)
+               ^^^^^^^^^^^^^^^^
+  File "/home/ita/scholarita/backend/venv/lib/python3.11/site-packages/fastapi/routing.py", line 432, in app
+    raw_response = await run_endpoint_function(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ita/scholarita/backend/venv/lib/python3.11/site-packages/fastapi/routing.py", line 320, in run_endpoint_function
+    return await dependant.call(**values)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ita/scholarita/backend/main.py", line 301, in update_highlight_endpoint
+    if not update_highlight(paper_id, highlight_id, update_data.comment, update_data.color, update_data.text, update_data.anchor):
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ita/scholarita/backend/storage.py", line 157, in update_highlight
+    logger.info(f"New anchor saved: start=({hl.anchor.start.x}, {hl.anchor.start.y})")
+                                            ^^^^^^^^^^^^^^^^^
+AttributeError: 'dict' object has no attribute 'x'
+INFO:     127.0.0.1:39688 - "PUT /api/papers/10-7554-elife-99545-4/highlights/h_f576d5ece7a6 HTTP/1.1" 500 Internal Server Error
+ERROR:    Exception in ASGI application
+Traceback (most recent call last):
+  File "/home/ita/scholarita/backend/venv/lib/python3.11/site-packages/uvicorn/protocols/http/httptools_impl.py", line 416, in run_asgi
+    result = await app(  # type: ignore[func-returns-value]
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ita/scholarita/backend/venv/lib/python3.11/site-packages/uvicorn/middleware/proxy_headers.py", line 60, in __call__
+    return await self.app(scope, receive, send)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ita/scholarita/backend/venv/lib/python3.11/site-packages/fastapi/applications.py", line 1138, in __call__
+    await super().__call__(scope, receive, send)
+  File "/home/ita/scholarita/backend/venv/lib/python3.11/site-packages/starlette/applications.py", line 107, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/home/ita/scholarita/backend/venv/lib/python3.11/site-packages/starlette/middleware/errors.py", line 186, in __call__
+    raise exc
+  File "/home/ita/scholarita/backend/venv/lib/python3.11/site-packages/starlette/middleware/errors.py", line 164, in __call__
+    await self.app(scope, receive, _send)
+  File "/home/ita/scholarita/backend/venv/lib/python3.11/site-packages/starlette/middleware/cors.py", line 95, in __call__
+    await self.simple_response(scope, receive, send, request_headers=headers)
+  File "/home/ita/scholarita/backend/venv/lib/python3.11/site-packages/starlette/middleware/cors.py", line 153, in simple_response
+    await self.app(scope, receive, send)
+  File "/home/ita/scholarita/backend/venv/lib/python3.11/site-packages/starlette/middleware/exceptions.py", line 63, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "/home/ita/scholarita/backend/venv/lib/python3.11/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/home/ita/scholarita/backend/venv/lib/python3.11/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/home/ita/scholarita/backend/venv/lib/python3.11/site-packages/fastapi/middleware/asyncexitstack.py", line 18, in __call__
+    await self.app(scope, receive, send)
+  File "/home/ita/scholarita/backend/venv/lib/python3.11/site-packages/starlette/routing.py", line 716, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/home/ita/scholarita/backend/venv/lib/python3.11/site-packages/starlette/routing.py", line 736, in app
+    await route.handle(scope, receive, send)
+  File "/home/ita/scholarita/backend/venv/lib/python3.11/site-packages/starlette/routing.py", line 290, in handle
+    await self.app(scope, receive, send)
+  File "/home/ita/scholarita/backend/venv/lib/python3.11/site-packages/fastapi/routing.py", line 124, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "/home/ita/scholarita/backend/venv/lib/python3.11/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/home/ita/scholarita/backend/venv/lib/python3.11/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/home/ita/scholarita/backend/venv/lib/python3.11/site-packages/fastapi/routing.py", line 110, in app
+    response = await f(request)
+               ^^^^^^^^^^^^^^^^
+  File "/home/ita/scholarita/backend/venv/lib/python3.11/site-packages/fastapi/routing.py", line 432, in app
+    raw_response = await run_endpoint_function(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ita/scholarita/backend/venv/lib/python3.11/site-packages/fastapi/routing.py", line 320, in run_endpoint_function
+    return await dependant.call(**values)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ita/scholarita/backend/main.py", line 301, in update_highlight_endpoint
+    if not update_highlight(paper_id, highlight_id, update_data.comment, update_data.color, update_data.text, update_data.anchor):
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ita/scholarita/backend/storage.py", line 157, in update_highlight
+    logger.info(f"New anchor saved: start=({hl.anchor.start.x}, {hl.anchor.start.y})")
+                                            ^^^^^^^^^^^^^^^^^
+AttributeError: 'dict' object has no attribute 'x'
+INFO:     127.0.0.1:39700 - "GET /api/papers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:39714 - "GET /api/config HTTP/1.1" 200 OK
+INFO:     127.0.0.1:39720 - "GET /api/papers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:39726 - "GET /api/config HTTP/1.1" 200 OK
+INFO:     127.0.0.1:39740 - "GET /api/papers/10-7554-elife-99545-4 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:39744 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 200 OK
+INFO:     127.0.0.1:39748 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:39756 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:39768 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:39772 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:39780 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:39792 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:39808 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:39810 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:39826 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:39832 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:39834 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:39842 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:59274 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:59280 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:59296 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:59302 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:59316 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:59328 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:59344 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:59354 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:59358 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:59364 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:59366 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:59380 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:59396 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:59404 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:59408 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:59416 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:59432 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:59446 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:59448 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:59462 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:59476 - "PUT /api/papers/10-7554-elife-99545-4/highlights/h_1604b065926f HTTP/1.1" 500 Internal Server Error
+ERROR:    Exception in ASGI application
+Traceback (most recent call last):
+  File "/home/ita/scholarita/backend/venv/lib/python3.11/site-packages/uvicorn/protocols/http/httptools_impl.py", line 416, in run_asgi
+    result = await app(  # type: ignore[func-returns-value]
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ita/scholarita/backend/venv/lib/python3.11/site-packages/uvicorn/middleware/proxy_headers.py", line 60, in __call__
+    return await self.app(scope, receive, send)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ita/scholarita/backend/venv/lib/python3.11/site-packages/fastapi/applications.py", line 1138, in __call__
+    await super().__call__(scope, receive, send)
+  File "/home/ita/scholarita/backend/venv/lib/python3.11/site-packages/starlette/applications.py", line 107, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/home/ita/scholarita/backend/venv/lib/python3.11/site-packages/starlette/middleware/errors.py", line 186, in __call__
+    raise exc
+  File "/home/ita/scholarita/backend/venv/lib/python3.11/site-packages/starlette/middleware/errors.py", line 164, in __call__
+    await self.app(scope, receive, _send)
+  File "/home/ita/scholarita/backend/venv/lib/python3.11/site-packages/starlette/middleware/cors.py", line 95, in __call__
+    await self.simple_response(scope, receive, send, request_headers=headers)
+  File "/home/ita/scholarita/backend/venv/lib/python3.11/site-packages/starlette/middleware/cors.py", line 153, in simple_response
+    await self.app(scope, receive, send)
+  File "/home/ita/scholarita/backend/venv/lib/python3.11/site-packages/starlette/middleware/exceptions.py", line 63, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "/home/ita/scholarita/backend/venv/lib/python3.11/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/home/ita/scholarita/backend/venv/lib/python3.11/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/home/ita/scholarita/backend/venv/lib/python3.11/site-packages/fastapi/middleware/asyncexitstack.py", line 18, in __call__
+    await self.app(scope, receive, send)
+  File "/home/ita/scholarita/backend/venv/lib/python3.11/site-packages/starlette/routing.py", line 716, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/home/ita/scholarita/backend/venv/lib/python3.11/site-packages/starlette/routing.py", line 736, in app
+    await route.handle(scope, receive, send)
+  File "/home/ita/scholarita/backend/venv/lib/python3.11/site-packages/starlette/routing.py", line 290, in handle
+    await self.app(scope, receive, send)
+  File "/home/ita/scholarita/backend/venv/lib/python3.11/site-packages/fastapi/routing.py", line 124, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "/home/ita/scholarita/backend/venv/lib/python3.11/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/home/ita/scholarita/backend/venv/lib/python3.11/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/home/ita/scholarita/backend/venv/lib/python3.11/site-packages/fastapi/routing.py", line 110, in app
+    response = await f(request)
+               ^^^^^^^^^^^^^^^^
+  File "/home/ita/scholarita/backend/venv/lib/python3.11/site-packages/fastapi/routing.py", line 432, in app
+    raw_response = await run_endpoint_function(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ita/scholarita/backend/venv/lib/python3.11/site-packages/fastapi/routing.py", line 320, in run_endpoint_function
+    return await dependant.call(**values)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ita/scholarita/backend/main.py", line 301, in update_highlight_endpoint
+    if not update_highlight(paper_id, highlight_id, update_data.comment, update_data.color, update_data.text, update_data.anchor):
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ita/scholarita/backend/storage.py", line 157, in update_highlight
+    logger.info(f"New anchor saved: start=({hl.anchor.start.x}, {hl.anchor.start.y})")
+                                            ^^^^^^^^^^^^^^^^^
+AttributeError: 'dict' object has no attribute 'x'
+INFO:     127.0.0.1:59482 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:59494 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:59504 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:59512 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:59518 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:59522 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:59536 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:59540 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:59556 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:59570 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:59578 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:59584 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:59592 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:59594 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:59608 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:59612 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:37182 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:44056 - "PUT /api/papers/10-7554-elife-99545-4/highlights/h_1604b065926f HTTP/1.1" 500 Internal Server Error
+ERROR:    Exception in ASGI application
+Traceback (most recent call last):
+  File "/home/ita/scholarita/backend/venv/lib/python3.11/site-packages/uvicorn/protocols/http/httptools_impl.py", line 416, in run_asgi
+    result = await app(  # type: ignore[func-returns-value]
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ita/scholarita/backend/venv/lib/python3.11/site-packages/uvicorn/middleware/proxy_headers.py", line 60, in __call__
+    return await self.app(scope, receive, send)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ita/scholarita/backend/venv/lib/python3.11/site-packages/fastapi/applications.py", line 1138, in __call__
+    await super().__call__(scope, receive, send)
+  File "/home/ita/scholarita/backend/venv/lib/python3.11/site-packages/starlette/applications.py", line 107, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/home/ita/scholarita/backend/venv/lib/python3.11/site-packages/starlette/middleware/errors.py", line 186, in __call__
+    raise exc
+  File "/home/ita/scholarita/backend/venv/lib/python3.11/site-packages/starlette/middleware/errors.py", line 164, in __call__
+    await self.app(scope, receive, _send)
+  File "/home/ita/scholarita/backend/venv/lib/python3.11/site-packages/starlette/middleware/cors.py", line 95, in __call__
+    await self.simple_response(scope, receive, send, request_headers=headers)
+  File "/home/ita/scholarita/backend/venv/lib/python3.11/site-packages/starlette/middleware/cors.py", line 153, in simple_response
+    await self.app(scope, receive, send)
+  File "/home/ita/scholarita/backend/venv/lib/python3.11/site-packages/starlette/middleware/exceptions.py", line 63, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "/home/ita/scholarita/backend/venv/lib/python3.11/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/home/ita/scholarita/backend/venv/lib/python3.11/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/home/ita/scholarita/backend/venv/lib/python3.11/site-packages/fastapi/middleware/asyncexitstack.py", line 18, in __call__
+    await self.app(scope, receive, send)
+  File "/home/ita/scholarita/backend/venv/lib/python3.11/site-packages/starlette/routing.py", line 716, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/home/ita/scholarita/backend/venv/lib/python3.11/site-packages/starlette/routing.py", line 736, in app
+    await route.handle(scope, receive, send)
+  File "/home/ita/scholarita/backend/venv/lib/python3.11/site-packages/starlette/routing.py", line 290, in handle
+    await self.app(scope, receive, send)
+  File "/home/ita/scholarita/backend/venv/lib/python3.11/site-packages/fastapi/routing.py", line 124, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "/home/ita/scholarita/backend/venv/lib/python3.11/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/home/ita/scholarita/backend/venv/lib/python3.11/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/home/ita/scholarita/backend/venv/lib/python3.11/site-packages/fastapi/routing.py", line 110, in app
+    response = await f(request)
+               ^^^^^^^^^^^^^^^^
+  File "/home/ita/scholarita/backend/venv/lib/python3.11/site-packages/fastapi/routing.py", line 432, in app
+    raw_response = await run_endpoint_function(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ita/scholarita/backend/venv/lib/python3.11/site-packages/fastapi/routing.py", line 320, in run_endpoint_function
+    return await dependant.call(**values)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ita/scholarita/backend/main.py", line 301, in update_highlight_endpoint
+    if not update_highlight(paper_id, highlight_id, update_data.comment, update_data.color, update_data.text, update_data.anchor):
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ita/scholarita/backend/storage.py", line 157, in update_highlight
+    logger.info(f"New anchor saved: start=({hl.anchor.start.x}, {hl.anchor.start.y})")
+                                            ^^^^^^^^^^^^^^^^^
+AttributeError: 'dict' object has no attribute 'x'
+INFO:     127.0.0.1:35422 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+WARNING:  WatchFiles detected changes in 'storage.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [159832]
+INFO:     Started server process [161261]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     127.0.0.1:57694 - "GET /api/papers/10-7554-elife-99545-4 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59766 - "PUT /api/papers/10-7554-elife-99545-4/highlights/h_1604b065926f HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59768 - "GET /api/papers/10-7554-elife-99545-4 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60392 - "GET /api/papers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60398 - "GET /api/config HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60414 - "GET /api/config HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60428 - "GET /api/papers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60438 - "GET /api/papers/10-7554-elife-99545-4 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60440 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:60454 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:60470 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:35278 - "PUT /api/papers/10-7554-elife-99545-4/highlights/h_f576d5ece7a6 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:35290 - "GET /api/papers/10-7554-elife-99545-4 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:35302 - "PUT /api/papers/10-7554-elife-99545-4/highlights/h_f576d5ece7a6 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:35308 - "GET /api/papers/10-7554-elife-99545-4 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:35312 - "PUT /api/papers/10-7554-elife-99545-4/highlights/h_f576d5ece7a6 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:35324 - "GET /api/papers/10-7554-elife-99545-4 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:32772 - "PUT /api/papers/10-7554-elife-99545-4/highlights/h_1604b065926f HTTP/1.1" 200 OK
+INFO:     127.0.0.1:32788 - "GET /api/papers/10-7554-elife-99545-4 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51392 - "PUT /api/papers/10-7554-elife-99545-4/highlights/h_f576d5ece7a6 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51398 - "GET /api/papers/10-7554-elife-99545-4 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:46036 - "DELETE /api/papers/10-7554-elife-99545-4/highlights/h_f576d5ece7a6 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:46046 - "GET /api/papers/10-7554-elife-99545-4 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59522 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:59536 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59544 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:59554 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:59566 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:59574 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:59584 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59596 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:59598 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:59614 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:48222 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:48228 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48234 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:48240 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:48256 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:48272 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:52962 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52972 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:52988 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:52990 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:52996 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:53008 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+WARNING:  WatchFiles detected changes in 'storage.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [161261]
+INFO:     Started server process [162410]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     127.0.0.1:58466 - "GET /api/papers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58468 - "GET /api/config HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58472 - "GET /api/papers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58484 - "GET /api/config HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58496 - "GET /api/papers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58510 - "GET /api/config HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58514 - "GET /api/papers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58522 - "GET /api/config HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58526 - "PUT /api/papers/10-7554-elife-99545-4/tags HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58532 - "GET /api/papers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58540 - "GET /api/config HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58542 - "GET /api/papers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58550 - "GET /api/config HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58562 - "PUT /api/papers/10-7554-elife-99545-4/tags HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58576 - "PUT /api/papers/10-7554-elife-99545-4/tags HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58590 - "GET /api/papers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58600 - "GET /api/config HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58610 - "GET /api/papers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58624 - "GET /api/config HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58628 - "PUT /api/papers/10-7554-elife-99545-4/tags HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58632 - "GET /api/papers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58642 - "GET /api/config HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58652 - "GET /api/papers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58662 - "GET /api/config HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60808 - "PUT /api/papers/10-7554-elife-99545-4/tags HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60814 - "GET /api/papers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60818 - "GET /api/config HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60822 - "GET /api/papers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60828 - "GET /api/config HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60842 - "PUT /api/papers/10-7554-elife-99545-4/tags HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60848 - "GET /api/papers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60862 - "GET /api/config HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60878 - "GET /api/config HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60894 - "GET /api/papers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60896 - "GET /api/papers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60912 - "GET /api/config HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60922 - "GET /api/papers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60930 - "GET /api/config HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60938 - "POST /api/papers/bulk-tag HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60944 - "GET /api/papers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60950 - "GET /api/papers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60956 - "GET /api/config HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60972 - "GET /api/papers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60988 - "GET /api/config HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38112 - "PUT /api/papers/10-7554-elife-99545-4/tags HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38122 - "PUT /api/papers/10-1523-jneurosci-0268-15-2015/tags HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54768 - "GET /api/papers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54776 - "GET /api/config HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54780 - "GET /api/papers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54782 - "GET /api/config HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54788 - "PUT /api/papers/10-7554-elife-99545-4/tags HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54798 - "GET /api/papers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54806 - "GET /api/config HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54810 - "GET /api/papers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54824 - "GET /api/config HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54836 - "GET /api/papers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54842 - "GET /api/config HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54852 - "GET /api/papers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54860 - "GET /api/config HTTP/1.1" 200 OK
+INFO:     127.0.0.1:45700 - "GET /api/papers/10-1523-jneurosci-0268-15-2015 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:45704 - "GET /api/papers/10-1523-jneurosci-0268-15-2015/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:47800 - "GET /api/papers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:47802 - "GET /api/config HTTP/1.1" 200 OK
+INFO:     127.0.0.1:47818 - "GET /api/papers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:47834 - "GET /api/config HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54888 - "GET /api/papers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54892 - "GET /api/config HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54908 - "GET /api/papers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54910 - "GET /api/config HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54924 - "GET /api/papers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54934 - "GET /api/config HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54946 - "GET /api/papers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54962 - "GET /api/config HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54972 - "PUT /api/papers/10-7554-elife-99545-4/tags HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54978 - "PUT /api/papers/10-7554-elife-99545-4/tags HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54982 - "GET /api/papers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54990 - "GET /api/config HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55000 - "GET /api/papers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55006 - "GET /api/config HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55018 - "PUT /api/papers/10-7554-elife-99545-4/tags HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55030 - "GET /api/papers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55036 - "GET /api/config HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55038 - "GET /api/papers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55054 - "GET /api/config HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55058 - "PUT /api/papers/10-7554-elife-99545-4/tags HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55062 - "GET /api/papers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55078 - "GET /api/config HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55094 - "GET /api/papers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55096 - "GET /api/config HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60956 - "PUT /api/papers/10-7554-elife-99545-4/tags HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60970 - "GET /api/papers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60978 - "GET /api/config HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60988 - "GET /api/papers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60996 - "GET /api/config HTTP/1.1" 200 OK
+INFO:     127.0.0.1:32776 - "PUT /api/papers/10-7554-elife-99545-4/tags HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48604 - "PUT /api/papers/10-7554-elife-99545-4/tags HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56812 - "PUT /api/papers/10-1371-journal-pcbi-1000239/tags HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60100 - "GET /api/papers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60102 - "GET /api/config HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60106 - "GET /api/papers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60118 - "GET /api/config HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60122 - "POST /api/papers/bulk-tag HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60134 - "GET /api/papers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60138 - "GET /api/papers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60154 - "GET /api/config HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60164 - "GET /api/papers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60174 - "GET /api/config HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60186 - "PUT /api/papers/10-7554-elife-99545-4/tags HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57792 - "PUT /api/papers/10-1523-jneurosci-0268-15-2015/tags HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57798 - "GET /api/papers/10-1371-journal-pcbi-1000239 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57812 - "GET /api/papers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57816 - "GET /api/config HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57822 - "GET /api/papers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57828 - "GET /api/config HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57842 - "PUT /api/papers/10-7554-elife-99545-4/tags HTTP/1.1" 200 OK
+INFO:     127.0.0.1:39380 - "GET /api/papers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:39392 - "GET /api/config HTTP/1.1" 200 OK
+INFO:     127.0.0.1:39394 - "GET /api/papers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:39408 - "GET /api/config HTTP/1.1" 200 OK
+INFO:     127.0.0.1:39410 - "GET /api/papers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:39420 - "GET /api/config HTTP/1.1" 200 OK
+INFO:     127.0.0.1:39422 - "GET /api/papers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:39430 - "GET /api/config HTTP/1.1" 200 OK
+INFO:     127.0.0.1:39432 - "PUT /api/papers/10-7554-elife-99545-4/highlights/h_8390afdca4b2 HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:41440 - "PUT /api/papers/10-1371-journal-pcbi-1000239/highlights/h_8390afdca4b2 HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:39908 - "POST /api/papers/10-1523-jneurosci-0268-15-2015/highlights HTTP/1.1" 200 OK
+INFO:     127.0.0.1:39914 - "GET /api/papers/10-1523-jneurosci-0268-15-2015 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:39916 - "PUT /api/papers/10-7554-elife-99545-4/highlights/h_3535f8bdda2b HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:47666 - "GET /api/papers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:47682 - "GET /api/config HTTP/1.1" 200 OK
+INFO:     127.0.0.1:47696 - "GET /api/papers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:47702 - "GET /api/config HTTP/1.1" 200 OK
+INFO:     127.0.0.1:47714 - "GET /api/papers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:47728 - "GET /api/config HTTP/1.1" 200 OK
+INFO:     127.0.0.1:47732 - "GET /api/papers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:47740 - "GET /api/config HTTP/1.1" 200 OK
+INFO:     127.0.0.1:47754 - "PUT /api/papers/10-7554-elife-99545-4/tags HTTP/1.1" 200 OK
+INFO:     127.0.0.1:47764 - "GET /api/papers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:47768 - "GET /api/config HTTP/1.1" 200 OK
+INFO:     127.0.0.1:47784 - "GET /api/papers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:47792 - "GET /api/config HTTP/1.1" 200 OK
+INFO:     127.0.0.1:47794 - "PUT /api/papers/10-7554-elife-99545-4/tags HTTP/1.1" 200 OK
+INFO:     127.0.0.1:47796 - "PUT /api/papers/10-7554-elife-99545-4/tags HTTP/1.1" 200 OK
+INFO:     127.0.0.1:47798 - "GET /api/papers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:47812 - "GET /api/config HTTP/1.1" 200 OK
+INFO:     127.0.0.1:47828 - "GET /api/papers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:47836 - "GET /api/config HTTP/1.1" 200 OK
+INFO:     127.0.0.1:47840 - "PUT /api/papers/10-7554-elife-99545-4/tags HTTP/1.1" 200 OK
+INFO:     127.0.0.1:40944 - "GET /api/papers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:40948 - "GET /api/config HTTP/1.1" 200 OK
+INFO:     127.0.0.1:40958 - "GET /api/papers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:40960 - "GET /api/config HTTP/1.1" 200 OK
+INFO:     127.0.0.1:40966 - "PUT /api/papers/10-7554-elife-99545-4/tags HTTP/1.1" 200 OK
+INFO:     127.0.0.1:40978 - "GET /api/papers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:40990 - "GET /api/config HTTP/1.1" 200 OK
+INFO:     127.0.0.1:41006 - "GET /api/papers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:41018 - "GET /api/config HTTP/1.1" 200 OK
+INFO:     127.0.0.1:41026 - "PUT /api/papers/10-7554-elife-99545-4/tags HTTP/1.1" 200 OK
+INFO:     127.0.0.1:41028 - "GET /api/papers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:41038 - "GET /api/config HTTP/1.1" 200 OK
+INFO:     127.0.0.1:41054 - "GET /api/papers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:41068 - "GET /api/config HTTP/1.1" 200 OK
+INFO:     127.0.0.1:41072 - "PUT /api/papers/10-1371-journal-pcbi-1000239/highlights/h_3535f8bdda2b HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:41084 - "GET /api/config HTTP/1.1" 200 OK
+INFO:     127.0.0.1:41088 - "GET /api/papers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:41094 - "GET /api/config HTTP/1.1" 200 OK
+INFO:     127.0.0.1:41096 - "GET /api/papers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52052 - "GET /api/papers/10-1371-journal-pcbi-1000239 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52062 - "GET /api/papers/10-1371-journal-pcbi-1000239/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:52070 - "GET /api/papers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52082 - "GET /api/config HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52092 - "GET /api/papers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52096 - "GET /api/config HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52106 - "GET /api/papers/10-7554-elife-99545-4 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52114 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:52120 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:52132 - "PUT /api/papers/10-1371-journal-pcbi-1000239/highlights/h_1604b065926f HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:56100 - "GET /api/papers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56114 - "GET /api/config HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56116 - "GET /api/papers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56128 - "GET /api/config HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56138 - "PUT /api/papers/10-7554-elife-99545-4/tags HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56140 - "GET /api/papers/10-1523-jneurosci-0268-15-2015 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56150 - "PUT /api/papers/10-1523-jneurosci-0268-15-2015/tags HTTP/1.1" 200 OK
+INFO:     127.0.0.1:35088 - "POST /api/papers/bulk-tag HTTP/1.1" 200 OK
+INFO:     127.0.0.1:35090 - "GET /api/papers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:35100 - "GET /api/papers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:35110 - "GET /api/config HTTP/1.1" 200 OK
+INFO:     127.0.0.1:35116 - "GET /api/papers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:35128 - "GET /api/config HTTP/1.1" 200 OK
+INFO:     127.0.0.1:40548 - "PUT /api/papers/10-7554-elife-99545-4/tags HTTP/1.1" 200 OK
+INFO:     127.0.0.1:40564 - "GET /api/papers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:40576 - "GET /api/config HTTP/1.1" 200 OK
+INFO:     127.0.0.1:40580 - "GET /api/papers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:40594 - "GET /api/config HTTP/1.1" 200 OK
+INFO:     127.0.0.1:40608 - "GET /api/papers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:40616 - "GET /api/config HTTP/1.1" 200 OK
+INFO:     127.0.0.1:40628 - "GET /api/papers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:40636 - "GET /api/config HTTP/1.1" 200 OK
+WARNING:  WatchFiles detected changes in 'models.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [162410]
+INFO:     Started server process [168145]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+WARNING:  WatchFiles detected changes in 'config.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [168145]
+INFO:     Started server process [168172]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     127.0.0.1:46466 - "GET /api/papers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:46480 - "GET /api/config HTTP/1.1" 200 OK
+INFO:     127.0.0.1:46492 - "GET /api/config HTTP/1.1" 200 OK
+INFO:     127.0.0.1:46500 - "GET /api/papers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:46514 - "GET /api/papers/10-7554-elife-99545-4 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:46520 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 200 OK
+INFO:     127.0.0.1:46534 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:46538 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:46552 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:46562 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:46566 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:46578 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:46594 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:46608 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:46622 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:46630 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:46636 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:46648 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:46656 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:46660 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:46668 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:46678 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:46692 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:46696 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:46706 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:46712 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:46714 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:46726 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:46740 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:46746 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:46758 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:46774 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:46786 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:46800 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:46804 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:46820 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:46828 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:46836 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:46844 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:46858 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:46874 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:46884 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:46892 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:46908 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:46920 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:46928 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:46942 - "PUT /api/papers/10-7554-elife-99545-4/highlights/h_1604b065926f HTTP/1.1" 200 OK
+INFO:     127.0.0.1:46950 - "GET /api/papers/10-7554-elife-99545-4 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:46958 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:37208 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:37198 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:37210 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:37216 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:37224 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:37236 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:37250 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:37252 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:37262 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:37276 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:37282 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:37284 - "GET /api/papers/10-1523-jneurosci-0268-15-2015 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:37290 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:37304 - "GET /api/papers/10-1523-jneurosci-0268-15-2015/pdf HTTP/1.1" 200 OK
+INFO:     127.0.0.1:41624 - "PUT /api/papers/10-7554-elife-99545-4/tags HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57696 - "PUT /api/papers/10-1523-jneurosci-0268-15-2015/tags HTTP/1.1" 200 OK
+INFO:     127.0.0.1:44270 - "PUT /api/config HTTP/1.1" 200 OK
+INFO:     127.0.0.1:44284 - "PUT /api/papers/10-1371-journal-pcbi-1000239/tags HTTP/1.1" 200 OK
+INFO:     127.0.0.1:35680 - "PUT /api/papers/10-7554-elife-99545-4/tags HTTP/1.1" 200 OK
+INFO:     127.0.0.1:37250 - "PUT /api/config HTTP/1.1" 200 OK
+INFO:     127.0.0.1:37256 - "PUT /api/papers/10-7554-elife-99545-4/tags HTTP/1.1" 200 OK
+INFO:     127.0.0.1:40602 - "PUT /api/papers/10-1371-journal-pcbi-1000239/tags HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60578 - "GET /api/papers/10-1523-jneurosci-0268-15-2015/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:36676 - "PUT /api/papers/10-7554-elife-99545-4/highlights/h_3535f8bdda2b HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:48762 - "PUT /api/papers/10-7554-elife-99545-4/highlights/h_3535f8bdda2b HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:50346 - "GET /api/papers/10-1371-journal-pcbi-1000239 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50356 - "GET /api/papers/10-1371-journal-pcbi-1000239/pdf HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50370 - "GET /api/papers/10-1371-journal-pcbi-1000239/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:50374 - "GET /api/papers/10-1371-journal-pcbi-1000239/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:50376 - "GET /api/papers/10-1371-journal-pcbi-1000239/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:50380 - "PUT /api/papers/10-1523-jneurosci-0268-15-2015/highlights/h_1604b065926f HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:45380 - "PUT /api/papers/10-1371-journal-pcbi-1000239/highlights/h_1604b065926f HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:58916 - "PUT /api/papers/10-1523-jneurosci-0268-15-2015/highlights/h_1604b065926f HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:58928 - "PUT /api/papers/10-1371-journal-pcbi-1000239/highlights/h_1604b065926f HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:40434 - "PUT /api/papers/10-1371-journal-pcbi-1000239/highlights/h_1604b065926f HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:55706 - "GET /api/papers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55712 - "GET /api/config HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55720 - "GET /api/config HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55726 - "GET /api/papers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49806 - "PUT /api/papers/10-7554-elife-99545-4/tags HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49818 - "PUT /api/papers/10-1371-journal-pcbi-1000239/tags HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53170 - "POST /api/papers/bulk-tag HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53174 - "GET /api/papers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53190 - "GET /api/papers/10-7554-elife-99545-4 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53200 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:53216 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:53228 - "GET /api/papers/10-7554-elife-99545-4/pdf HTTP/1.1" 206 Partial Content
+INFO:     127.0.0.1:48186 - "POST /api/papers/bulk-tag HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48200 - "GET /api/papers HTTP/1.1" 200 OK

@@ -103,6 +103,8 @@ class HighlightCreate(BaseModel):
 class HighlightUpdate(BaseModel):
     comment: Optional[str] = None
     color: Optional[str] = None
+    text: Optional[str] = None
+    anchor: Optional[dict] = None
 
 
 class HighlightResponse(BaseModel):
@@ -137,3 +139,4 @@ class Config(BaseModel):
     highlight_colors: List[str]
     default_highlight_color: str
     remember_last_color: bool
+    tag_colors: dict = {}  # Maps tag names to color hex codes

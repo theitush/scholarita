@@ -18,7 +18,8 @@ def load_config() -> Config:
             library_path="./papers",
             highlight_colors=["yellow", "green", "red", "blue"],
             default_highlight_color="yellow",
-            remember_last_color=True
+            remember_last_color=True,
+            tag_colors={}
         )
         save_config(default_config)
         return default_config

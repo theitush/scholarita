@@ -55,6 +55,7 @@ export interface Config {
   highlight_colors: string[];
   default_highlight_color: string;
   remember_last_color: boolean;
+  tag_colors: { [tagName: string]: string };  // Maps tag names to color hex codes
 }
 
 export interface Tab {

@@ -298,7 +298,7 @@ async def create_highlight(paper_id: str, highlight_data: HighlightCreate):
 @app.put("/api/papers/{paper_id}/highlights/{highlight_id}")
 async def update_highlight_endpoint(paper_id: str, highlight_id: str, update_data: HighlightUpdate):
     """Update a highlight."""
-    if not update_highlight(paper_id, highlight_id, update_data.comment, update_data.color):
+    if not update_highlight(paper_id, highlight_id, update_data.comment, update_data.color, update_data.text, update_data.anchor):
         raise HTTPException(status_code=404, detail="Highlight not found")
 
     # Update search index

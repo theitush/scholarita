@@ -72,6 +72,7 @@ interface PinFormState {
 
 export const PDFViewer: React.FC<PDFViewerProps> = ({ paper }) => {
   const containerRef = useRef<HTMLDivElement>(null);
+  const loadedPaperIdRef = useRef<string | null>(null);
   const [pdfDoc, setPdfDoc] = useState<PDFDocumentProxy | null>(null);
   const [, setNumPages] = useState(0);
   const [loading, setLoading] = useState(true);
@@ -99,12 +100,17 @@ export const PDFViewer: React.FC<PDFViewerProps> = ({ paper }) => {
   const { config, lastUsedHighlightColor, setLastUsedHighlightColor, setCurrentPaper } = useAppStore();
 
   useEffect(() => {
-    loadPDF();
-    return () => {
-      if (pdfDoc) {
-        pdfDoc.destroy();
-      }
-    };
+    // Always load PDF when paper.id changes or on initial mount
+    // The pdfDoc state will prevent duplicate loads
+    if (!pdfDoc || loadedPaperIdRef.current !== paper.id) {
+      console.log(`Loading PDF for paper ${paper.id}`);
+      loadedPaperIdRef.current = paper.id;
+      loadPDF();
+    } else {
+      // Paper already loaded and PDF is rendered, just re-render pins in case highlights were updated
+      console.log(`Paper ${paper.id} already loaded, re-rendering pins only`);
+      setTimeout(() => renderPins(), 50);
+    }
   }, [paper.id]);
 
   // Note: We don't auto-re-render pins on paper.highlights changes to avoid jumping during drags
@@ -150,7 +156,8 @@ export const PDFViewer: React.FC<PDFViewerProps> = ({ paper }) => {
     // Handle pin dragging
     const handleMouseMove = (event: MouseEvent) => {
       // Check if any pin is ready to drag (hasn't started dragging yet)
-      const readyPins = document.querySelectorAll('[data-drag-ready="true"]');
+      // Only search within this PDF viewer's container
+      const readyPins = containerRef.current?.querySelectorAll('[data-drag-ready="true"]') || [];
 
       readyPins.forEach((pinEl) => {
         const startX = parseFloat(pinEl.getAttribute('data-drag-start-x') || '0');
@@ -191,8 +198,8 @@ export const PDFViewer: React.FC<PDFViewerProps> = ({ paper }) => {
     };
 
     const handleMouseUp = async (event: MouseEvent) => {
-      // Clear drag-ready state for all pins
-      const readyPins = document.querySelectorAll('[data-drag-ready="true"]');
+      // Clear drag-ready state for all pins in this container
+      const readyPins = containerRef.current?.querySelectorAll('[data-drag-ready="true"]') || [];
       readyPins.forEach((pinEl) => {
         pinEl.setAttribute('data-drag-ready', 'false');
       });
@@ -233,7 +240,7 @@ export const PDFViewer: React.FC<PDFViewerProps> = ({ paper }) => {
       document.removeEventListener('mousemove', handleMouseMove);
       document.removeEventListener('mouseup', handleMouseUp);
     };
-  }, [contextMenu, pinForm, draggingPinId, dragOffset]);
+  }, [contextMenu, pinForm, draggingPinId, dragOffset, paper.id]);
 
   const handleAddPin = () => {
     const color = lastUsedHighlightColor || 'yellow';
@@ -313,6 +320,7 @@ export const PDFViewer: React.FC<PDFViewerProps> = ({ paper }) => {
   };
 
   const handlePinDrop = async (pinId: string, pageNumber: number, x: number, y: number) => {
+    console.log(`handlePinDrop called for paper ${paper.id}, pin ${pinId}`);
     try {
       // Update pin position
       await api.updateHighlight(paper.id, pinId, {
