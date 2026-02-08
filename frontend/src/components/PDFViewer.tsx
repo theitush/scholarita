@@ -181,9 +181,10 @@ export const PDFViewer: React.FC<PDFViewerProps> = ({ paper }) => {
       if (!pageContainer) return;
 
       const pageRect = pageContainer.getBoundingClientRect();
-      // Calculate the new position: mouse position minus offset, plus half pin size (14px) to center
-      const newX = event.clientX - pageRect.left - dragOffset.x + 14;
-      const newY = event.clientY - pageRect.top - dragOffset.y + 14;
+      // Calculate the new position: mouse position minus offset
+      // Note: CSS applies transform: translate(-14px, -14px) to center the pin visually
+      const newX = event.clientX - pageRect.left - dragOffset.x;
+      const newY = event.clientY - pageRect.top - dragOffset.y;
 
       // Update pin position visually (optimistic update)
       const pinEl = pageContainer.querySelector(`[data-pin-id="${draggingPinId}"]`) as HTMLElement;
@@ -216,9 +217,10 @@ export const PDFViewer: React.FC<PDFViewerProps> = ({ paper }) => {
       }
 
       const pageRect = pageContainer.getBoundingClientRect();
-      // Calculate the new position: mouse position minus offset, plus half pin size (14px) to center
-      const newX = event.clientX - pageRect.left - dragOffset.x + 14;
-      const newY = event.clientY - pageRect.top - dragOffset.y + 14;
+      // Calculate the new position: mouse position minus offset
+      // Note: CSS applies transform: translate(-14px, -14px) to center the pin visually
+      const newX = event.clientX - pageRect.left - dragOffset.x;
+      const newY = event.clientY - pageRect.top - dragOffset.y;
 
       await handlePinDrop(draggingPinId, pageNumber, newX, newY);
       setDraggingPinId(null);
@@ -285,31 +287,6 @@ export const PDFViewer: React.FC<PDFViewerProps> = ({ paper }) => {
     } catch (err) {
       console.error('Error creating pin:', err);
       alert(`Failed to create pin: ${err instanceof Error ? err.message : String(err)}`);
-    }
-  };
-
-  const handleEditPin = async (pinId: string) => {
-    if (!editingPinText.trim()) {
-      alert('Please enter text for the pin');
-      return;
-    }
-
-    try {
-      await api.updateHighlight(paper.id, pinId, { text: editingPinText });
-
-      // Refresh paper
-      if ((window as any).refreshPaper) {
-        await (window as any).refreshPaper(paper.id);
-      } else {
-        const updatedPaper = await api.getPaper(paper.id);
-        setCurrentPaper(updatedPaper);
-      }
-
-      setEditingPinId(null);
-      setEditingPinText('');
-    } catch (err) {
-      console.error('Error updating pin:', err);
-      alert('Failed to update pin');
     }
   };
 
@@ -430,6 +407,7 @@ export const PDFViewer: React.FC<PDFViewerProps> = ({ paper }) => {
         if (e.button !== 0) return;
 
         e.stopPropagation();
+        e.preventDefault(); // Prevent text selection during drag
 
         // Mark as ready to drag
         pinEl.setAttribute('data-drag-ready', 'true');
@@ -502,9 +480,32 @@ export const PDFViewer: React.FC<PDFViewerProps> = ({ paper }) => {
           saveButton.textContent = 'Save';
           saveButton.style.fontSize = '12px';
           saveButton.style.padding = '0.25rem 0.5rem';
-          saveButton.addEventListener('click', (e) => {
+          saveButton.addEventListener('click', async (e) => {
             e.stopPropagation();
-            handleEditPin(highlight.id);
+            // Get the current value from the textarea directly
+            const updatedText = textArea.value.trim();
+            if (!updatedText) {
+              alert('Please enter text for the pin');
+              return;
+            }
+
+            try {
+              await api.updateHighlight(paper.id, highlight.id, { text: updatedText });
+
+              // Refresh paper
+              if ((window as any).refreshPaper) {
+                await (window as any).refreshPaper(paper.id);
+              } else {
+                const updatedPaper = await api.getPaper(paper.id);
+                setCurrentPaper(updatedPaper);
+              }
+
+              setEditingPinId(null);
+              setEditingPinText('');
+            } catch (err) {
+              console.error('Error updating pin:', err);
+              alert('Failed to update pin');
+            }
           });
           buttonContainer.appendChild(saveButton);
 

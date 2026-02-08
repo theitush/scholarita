@@ -48,9 +48,7 @@ Scholarita is a functional local-first research paper annotation tool with a wor
 - ✅ E2E tests with cleanup (tests now delete pins after creation)
 
 **Known Issues:**
-- ⚠️ Pin edits from sticky note don't persist correctly
-- ⚠️ Pins jump back to original position after drag when reopened (position not being saved properly)
-- ⚠️ Text selection occurs during pin drag (need to prevent default on drag start)
+- ⚠️ Pins jump back to original position after drag when reopened (position not being saved properly) - **STILL INVESTIGATING**
 
 ### ❌ Not Yet Implemented
 
@@ -87,9 +85,9 @@ Scholarita is a functional local-first research paper annotation tool with a wor
    - ✅ Pin loading timing fixed (renders immediately)
    - ✅ Pin editing from sticky note UI works (click vs drag distinction)
    - ✅ Pin drag offset fixed (no more jumping on click)
-   - ⚠️ **Pin edits from sticky note don't save** - edit form appears but changes aren't persisted
-   - ⚠️ **Pin positions reset after drag** - pins jump back to original position when reopened (drag position not being saved to backend)
-   - ⚠️ **Text selection during drag** - dragging pins selects PDF text underneath, needs preventDefault
+   - ✅ **FIXED:** Pin edits from sticky note now save correctly (moved API call to button handler to avoid state race condition)
+   - ✅ **FIXED:** Text selection during drag prevented (added preventDefault on mousedown)
+   - ⚠️ **Pin positions reset after drag** - pins jump back to original position when reopened (drag position not being saved to backend) - **STILL INVESTIGATING**
    - Missing backend Pin model (currently using Highlight model - works fine)
 
 3. **Highlight System:**
@@ -107,9 +105,9 @@ Scholarita is a functional local-first research paper annotation tool with a wor
 ### Immediate (Fix Current Work)
 
 1. **Fix Remaining Pin System Issues**
-   - ⚠️ **CRITICAL:** Fix pin edit from sticky note not saving (handleEditPin may not be called correctly)
-   - ⚠️ **CRITICAL:** Fix pin drag positions not persisting (handlePinDrop may have wrong coordinates or not updating backend)
-   - Prevent text selection during pin drag (add preventDefault on mousedown when dragging starts)
+   - ✅ **FIXED:** Pin edit from sticky note now saves correctly
+   - ✅ **FIXED:** Text selection during pin drag prevented
+   - ⚠️ **CRITICAL:** Fix pin drag positions not persisting (handlePinDrop may have wrong coordinates or not updating backend) - **STILL NEEDS INVESTIGATION**
    - Consider renaming "highlight" terminology to "pin" throughout codebase
 
 2. **Fix Highlighting System**
