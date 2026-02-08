@@ -4,8 +4,8 @@ export interface Author {
 }
 
 export interface HighlightAnchor {
-  start: { page: number; offset: number };
-  end: { page: number; offset: number };
+  start: { page: number; offset: number; x?: number; y?: number };
+  end: { page: number; offset: number; x?: number; y?: number };
 }
 
 export interface Highlight {

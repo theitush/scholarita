@@ -75,7 +75,7 @@ export const AnnotationPanel: React.FC<AnnotationPanelProps> = ({ paper }) => {
       style={{ height: annotationPanelCollapsed ? '30px' : `${annotationPanelHeight}px` }}
     >
       <div className="annotation-panel-header" onClick={toggleAnnotationPanel}>
-        <span>{highlights.length} highlights</span>
+        <span>{highlights.length} pins</span>
         <span>{annotationPanelCollapsed ? '▲' : '▼'}</span>
       </div>
 
@@ -87,7 +87,7 @@ export const AnnotationPanel: React.FC<AnnotationPanelProps> = ({ paper }) => {
               onClick={() => setFilter('all')}
               style={{ padding: '0.25rem 0.5rem', fontSize: '12px' }}
             >
-              All highlights
+              All pins
             </button>
             <button
               className={`btn ${filter === 'current' ? '' : 'btn-secondary'}`}
@@ -101,7 +101,7 @@ export const AnnotationPanel: React.FC<AnnotationPanelProps> = ({ paper }) => {
           <div className="annotation-panel-content">
             {highlights.length === 0 ? (
               <div style={{ textAlign: 'center', padding: '1rem', color: '#666' }}>
-                No highlights yet. Select text in the PDF to create a highlight.
+                No pins yet. Right-click on the PDF to add a pin.
               </div>
             ) : (
               sortedPages.map(page => (

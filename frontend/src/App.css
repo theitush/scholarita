@@ -254,7 +254,8 @@ body {
   background: rgba(0, 100, 255, 0.3);
 }
 
-.highlight-layer {
+/* Pin layer - absolute positioned inside each pdf-page */
+.pin-layer {
   position: absolute;
   left: 0;
   top: 0;
@@ -263,27 +264,70 @@ body {
   pointer-events: none;
 }
 
-.highlight {
+/* Pin visualization - colored circles with numbers */
+.pin {
   position: absolute;
-  opacity: 0.4;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: 2px solid white;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
   pointer-events: all;
   cursor: pointer;
+  transform: translate(-14px, -14px); /* Center on click point */
+  transition: transform 0.2s;
 }
 
-.highlight.yellow {
+.pin:hover {
+  transform: translate(-14px, -14px) scale(1.1);
+}
+
+.pin.yellow {
   background: #ffeb3b;
 }
 
-.highlight.green {
+.pin.green {
   background: #4caf50;
 }
 
-.highlight.red {
+.pin.red {
   background: #f44336;
 }
 
-.highlight.blue {
+.pin.blue {
   background: #2196f3;
+}
+
+.pin-number {
+  color: white;
+  font-size: 14px;
+  font-weight: 600;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+}
+
+/* Sticky note when pin is expanded */
+.sticky-note {
+  position: absolute;
+  background: #fef9c3;
+  border: 1px solid #d4af37;
+  border-radius: 4px;
+  padding: 0.75rem;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  min-width: 200px;
+  max-width: 300px;
+  pointer-events: all;
+  z-index: 10;
+}
+
+.sticky-note-text {
+  font-size: 13px;
+  color: #333;
+  line-height: 1.4;
+  white-space: pre-wrap;
+  word-wrap: break-word;
 }
 
 .annotation-panel {
@@ -356,14 +400,56 @@ body {
   color: #666;
 }
 
-.highlight-popover {
-  position: absolute;
+/* Context menu - fixed position with high z-index */
+.context-menu {
+  position: fixed;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  z-index: 10000;
+  min-width: 150px;
+}
+
+.context-menu-item {
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background 0.15s;
+}
+
+.context-menu-item:hover {
+  background: #f0f0f0;
+}
+
+.context-menu-item:first-child {
+  border-radius: 4px 4px 0 0;
+}
+
+.context-menu-item:last-child {
+  border-radius: 0 0 4px 4px;
+}
+
+/* Pin form - fixed position with high z-index */
+.pin-form {
+  position: fixed;
   background: white;
   border: 1px solid #ddd;
   border-radius: 4px;
   padding: 0.75rem;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
-  z-index: 1000;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  z-index: 10000;
+  min-width: 300px;
+}
+
+.pin-text-input {
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 13px;
+  font-family: inherit;
+  resize: vertical;
 }
 
 .color-picker {

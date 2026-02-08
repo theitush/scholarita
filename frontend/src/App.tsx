@@ -173,7 +173,7 @@ function App() {
           const activeTab = tabs.find(t => t.id === activeTabId);
           const currentPaper = activeTab?.paperId ? loadedPapers.get(activeTab.paperId) : null;
           return currentPaper && (
-            <span>{currentPaper.highlights?.length || 0} highlights</span>
+            <span>{currentPaper.highlights?.length || 0} pins</span>
           );
         })()}
       </div>

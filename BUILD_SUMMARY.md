@@ -92,30 +92,15 @@
    - ✅ Zoom and scroll
    - ✅ Tab-based navigation
 
-4. **Highlighting** (NEW!)
-   - ✅ Text selection in PDF
-   - ✅ Color picker popover
-   - ✅ Optional comments on highlights
-   - ✅ Highlight rendering on PDF
-   - ✅ Edit/delete highlights
-   - ✅ Highlights displayed in annotation panel
-   - ✅ Keyboard shortcuts (Enter to save, Escape to cancel)
-
-5. **Backend Features**
+4. **Backend Features**
    - ✅ Full search indexing (ready to use)
    - ✅ Highlight CRUD operations (fully integrated)
    - ✅ Tag management (API ready)
    - ✅ Bulk operations (API ready)
 
-## What's Not Implemented (But Specified)
 
-### Phase 4: Highlighting ❌ IN PROGRESS
-- ⚠️ Text selection to highlight conversion (improved text layer rendering)
-- ⚠️ Highlight popover UI (positioning fixed)
-- ❌ Highlight rendering on PDF (needs work)
-- ⚠️ Comment editing UI (API calls fixed, needs testing)
-- ❌ Resizable annotation panel/bottom bar
-- ❌ E2E tests for highlighting features (tests need debugging)
+
+## What's Not Implemented (But Specified)
 
 ### Phase 5: Search & Tags UI
 - ❌ Search tab component
@@ -192,12 +177,11 @@ Total: ~4,200 lines of code (estimated)
 
 To get to a fully functional MVP, implement in this order:
 
-1. **Highlighting** (highest priority)
-   - Text selection handler
-   - Highlight popover component
-   - Highlight rendering layer
-   - Integration with backend API
-   - E2E tests for highlighting
+1. **Tag Management**
+   - Tag editor dialog
+   - Autocomplete for tags
+   - Bulk tagging UI
+   - E2E tests for tags
 
 2. **Search UI**
    - Search tab component
@@ -205,13 +189,7 @@ To get to a fully functional MVP, implement in this order:
    - Click-to-navigate
    - E2E tests for search
 
-3. **Tag Management**
-   - Tag editor dialog
-   - Autocomplete for tags
-   - Bulk tagging UI
-   - E2E tests for tags
-
-4. **Polish**
+3. **Polish**
    - Keyboard shortcuts
    - Context menus
    - UI refinements
@@ -239,18 +217,8 @@ From Spec.md:
 
 - [x] Can import paper by DOI/URL with metadata and PDF
 - [x] Can view PDF
-- [ ] Can create highlights with colors and comments (partially implemented, needs testing)
-- [ ] Highlights persist and re-render correctly (needs verification)
 - [ ] Can search across papers (API ready, UI pending)
 - [ ] Can tag papers (API ready, UI pending)
 - [x] All API endpoints work
 - [x] Backend tests pass
-- [ ] Frontend e2e tests for highlighting (in progress)
 
-**Overall completion**: ~70% of MVP features (Phase 4 in progress, needs debugging)
-
-## Conclusion
-
-The foundation is solid and complete. The backend is fully functional with all APIs implemented. The frontend has the core infrastructure and can import, display, and manage papers. The remaining work is primarily UI components for highlighting, search, and tag management, plus testing and polish.
-
-All the hard architectural decisions are done. The data model is proven. The APIs are tested and working. Adding the remaining UI features should be straightforward by following the patterns already established.

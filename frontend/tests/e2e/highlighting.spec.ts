@@ -487,7 +487,7 @@ test.describe('Highlighting Features', () => {
 
       // Check header text
       const headerText = await panelHeader.textContent();
-      expect(headerText).toMatch(/\d+ highlights/);
+      expect(headerText).toMatch(/\d+ pins/);
       console.log(`✓ Annotation panel shows: ${headerText}`);
 
       // Check if there are any highlights

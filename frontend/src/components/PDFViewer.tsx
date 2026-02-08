@@ -53,13 +53,21 @@ const loadPDFJS = (): Promise<any> => {
   });
 };
 
-interface HighlightPopoverState {
+interface ContextMenuState {
   visible: boolean;
   x: number;
   y: number;
-  selectedText: string;
   pageNumber: number;
-  rects: DOMRect[];
+  pageX: number;
+  pageY: number;
+}
+
+interface PinFormState {
+  visible: boolean;
+  x: number;
+  y: number;
+  color: string;
+  text: string;
 }
 
 export const PDFViewer: React.FC<PDFViewerProps> = ({ paper }) => {
@@ -68,17 +76,23 @@ export const PDFViewer: React.FC<PDFViewerProps> = ({ paper }) => {
   const [, setNumPages] = useState(0);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const [popover, setPopover] = useState<HighlightPopoverState>({
+  const [contextMenu, setContextMenu] = useState<ContextMenuState>({
     visible: false,
     x: 0,
     y: 0,
-    selectedText: '',
     pageNumber: 0,
-    rects: []
+    pageX: 0,
+    pageY: 0
   });
-  const [comment, setComment] = useState('');
+  const [pinForm, setPinForm] = useState<PinFormState>({
+    visible: false,
+    x: 0,
+    y: 0,
+    color: 'yellow',
+    text: ''
+  });
+  const [expandedPinId, setExpandedPinId] = useState<string | null>(null);
   const { config, lastUsedHighlightColor, setLastUsedHighlightColor, setCurrentPaper } = useAppStore();
-  const [selectedColor, setSelectedColor] = useState(lastUsedHighlightColor || 'yellow');
 
   useEffect(() => {
     loadPDF();
@@ -90,175 +104,181 @@ export const PDFViewer: React.FC<PDFViewerProps> = ({ paper }) => {
   }, [paper.id]);
 
   useEffect(() => {
-    // Render highlights when paper changes
+    // Render pins when paper changes
     if (pdfDoc && paper.highlights) {
-      renderHighlights();
+      renderPins();
     }
   }, [paper.highlights, pdfDoc]);
 
   useEffect(() => {
-    // Add mouseup listener for text selection
-    const handleMouseUp = (event: MouseEvent) => {
-      // Ignore mouseup events from the popover to prevent it from closing
-      const target = event.target;
-      if (target instanceof HTMLElement && target.closest('.highlight-popover')) {
-        return;
+    // Add right-click listener for context menu
+    const handleContextMenu = (event: MouseEvent) => {
+      const target = event.target as HTMLElement;
+
+      // Check if right-click is within a PDF page
+      const pageContainer = target.closest('.pdf-page');
+      if (!pageContainer) return;
+
+      event.preventDefault();
+
+      const pageNumber = parseInt(pageContainer.getAttribute('data-page-number') || '0');
+      if (!pageNumber) return;
+
+      const pageRect = pageContainer.getBoundingClientRect();
+      const pageX = event.clientX - pageRect.left;
+      const pageY = event.clientY - pageRect.top;
+
+      setContextMenu({
+        visible: true,
+        x: event.clientX,
+        y: event.clientY,
+        pageNumber,
+        pageX,
+        pageY
+      });
+    };
+
+    // Close context menu and pin form on click outside
+    const handleClick = (event: MouseEvent) => {
+      const target = event.target as HTMLElement;
+      if (!target.closest('.context-menu') && !target.closest('.pin-form')) {
+        setContextMenu({ ...contextMenu, visible: false });
+        setPinForm({ ...pinForm, visible: false });
       }
-      handleTextSelection();
     };
 
-    document.addEventListener('mouseup', handleMouseUp);
+    document.addEventListener('contextmenu', handleContextMenu);
+    document.addEventListener('click', handleClick);
+
     return () => {
-      document.removeEventListener('mouseup', handleMouseUp);
+      document.removeEventListener('contextmenu', handleContextMenu);
+      document.removeEventListener('click', handleClick);
     };
-  }, []);
+  }, [contextMenu, pinForm]);
 
-  const handleTextSelection = () => {
-    const selection = window.getSelection();
-    if (!selection || selection.isCollapsed || !selection.rangeCount) {
-      setPopover({ ...popover, visible: false });
-      return;
-    }
-
-    const selectedText = selection.toString().trim();
-    if (selectedText.length < 3) {
-      setPopover({ ...popover, visible: false });
-      return;
-    }
-
-    // Check if selection is within PDF text layer
-    const range = selection.getRangeAt(0);
-    const container = range.commonAncestorContainer;
-    const textLayer = (container.nodeType === Node.ELEMENT_NODE
-      ? container as Element
-      : container.parentElement)?.closest('.pdf-text-layer');
-
-    if (!textLayer) {
-      setPopover({ ...popover, visible: false });
-      return;
-    }
-
-    // Get page number
-    const pageContainer = textLayer.closest('.pdf-page');
-    const pageNumber = pageContainer ? parseInt(pageContainer.getAttribute('data-page-number') || '0') : 0;
-
-    if (!pageNumber) return;
-
-    // Get selection rectangles
-    const rects = Array.from(range.getClientRects());
-    if (rects.length === 0) return;
-
-    // Position popover below the selection
-    // Get the last rect (end of selection) and the container position
-    const lastRect = rects[rects.length - 1];
-    const containerRect = containerRef.current?.getBoundingClientRect();
-
-    if (!containerRect) return;
-
-    // Calculate position relative to the container
-    const x = lastRect.right - containerRect.left;
-    const y = lastRect.bottom - containerRect.top + 5;
-
-    setPopover({
+  const handleAddPin = () => {
+    const color = lastUsedHighlightColor || 'yellow';
+    setPinForm({
       visible: true,
-      x,
-      y,
-      selectedText,
-      pageNumber,
-      rects: rects as DOMRect[]
+      x: contextMenu.x,
+      y: contextMenu.y,
+      color,
+      text: ''
     });
+    setContextMenu({ ...contextMenu, visible: false });
   };
 
-  const createHighlight = async () => {
-    if (!popover.visible || !popover.selectedText) {
-      console.log('Cannot create highlight: popover not visible or no text selected');
+  const createPin = async () => {
+    if (!pinForm.text.trim()) {
+      alert('Please enter text for the pin');
       return;
     }
 
-    console.log('Creating highlight:', {
-      page: popover.pageNumber,
-      color: selectedColor,
-      text: popover.selectedText.substring(0, 50) + '...',
-      comment: comment
-    });
-
     try {
-      // Calculate anchor positions (simplified - using character offsets)
-      const highlight = {
-        page: popover.pageNumber,
-        color: selectedColor,
-        text: popover.selectedText,
+      const pin = {
+        page: contextMenu.pageNumber,
+        color: pinForm.color,
+        text: pinForm.text,
         anchor: {
-          start: { page: popover.pageNumber, offset: 0 },
-          end: { page: popover.pageNumber, offset: popover.selectedText.length }
-        },
-        comment: comment || undefined
+          start: { page: contextMenu.pageNumber, offset: 0, x: contextMenu.pageX, y: contextMenu.pageY },
+          end: { page: contextMenu.pageNumber, offset: 0, x: contextMenu.pageX, y: contextMenu.pageY }
+        }
       };
 
-      const result = await api.createHighlight(paper.id, highlight);
-      console.log('Highlight created successfully:', result);
+      await api.createHighlight(paper.id, pin);
 
-      // Refresh paper to get updated highlights
+      // Refresh paper to get updated pins
       if ((window as any).refreshPaper) {
         await (window as any).refreshPaper(paper.id);
-        console.log('Paper refreshed via global function');
       } else {
         const updatedPaper = await api.getPaper(paper.id);
-        console.log('Paper refreshed, highlights count:', updatedPaper.highlights?.length || 0);
         setCurrentPaper(updatedPaper);
       }
 
       // Remember color if config says so
       if (config?.remember_last_color) {
-        setLastUsedHighlightColor(selectedColor);
+        setLastUsedHighlightColor(pinForm.color);
       }
 
-      // Clear selection and popover
-      window.getSelection()?.removeAllRanges();
-      setPopover({ ...popover, visible: false });
-      setComment('');
+      setPinForm({ ...pinForm, visible: false, text: '' });
     } catch (err) {
-      console.error('Error creating highlight:', err);
-      alert(`Failed to create highlight: ${err instanceof Error ? err.message : String(err)}`);
+      console.error('Error creating pin:', err);
+      alert(`Failed to create pin: ${err instanceof Error ? err.message : String(err)}`);
     }
   };
 
-  const renderHighlights = () => {
+  const renderPins = () => {
     if (!containerRef.current) return;
 
-    // Clear existing highlights
-    const highlightLayers = containerRef.current.querySelectorAll('.highlight-layer');
-    highlightLayers.forEach(layer => {
+    // Clear existing pins
+    const pinLayers = containerRef.current.querySelectorAll('.pin-layer');
+    pinLayers.forEach(layer => {
       layer.innerHTML = '';
     });
 
-    // Render each highlight
-    paper.highlights?.forEach(highlight => {
-      const highlightLayer = containerRef.current?.querySelector(
-        `.highlight-layer[data-page="${highlight.page}"]`
+    // Render each pin
+    paper.highlights?.forEach((highlight, index) => {
+      const pinLayer = containerRef.current?.querySelector(
+        `.pin-layer[data-page="${highlight.page}"]`
       ) as HTMLElement;
 
-      if (!highlightLayer) return;
+      if (!pinLayer) return;
 
-      // Create highlight element (simplified - using full page width for now)
-      const highlightEl = document.createElement('div');
-      highlightEl.className = `highlight ${highlight.color}`;
-      highlightEl.style.left = '0';
-      highlightEl.style.top = '0';
-      highlightEl.style.width = '100%';
-      highlightEl.style.height = '20px';
-      highlightEl.title = highlight.text;
-      highlightEl.setAttribute('data-highlight-id', highlight.id);
+      const x = highlight.anchor?.start?.x || 0;
+      const y = highlight.anchor?.start?.y || 0;
 
-      // Add click handler to show highlight details
-      highlightEl.addEventListener('click', () => {
-        // Could open a dialog to edit/delete highlight
-        console.log('Highlight clicked:', highlight);
+      // Create pin element (colored circle with number)
+      const pinEl = document.createElement('div');
+      pinEl.className = `pin ${highlight.color}`;
+      pinEl.style.left = `${x}px`;
+      pinEl.style.top = `${y}px`;
+      pinEl.setAttribute('data-pin-id', highlight.id);
+
+      const pinNumber = document.createElement('span');
+      pinNumber.className = 'pin-number';
+      pinNumber.textContent = (index + 1).toString();
+      pinEl.appendChild(pinNumber);
+
+      // Add click handler to expand/collapse
+      pinEl.addEventListener('click', (e) => {
+        e.stopPropagation();
+        if (expandedPinId === highlight.id) {
+          setExpandedPinId(null);
+        } else {
+          setExpandedPinId(highlight.id);
+        }
       });
 
-      highlightLayer.appendChild(highlightEl);
+      pinLayer.appendChild(pinEl);
+
+      // If this pin is expanded, show sticky note
+      if (expandedPinId === highlight.id) {
+        const stickyNote = document.createElement('div');
+        stickyNote.className = 'sticky-note';
+        stickyNote.style.left = `${x + 30}px`;
+        stickyNote.style.top = `${y}px`;
+
+        const noteText = document.createElement('div');
+        noteText.className = 'sticky-note-text';
+        noteText.textContent = highlight.text;
+
+        stickyNote.appendChild(noteText);
+        pinLayer.appendChild(stickyNote);
+
+        // Prevent click on sticky note from closing it
+        stickyNote.addEventListener('click', (e) => {
+          e.stopPropagation();
+        });
+      }
     });
   };
+
+  // Re-render pins when expandedPinId changes
+  useEffect(() => {
+    if (pdfDoc) {
+      renderPins();
+    }
+  }, [expandedPinId]);
 
   const loadPDF = async () => {
     try {
@@ -342,7 +362,7 @@ export const PDFViewer: React.FC<PDFViewerProps> = ({ paper }) => {
           context.fillText(String(renderError), 20, 80);
         }
 
-        // Add text layer using PDF.js TextLayer
+        // Add text layer using PDF.js TextLayer (for future search/copy features)
         const textLayerDiv = document.createElement('div');
         textLayerDiv.className = 'pdf-text-layer';
         textLayerDiv.style.width = `${viewport.width}px`;
@@ -360,27 +380,6 @@ export const PDFViewer: React.FC<PDFViewerProps> = ({ paper }) => {
               viewport: viewport,
               textDivs: []
             });
-          } else {
-            // Fallback to manual rendering if renderTextLayer not available
-            textContent.items.forEach((item: any) => {
-              if (!item.str) return;
-
-              const tx = item.transform[4];
-              const ty = item.transform[5];
-              const angle = Math.atan2(item.transform[1], item.transform[0]);
-              const fontSize = Math.sqrt(item.transform[0] * item.transform[0] + item.transform[1] * item.transform[1]);
-
-              const span = document.createElement('span');
-              span.textContent = item.str;
-              span.style.position = 'absolute';
-              span.style.left = `${tx}px`;
-              span.style.top = `${viewport.height - ty}px`;
-              span.style.fontSize = `${fontSize}px`;
-              span.style.transform = `scaleX(${item.width / (fontSize * item.str.length)}) rotate(${angle}rad)`;
-              span.style.transformOrigin = '0 0';
-
-              textLayerDiv.appendChild(span);
-            });
           }
         } catch (textError) {
           console.warn(`Error rendering text layer for page ${pageNum}:`, textError);
@@ -388,11 +387,11 @@ export const PDFViewer: React.FC<PDFViewerProps> = ({ paper }) => {
 
         pageContainer.appendChild(textLayerDiv);
 
-        // Add highlight layer
-        const highlightLayer = document.createElement('div');
-        highlightLayer.className = 'highlight-layer';
-        highlightLayer.setAttribute('data-page', pageNum.toString());
-        pageContainer.appendChild(highlightLayer);
+        // Add pin layer
+        const pinLayer = document.createElement('div');
+        pinLayer.className = 'pin-layer';
+        pinLayer.setAttribute('data-page', pageNum.toString());
+        pageContainer.appendChild(pinLayer);
 
         containerRef.current?.appendChild(pageContainer);
       } catch (pageError) {
@@ -414,51 +413,66 @@ export const PDFViewer: React.FC<PDFViewerProps> = ({ paper }) => {
     <div className="pdf-container">
       <div className="pdf-canvas-wrapper" ref={containerRef} />
 
-      {popover.visible && (
+      {contextMenu.visible && (
         <div
-          className="highlight-popover"
+          className="context-menu"
           style={{
-            left: `${popover.x}px`,
-            top: `${popover.y}px`
+            left: `${contextMenu.x}px`,
+            top: `${contextMenu.y}px`
+          }}
+        >
+          <div className="context-menu-item" onClick={handleAddPin}>
+            Add Pin
+          </div>
+          <div className="context-menu-item" onClick={() => alert('Tag feature coming soon')}>
+            Tag (coming soon)
+          </div>
+        </div>
+      )}
+
+      {pinForm.visible && (
+        <div
+          className="pin-form"
+          style={{
+            left: `${pinForm.x}px`,
+            top: `${pinForm.y}px`
           }}
         >
           <div className="color-picker">
             {(config?.highlight_colors || ['#ffeb3b', '#4caf50', '#f44336', '#2196f3']).map(color => (
               <div
                 key={color}
-                className={`color-btn ${selectedColor === color ? 'selected' : ''}`}
+                className={`color-btn ${pinForm.color === color ? 'selected' : ''}`}
                 style={{ background: color }}
-                onClick={() => setSelectedColor(color)}
+                onClick={() => setPinForm({ ...pinForm, color })}
               />
             ))}
           </div>
 
-          <input
-            type="text"
-            className="comment-input"
-            placeholder="Add a comment (optional)"
-            value={comment}
-            onChange={(e) => setComment(e.target.value)}
+          <textarea
+            className="pin-text-input"
+            placeholder="Enter note text..."
+            value={pinForm.text}
+            onChange={(e) => setPinForm({ ...pinForm, text: e.target.value })}
             onKeyDown={(e) => {
-              if (e.key === 'Enter') {
-                createHighlight();
+              if (e.key === 'Enter' && e.ctrlKey) {
+                createPin();
               } else if (e.key === 'Escape') {
-                setPopover({ ...popover, visible: false });
-                setComment('');
+                setPinForm({ ...pinForm, visible: false, text: '' });
               }
             }}
+            rows={4}
+            autoFocus
           />
 
-          <div style={{ display: 'flex', gap: '0.5rem' }}>
-            <button className="btn" onClick={createHighlight}>
-              Highlight
+          <div style={{ display: 'flex', gap: '0.5rem', marginTop: '0.5rem' }}>
+            <button className="btn" onClick={createPin}>
+              Add Pin
             </button>
             <button
               className="btn btn-secondary"
               onClick={() => {
-                setPopover({ ...popover, visible: false });
-                setComment('');
-                window.getSelection()?.removeAllRanges();
+                setPinForm({ ...pinForm, visible: false, text: '' });
               }}
             >
               Cancel
