@@ -123,13 +123,37 @@ async def fetch_metadata(doi: str) -> Tuple[Optional[Dict[str, Any]], Optional[s
     return None, None
 
 
-async def download_pdf_from_url(url: str) -> Optional[bytes]:
+async def download_pdf_from_url(url: str, referer: Optional[str] = None) -> Optional[bytes]:
     """Download PDF from a direct URL."""
     try:
-        async with httpx.AsyncClient(timeout=TIMEOUT, follow_redirects=True) as client:
+        # Use comprehensive browser-like headers to avoid bot detection
+        headers = {
+            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+            'Accept': 'application/pdf,application/octet-stream,*/*',
+            'Accept-Language': 'en-US,en;q=0.9',
+            'Accept-Encoding': 'gzip, deflate, br',
+            'DNT': '1',
+            'Connection': 'keep-alive',
+            'Upgrade-Insecure-Requests': '1',
+            'Sec-Fetch-Dest': 'document',
+            'Sec-Fetch-Mode': 'navigate',
+            'Sec-Fetch-Site': 'none',
+            'Cache-Control': 'max-age=0',
+        }
+        if referer:
+            headers['Referer'] = referer
+
+        async with httpx.AsyncClient(timeout=TIMEOUT, follow_redirects=True, headers=headers) as client:
             response = await client.get(url)
-            if response.status_code == 200 and response.headers.get('content-type', '').startswith('application/pdf'):
-                return response.content
+            if response.status_code == 200:
+                content_type = response.headers.get('content-type', '')
+                # Accept both application/pdf and application/octet-stream for PDFs
+                if content_type.startswith('application/pdf') or content_type.startswith('application/octet-stream'):
+                    # Verify it's actually a PDF by checking magic bytes
+                    if response.content.startswith(b'%PDF'):
+                        return response.content
+            elif response.status_code == 403:
+                print(f"Access forbidden (403) for {url} - likely bot protection")
     except Exception as e:
         print(f"PDF download error from {url}: {e}")
     return None
@@ -240,7 +264,32 @@ async def fetch_pdf(doi: str, metadata: Optional[Dict[str, Any]] = None) -> Opti
         if pdf:
             return pdf
 
-    # 4. Publisher-specific direct URLs
+    # 4. Unpaywall (aggregates open-access PDFs from many sources)
+    if not doi.startswith('arXiv:') and not doi.startswith('bioRxiv:'):
+        try:
+            unpaywall_url = f"https://api.unpaywall.org/v2/{doi}?email=user@localhost"
+            async with httpx.AsyncClient(timeout=TIMEOUT) as client:
+                response = await client.get(unpaywall_url)
+                if response.status_code == 200:
+                    data = response.json()
+                    best_location = data.get('best_oa_location')
+                    if best_location and best_location.get('url_for_pdf'):
+                        pdf_url = best_location['url_for_pdf']
+                        landing_page = best_location.get('url_for_landing_page', '')
+                        print(f"Found Unpaywall PDF URL: {pdf_url}")
+
+                        # For OUP and other publishers, try with referer header
+                        if 'oup.com' in pdf_url and landing_page:
+                            pdf = await download_pdf_from_url(pdf_url, referer=landing_page)
+                        else:
+                            pdf = await download_pdf_from_url(pdf_url)
+
+                        if pdf:
+                            return pdf
+        except Exception as e:
+            print(f"Unpaywall error: {e}")
+
+    # 5. Publisher-specific direct URLs
     publisher_urls = []
 
     # PLOS journals
@@ -268,13 +317,64 @@ async def fetch_pdf(doi: str, metadata: Optional[Dict[str, Any]] = None) -> Opti
         except Exception as e:
             print(f"JNeurosci page scraping error: {e}")
 
+    # Oxford University Press (OUP) - academic.oup.com journals
+    # Try to scrape article page for PDF link (will work for any DOI that redirects to OUP)
+    if metadata:
+        try:
+            # First, try to scrape the article page for the PDF link
+            article_url = metadata.get('url', '')
+            if not article_url:
+                article_url = f"https://doi.org/{doi}"
+
+            headers = {
+                'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'
+            }
+            async with httpx.AsyncClient(timeout=TIMEOUT, follow_redirects=True, headers=headers) as client:
+                response = await client.get(article_url)
+                if response.status_code == 200:
+                    from urllib.parse import urljoin
+
+                    # Check if this is an OUP page
+                    if 'academic.oup.com' in str(response.url):
+                        print(f"Detected OUP article page: {response.url}")
+
+                        # Look for PDF download link in the page
+                        # Pattern 1: article-pdf link (most common for OUP)
+                        pdf_match = re.search(r'href="([^"]*article-pdf[^"]*\.pdf[^"]*)"', response.text)
+                        if pdf_match:
+                            pdf_url = pdf_match.group(1)
+                            if not pdf_url.startswith('http'):
+                                pdf_url = urljoin(str(response.url), pdf_url)
+                            publisher_urls.append(pdf_url)
+                            print(f"Found OUP PDF URL: {pdf_url}")
+
+                        # Pattern 2: Look for data-article-pdf attribute or similar
+                        pdf_data_match = re.search(r'data-article-pdf="([^"]+)"', response.text)
+                        if pdf_data_match:
+                            pdf_url = pdf_data_match.group(1)
+                            if not pdf_url.startswith('http'):
+                                pdf_url = urljoin(str(response.url), pdf_url)
+                            publisher_urls.append(pdf_url)
+                            print(f"Found OUP PDF URL (data attr): {pdf_url}")
+
+                        # Pattern 3: Look for PDF links in general
+                        all_pdf_links = re.findall(r'href="([^"]+\.pdf[^"]*)"', response.text)
+                        for link in all_pdf_links:
+                            if 'article-pdf' in link or 'download' in link.lower():
+                                pdf_url = link if link.startswith('http') else urljoin(str(response.url), link)
+                                if pdf_url not in publisher_urls:
+                                    publisher_urls.append(pdf_url)
+                                    print(f"Found OUP PDF URL (general): {pdf_url}")
+        except Exception as e:
+            print(f"Publisher page scraping error: {e}")
+
     # Try publisher-specific URLs
     for url in publisher_urls:
         pdf = await download_pdf_from_url(url)
         if pdf:
             return pdf
 
-    # 5. Sci-Hub (last resort)
+    # 6. Sci-Hub (last resort)
     pdf = await fetch_pdf_scihub(doi)
     if pdf:
         return pdf
