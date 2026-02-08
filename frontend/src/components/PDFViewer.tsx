@@ -107,8 +107,8 @@ export const PDFViewer: React.FC<PDFViewerProps> = ({ paper }) => {
   }, [paper.id]);
 
   useEffect(() => {
-    // Render pins when paper changes
-    if (pdfDoc && paper.highlights) {
+    // Render pins when paper changes or on initial load
+    if (pdfDoc) {
       renderPins();
     }
   }, [paper.highlights, pdfDoc]);
@@ -436,9 +436,10 @@ export const PDFViewer: React.FC<PDFViewerProps> = ({ paper }) => {
 
           const editButton = document.createElement('button');
           editButton.className = 'btn';
-          editButton.textContent = 'Edit';
+          editButton.textContent = '✏️';
           editButton.style.fontSize = '11px';
           editButton.style.padding = '0.25rem 0.5rem';
+          editButton.title = 'Edit pin';
           editButton.addEventListener('click', (e) => {
             e.stopPropagation();
             setEditingPinId(highlight.id);
@@ -448,9 +449,10 @@ export const PDFViewer: React.FC<PDFViewerProps> = ({ paper }) => {
 
           const moveButton = document.createElement('button');
           moveButton.className = 'btn';
-          moveButton.textContent = movingPinId === highlight.id ? 'Moving...' : 'Move';
+          moveButton.textContent = movingPinId === highlight.id ? '🔄' : '↔️';
           moveButton.style.fontSize = '11px';
           moveButton.style.padding = '0.25rem 0.5rem';
+          moveButton.title = movingPinId === highlight.id ? 'Click to place pin' : 'Move pin';
           moveButton.addEventListener('click', (e) => {
             e.stopPropagation();
             startMovingPin(highlight.id);
@@ -459,9 +461,10 @@ export const PDFViewer: React.FC<PDFViewerProps> = ({ paper }) => {
 
           const deleteButton = document.createElement('button');
           deleteButton.className = 'btn btn-secondary';
-          deleteButton.textContent = 'Delete';
+          deleteButton.textContent = '🗑️';
           deleteButton.style.fontSize = '11px';
           deleteButton.style.padding = '0.25rem 0.5rem';
+          deleteButton.title = 'Delete pin';
           deleteButton.addEventListener('click', (e) => {
             e.stopPropagation();
             handleDeletePin(highlight.id);
@@ -481,12 +484,12 @@ export const PDFViewer: React.FC<PDFViewerProps> = ({ paper }) => {
     });
   };
 
-  // Re-render pins when expandedPinId, editingPinId, or movingPinId changes
+  // Re-render pins when expandedPinId, editingPinId, editingPinText, or movingPinId changes
   useEffect(() => {
     if (pdfDoc) {
       renderPins();
     }
-  }, [expandedPinId, editingPinId, movingPinId]);
+  }, [expandedPinId, editingPinId, editingPinText, movingPinId]);
 
   const loadPDF = async () => {
     try {
@@ -510,6 +513,9 @@ export const PDFViewer: React.FC<PDFViewerProps> = ({ paper }) => {
       // Render all pages
       await renderAllPages(pdf);
       console.log('PDF rendering complete');
+
+      // Render pins after pages are ready
+      renderPins();
     } catch (err) {
       console.error('Error loading PDF:', err);
       setError(`Failed to load PDF: ${err instanceof Error ? err.message : String(err)}`);

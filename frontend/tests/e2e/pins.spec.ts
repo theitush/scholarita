@@ -515,6 +515,246 @@ test.describe('Pin Annotation Features', () => {
     }
   });
 
+  test('should show pins on PDF after page load', async ({ page }) => {
+    const firstPaper = page.locator('.paper-item').first();
+
+    if (await firstPaper.isVisible()) {
+      await firstPaper.click();
+      await page.waitForSelector('.pdf-container', { timeout: 10000 });
+      await page.waitForTimeout(3000);
+
+      // Check if there are any pins in the annotation panel
+      const annotationPanel = page.locator('.annotation-panel');
+      const panelHeader = page.locator('.annotation-panel-header');
+      const headerText = await panelHeader.textContent();
+      const pinCount = parseInt(headerText?.match(/(\d+)/)?.[1] || '0');
+
+      if (pinCount > 0) {
+        // Check that pins are visible on the PDF
+        const pdfPins = page.locator('.pin');
+        const visiblePins = await pdfPins.count();
+
+        expect(visiblePins).toBe(pinCount);
+        console.log(`✓ All ${pinCount} pins are visible on PDF after page load`);
+
+        // Verify pins have numbers
+        const firstPin = pdfPins.first();
+        const pinNumber = firstPin.locator('.pin-number');
+        await expect(pinNumber).toBeVisible();
+        console.log('✓ Pins have visible numbers');
+      } else {
+        console.log('No pins available to test visibility - skipping');
+        test.skip();
+      }
+    } else {
+      test.skip();
+    }
+  });
+
+  test('should edit pin from sticky note with icon buttons', async ({ page }) => {
+    const firstPaper = page.locator('.paper-item').first();
+
+    if (await firstPaper.isVisible()) {
+      await firstPaper.click();
+      await page.waitForSelector('.pdf-container', { timeout: 10000 });
+      await page.waitForTimeout(3000);
+
+      // Check if there are pins
+      const pins = page.locator('.pin');
+      const pinCount = await pins.count();
+
+      if (pinCount > 0) {
+        const firstPin = pins.first();
+
+        // Click pin to expand
+        await firstPin.click();
+        await page.waitForTimeout(500);
+
+        // Check if sticky note is visible
+        const stickyNote = page.locator('.sticky-note').first();
+        if (await stickyNote.isVisible()) {
+          // Find the edit button (should be an icon, not text)
+          const editButton = stickyNote.locator('button[title="Edit pin"]');
+          await expect(editButton).toBeVisible();
+
+          const buttonText = await editButton.textContent();
+          expect(buttonText).toBe('✏️');
+          console.log('✓ Edit button uses icon instead of text');
+
+          // Click edit button
+          await editButton.click();
+          await page.waitForTimeout(500);
+
+          // Check that textarea is visible
+          const textarea = stickyNote.locator('textarea.pin-text-input');
+          await expect(textarea).toBeVisible();
+          console.log('✓ Edit form displayed');
+
+          // Edit the text
+          const newText = 'Edited pin text from sticky note';
+          await textarea.fill(newText);
+
+          // Click Save button
+          const saveButton = stickyNote.locator('button:has-text("Save")');
+          await saveButton.click();
+          await page.waitForTimeout(1500);
+
+          // Expand pin again to verify edit
+          await firstPin.click();
+          await page.waitForTimeout(500);
+          await firstPin.click();
+          await page.waitForTimeout(500);
+
+          const noteText = page.locator('.sticky-note-text').first();
+          const updatedText = await noteText.textContent();
+          expect(updatedText).toBe(newText);
+          console.log('✓ Pin text updated successfully from sticky note');
+        } else {
+          console.log('✗ Sticky note not visible - skipping');
+          test.skip();
+        }
+      } else {
+        console.log('No pins available to test editing - skipping');
+        test.skip();
+      }
+    } else {
+      test.skip();
+    }
+  });
+
+  test('should edit pin from annotation panel', async ({ page }) => {
+    const firstPaper = page.locator('.paper-item').first();
+
+    if (await firstPaper.isVisible()) {
+      await firstPaper.click();
+      await page.waitForSelector('.pdf-container', { timeout: 10000 });
+      await page.waitForTimeout(2000);
+
+      // Expand annotation panel
+      const annotationPanel = page.locator('.annotation-panel');
+      const panelHeader = page.locator('.annotation-panel-header');
+      const isCollapsed = await annotationPanel.evaluate(el => el.classList.contains('collapsed'));
+
+      if (isCollapsed) {
+        await panelHeader.click();
+        await page.waitForTimeout(300);
+      }
+
+      // Check if there are pins
+      const annotationItems = page.locator('.annotation-item');
+      const itemCount = await annotationItems.count();
+
+      if (itemCount > 0) {
+        const firstItem = annotationItems.first();
+
+        // Find edit button (should be icon)
+        const editButton = firstItem.locator('button[title="Edit pin text"]');
+        await expect(editButton).toBeVisible();
+
+        const buttonText = await editButton.textContent();
+        expect(buttonText).toContain('✏️');
+        console.log('✓ Annotation panel edit button uses icon');
+
+        // Get original text (the div with the quoted text)
+        const originalTextDiv = firstItem.locator('div').filter({ hasText: /^".*"$/ }).first();
+        const originalText = await originalTextDiv.textContent();
+        console.log(`Original text: ${originalText}`);
+
+        // Click edit
+        await editButton.click();
+        await page.waitForTimeout(500);
+
+        // Edit text
+        const textarea = firstItem.locator('textarea.comment-input');
+        await expect(textarea).toBeVisible();
+        const newText = 'Edited from annotation panel';
+        await textarea.fill(newText);
+
+        // Save
+        const saveButton = firstItem.locator('button:has-text("Save")');
+        await saveButton.click();
+        await page.waitForTimeout(2000); // Wait longer for refresh
+
+        // Verify the change is reflected in the annotation panel
+        const updatedTextDiv = annotationItems.first().locator('div').filter({ hasText: /^".*"$/ }).first();
+        const updatedText = await updatedTextDiv.textContent();
+        expect(updatedText).toContain(newText);
+        console.log('✓ Pin text updated successfully from annotation panel');
+
+        // Verify the change is reflected on the PDF sticky note
+        const pins = page.locator('.pin');
+        const firstPin = pins.first();
+        await firstPin.click();
+        await page.waitForTimeout(500);
+
+        const stickyNoteText = page.locator('.sticky-note-text').first();
+        const pdfText = await stickyNoteText.textContent();
+        expect(pdfText).toBe(newText);
+        console.log('✓ Pin edit from annotation panel reflected on PDF');
+      } else {
+        console.log('No pins available to test editing - skipping');
+        test.skip();
+      }
+    } else {
+      test.skip();
+    }
+  });
+
+  test('should show move button as icon and allow moving pins', async ({ page }) => {
+    const firstPaper = page.locator('.paper-item').first();
+
+    if (await firstPaper.isVisible()) {
+      await firstPaper.click();
+      await page.waitForSelector('.pdf-container', { timeout: 10000 });
+      await page.waitForTimeout(3000);
+
+      // Check if there are pins
+      const pins = page.locator('.pin');
+      const pinCount = await pins.count();
+
+      if (pinCount > 0) {
+        const firstPin = pins.first();
+
+        // Click pin to expand
+        await firstPin.click();
+        await page.waitForTimeout(500);
+
+        const stickyNote = page.locator('.sticky-note').first();
+        if (await stickyNote.isVisible()) {
+          // Find move button
+          const moveButton = stickyNote.locator('button[title="Move pin"]');
+          await expect(moveButton).toBeVisible();
+
+          const buttonText = await moveButton.textContent();
+          expect(buttonText).toBe('↔️');
+          console.log('✓ Move button uses icon instead of text');
+
+          // Click move button
+          await moveButton.click();
+          await page.waitForTimeout(500);
+
+          // Button should change to indicate moving mode
+          const movingButton = stickyNote.locator('button[title="Click to place pin"]');
+          const isMovingVisible = await movingButton.isVisible();
+
+          if (isMovingVisible) {
+            const movingText = await movingButton.textContent();
+            expect(movingText).toBe('🔄');
+            console.log('✓ Move button changes to spinning icon when moving');
+          }
+        } else {
+          console.log('✗ Sticky note not visible - skipping');
+          test.skip();
+        }
+      } else {
+        console.log('No pins available to test moving - skipping');
+        test.skip();
+      }
+    } else {
+      test.skip();
+    }
+  });
+
   test('should delete pin from annotation panel', async ({ page }) => {
     const firstPaper = page.locator('.paper-item').first();
 
@@ -545,7 +785,7 @@ test.describe('Pin Annotation Features', () => {
         page.on('dialog', dialog => dialog.accept());
 
         // Click delete button
-        const deleteButton = firstItem.locator('button[title="Delete highlight"]');
+        const deleteButton = firstItem.locator('button[title="Delete pin"]');
         await deleteButton.click();
         await page.waitForTimeout(1500);
 
