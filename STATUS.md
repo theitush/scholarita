@@ -37,7 +37,7 @@ Scholarita is a functional local-first research paper annotation tool with a wor
 - E2E tests with Playwright
 - Backend unit tests with pytest
 
-### Pin Annotation System (Complete)
+### Pin Annotation System 
 
 **Pin Annotation System:**
 - Context menu on right-click in PDF
@@ -50,7 +50,7 @@ Scholarita is a functional local-first research paper annotation tool with a wor
 - Pin drag-and-drop movement with position persistence
 - E2E tests with cleanup (tests now delete pins after creation)
 
-### Tag Management (Complete)
+### Tag Management 
 
 **Tag System:**
 - Tag editor dialog with autocomplete ([TagEditor.tsx](frontend/src/components/TagEditor.tsx))
@@ -60,7 +60,7 @@ Scholarita is a functional local-first research paper annotation tool with a wor
 - Active filter display with clear buttons
 - Backend tag API fully functional
 
-### Full-Text Search (Complete)
+### Full-Text Search 
 
 **Backend:**
 - Full PDF text extraction using PyMuPDF ([storage.py:209-272](backend/storage.py#L209-L272))
@@ -76,66 +76,19 @@ Scholarita is a functional local-first research paper annotation tool with a wor
 - SearchTab component displays results with snippets and highlighting ([SearchTab.tsx](frontend/src/components/SearchTab.tsx))
 - Click on search result opens paper in new tab
 
-### Not Yet Implemented
-
-**Polish Features:**
-- Keyboard shortcuts (Ctrl+F for search, Ctrl+1-4 for highlight colors, etc.)
-- Better error messages and loading states
-- Empty states for sidebar/panels
-
-
-## Known Issues
-
-1. **E2E Test Failures:**
-   - Highlight popover not appearing reliably (text layer timing)
-   - Some pin tests flaky due to PDF rendering timing
-   - Need to add better wait conditions
-
-2. **Pin System:**
-   - Missing backend Pin model (currently using Highlight model - works fine for now)
-
-3. **Highlight System:**
-   - Text selection to highlight flow incomplete
-   - Highlight rendering overlay not visible
-   - Missing highlight edit/delete in UI
-
-5. **Missing Features:**
-   - No search UI
-   - No tag management UI
-   - No keyboard shortcuts implemented
-
 ## Next Steps (Priority Order)
 
-### Short Term (Complete Core Features)
-
-1. **Search UI**
-   - Create Search tab component
-   - Display search results with snippets
-   - Implement click-to-navigate to matching paper/highlight
-   - Add E2E tests for search
-
-2. **Tag Management UI**
-   - Create tag editor dialog
-   - Add tag autocomplete from existing tags
-   - Implement bulk tagging UI
-   - Add tag filter to sidebar
-   - Add E2E tests for tagging
-
-### Medium Term (Polish)
-
-3. **Keyboard Shortcuts**
-   - Ctrl+F for search
-   - Ctrl+1-4 for highlight colors
-   - Ctrl+W for close tab
-   - Ctrl+Tab for tab navigation
-   - Ctrl+B for annotation panel toggle
-
-4. **UI Polish**
-   - Better loading states
-   - Empty states for new users
-   - Error message improvements
-   - Visual feedback for auto-save
-   - Improved styling and responsiveness
+- more informative error messages when pdf download fails
+- upload pdf manually when missing (dont forget to index!)
+- filtering multiple tags should be AND not OR!!!
+- all tags clickable in a frame under the search bar
+- add functionality to commit papers metadata to git, discuss details
+- highlight currently viewed article in sidebar 
+- mark number of highlights in paper
+- sometimes articles dont load and need to be closed and reopend
+- dark mode toggle button that also flips the pdf colors
+- we scraped the highlights and changed them to pins so gotta remove all references to highlights in front and back! it might still be giving us shit... 
+- pins are still giving issues.. new pin doesnt always appear and may require reopening the tab
 
 ## Test Status
 
@@ -149,7 +102,6 @@ Status: All tests passing (9/9) - storage, importers, new directory structure ve
 ```bash
 cd frontend && npm run test:e2e
 ```
-Status: ⚠️ Pin tests: 10/14 passing (4 fail due to overlapping pin test data)
 
 
 ## How to Verify Current State
@@ -179,26 +131,7 @@ Status: ⚠️ Pin tests: 10/14 passing (4 fail due to overlapping pin test data
    cd frontend && npm run test:e2e
    ```
 
-## Code Statistics
-
-```
-Backend:  6 Python modules (~1,500 LOC)
-Frontend: 10 TypeScript/TSX files (~1,100 LOC)
-Tests:    9 test files (backend + e2e)
-Total:    ~2,600 lines of code
-```
-
 ## Dependencies
-
-**Backend:** FastAPI, uvicorn, pymupdf, httpx, pydantic, pytest
-**Frontend:** React 18, TypeScript, Vite, PDF.js, Zustand, Playwright
 
 All dependencies are locked in `requirements.txt` and `package.json`.
 
-## Documentation
-
-- [README.md](README.md) - User documentation
-- [QUICKSTART.md](QUICKSTART.md) - Setup guide
-- [Spec.md](Spec.md) - Technical specification
-- [CLAUDE.md](CLAUDE.md) - Development guide for AI assistants
-- API Docs: http://localhost:8000/docs (when running)
