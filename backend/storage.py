@@ -131,8 +131,10 @@ def add_highlight(paper_id: str, highlight: Highlight) -> bool:
     return True
 
 
-def update_highlight(paper_id: str, highlight_id: str, comment: Optional[str] = None, color: Optional[str] = None) -> bool:
+def update_highlight(paper_id: str, highlight_id: str, comment: Optional[str] = None, color: Optional[str] = None, text: Optional[str] = None, anchor: Optional[dict] = None) -> bool:
     """Update a highlight."""
+    from models import HighlightAnchor
+
     paper = load_paper(paper_id)
     if not paper:
         return False
@@ -143,6 +145,11 @@ def update_highlight(paper_id: str, highlight_id: str, comment: Optional[str] = 
                 hl.comment = comment
             if color is not None:
                 hl.color = color
+            if text is not None:
+                hl.text = text
+            if anchor is not None:
+                # Convert dict to HighlightAnchor model to ensure proper structure
+                hl.anchor = HighlightAnchor(**anchor)
             save_paper(paper)
             return True
 

@@ -39,10 +39,14 @@ Scholarita is a functional local-first research paper annotation tool with a wor
 **Pin Annotation System:**
 - ✅ Context menu on right-click in PDF
 - ✅ Pin creation at clicked coordinates
-- ✅ Pin display with icons
-- ✅ Edit and move functionality
-- ⚠️ Some E2E tests failing (text layer timing issues)
-- ⚠️ Pin persistence needs verification
+- ✅ Pin display with icons (numbered circles)
+- ✅ Pin loading after PDF render (now ~200ms)
+- ✅ Pin persistence (backend anchor updates fixed)
+- ✅ Pin editing from annotation panel
+- ✅ Pin drag-and-drop movement (basic functionality works)
+- ⚠️ Pin editing from sticky note (not working yet)
+- ⚠️ Pin drag offset issue (pins jump when clicked)
+- ⚠️ Some E2E tests failing (overlapping pin test data)
 
 ### ❌ Not Yet Implemented
 
@@ -71,15 +75,6 @@ Scholarita is a functional local-first research paper annotation tool with a wor
 - Need more comprehensive backend unit tests
 - Missing E2E tests for search and tags
 
-## Recent Work
-
-Based on git history:
-1. ✅ Implemented pin-based annotation system (Feb 6-8)
-2. ✅ Added edit, move, and delete functionality for pins
-3. ✅ Fixed pin edit/move buttons and added icon buttons
-4. ✅ Added resizable annotation panel
-5. 🚧 Working on Phase 4: Highlighting features
-
 ## Known Issues
 
 1. **E2E Test Failures:**
@@ -88,9 +83,11 @@ Based on git history:
    - Need to add better wait conditions
 
 2. **Pin System:**
-   - Need to verify pin persistence across page reloads
-   - Pin positioning may need calibration
-   - Missing backend Pin model (currently using Highlight model)
+   - ✅ Pin persistence now works (anchor updates fixed)
+   - ✅ Pin loading timing fixed (now renders immediately)
+   - ⚠️ Pin editing from sticky note not working (only works from annotation panel)
+   - ⚠️ Pin drag offset issue - pins jump up/left when first clicked
+   - Missing backend Pin model (currently using Highlight model - works fine)
 
 3. **Highlight System:**
    - Text selection to highlight flow incomplete
@@ -106,11 +103,11 @@ Based on git history:
 
 ### Immediate (Fix Current Work)
 
-1. **Fix Pin System Issues**
-   - Add Pin model to backend if needed (or clarify if using Highlight)
-   - Verify pin persistence works
-   - Fix E2E test failures for pins
-   - Test pin edit/move/delete flows end-to-end
+1. **Fix Remaining Pin System Issues**
+   - Fix pin editing from sticky note (currently only works from annotation panel)
+   - Fix pin drag offset issue (pins jump up/left on first click)
+   - Clean up test data to prevent overlapping pins in E2E tests
+   - Consider renaming "highlight" terminology to "pin" throughout codebase
 
 2. **Fix Highlighting System**
    - Fix highlight popover timing/visibility
@@ -161,7 +158,7 @@ Status: ✅ Basic tests passing (storage, importers)
 ```bash
 cd frontend && npm run test:e2e
 ```
-Status: ⚠️ Some tests failing (34 tests, several with timing issues)
+Status: ⚠️ Pin tests: 10/14 passing (4 fail due to overlapping pin test data)
 
 **Manual Testing:**
 - ✅ Backend API endpoints via Swagger UI

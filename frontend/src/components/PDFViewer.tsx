@@ -94,7 +94,8 @@ export const PDFViewer: React.FC<PDFViewerProps> = ({ paper }) => {
   const [expandedPinId, setExpandedPinId] = useState<string | null>(null);
   const [editingPinId, setEditingPinId] = useState<string | null>(null);
   const [editingPinText, setEditingPinText] = useState('');
-  const [movingPinId, setMovingPinId] = useState<string | null>(null);
+  const [draggingPinId, setDraggingPinId] = useState<string | null>(null);
+  const [dragOffset, setDragOffset] = useState<{ x: number; y: number }>({ x: 0, y: 0 });
   const { config, lastUsedHighlightColor, setLastUsedHighlightColor, setCurrentPaper } = useAppStore();
 
   useEffect(() => {
@@ -148,37 +149,64 @@ export const PDFViewer: React.FC<PDFViewerProps> = ({ paper }) => {
         setContextMenu({ ...contextMenu, visible: false });
         setPinForm({ ...pinForm, visible: false });
       }
+    };
 
-      // End pin moving on click
-      if (movingPinId) {
-        setMovingPinId(null);
+    // Handle pin dragging
+    const handleMouseMove = (event: MouseEvent) => {
+      if (!draggingPinId) return;
+
+      const target = event.target as HTMLElement;
+      const pageContainer = target.closest('.pdf-page') || document.elementFromPoint(event.clientX, event.clientY)?.closest('.pdf-page');
+      if (!pageContainer) return;
+
+      const pageRect = pageContainer.getBoundingClientRect();
+      const newX = event.clientX - pageRect.left - dragOffset.x;
+      const newY = event.clientY - pageRect.top - dragOffset.y;
+
+      // Update pin position visually (optimistic update)
+      const pinEl = pageContainer.querySelector(`[data-pin-id="${draggingPinId}"]`) as HTMLElement;
+      if (pinEl) {
+        pinEl.style.left = `${newX}px`;
+        pinEl.style.top = `${newY}px`;
       }
     };
 
-    // Handle pin moving
-    const handleMouseMove = (event: MouseEvent) => {
-      if (!movingPinId) return;
+    const handleMouseUp = async (event: MouseEvent) => {
+      if (!draggingPinId) return;
 
       const target = event.target as HTMLElement;
-      const pageContainer = target.closest('.pdf-page');
-      if (!pageContainer) return;
+      const pageContainer = target.closest('.pdf-page') || document.elementFromPoint(event.clientX, event.clientY)?.closest('.pdf-page');
+      if (!pageContainer) {
+        setDraggingPinId(null);
+        return;
+      }
 
       const pageNumber = parseInt(pageContainer.getAttribute('data-page-number') || '0');
-      if (!pageNumber) return;
+      if (!pageNumber) {
+        setDraggingPinId(null);
+        return;
+      }
 
-      handlePinMove(event, movingPinId, pageNumber);
+      const pageRect = pageContainer.getBoundingClientRect();
+      const newX = event.clientX - pageRect.left - dragOffset.x;
+      const newY = event.clientY - pageRect.top - dragOffset.y;
+
+      await handlePinDrop(draggingPinId, pageNumber, newX, newY);
+      setDraggingPinId(null);
     };
 
     document.addEventListener('contextmenu', handleContextMenu);
     document.addEventListener('click', handleClick);
     document.addEventListener('mousemove', handleMouseMove);
+    document.addEventListener('mouseup', handleMouseUp);
 
     return () => {
       document.removeEventListener('contextmenu', handleContextMenu);
       document.removeEventListener('click', handleClick);
       document.removeEventListener('mousemove', handleMouseMove);
+      document.removeEventListener('mouseup', handleMouseUp);
     };
-  }, [contextMenu, pinForm, movingPinId]);
+  }, [contextMenu, pinForm, draggingPinId, dragOffset]);
 
   const handleAddPin = () => {
     const color = lastUsedHighlightColor || 'yellow';
@@ -277,31 +305,13 @@ export const PDFViewer: React.FC<PDFViewerProps> = ({ paper }) => {
     }
   };
 
-  const startMovingPin = (pinId: string) => {
-    setMovingPinId(pinId);
-    setExpandedPinId(null);
-  };
-
-  const handlePinMove = async (event: MouseEvent, pinId: string, pageNumber: number) => {
-    if (movingPinId !== pinId) return;
-
-    const pageContainer = (event.target as HTMLElement).closest('.pdf-page');
-    if (!pageContainer) return;
-
-    const pageRect = pageContainer.getBoundingClientRect();
-    const newX = event.clientX - pageRect.left;
-    const newY = event.clientY - pageRect.top;
-
-    // Find the pin to get its current data
-    const pin = paper.highlights?.find(h => h.id === pinId);
-    if (!pin) return;
-
+  const handlePinDrop = async (pinId: string, pageNumber: number, x: number, y: number) => {
     try {
       // Update pin position
       await api.updateHighlight(paper.id, pinId, {
         anchor: {
-          start: { page: pageNumber, offset: 0, x: newX, y: newY },
-          end: { page: pageNumber, offset: 0, x: newX, y: newY }
+          start: { page: pageNumber, offset: 0, x, y },
+          end: { page: pageNumber, offset: 0, x, y }
         }
       });
 
@@ -318,10 +328,20 @@ export const PDFViewer: React.FC<PDFViewerProps> = ({ paper }) => {
   };
 
   const renderPins = () => {
-    if (!containerRef.current) return;
+    if (!containerRef.current) {
+      console.log('renderPins: containerRef not available');
+      return;
+    }
+
+    const startTime = performance.now();
 
     // Clear existing pins
     const pinLayers = containerRef.current.querySelectorAll('.pin-layer');
+    if (pinLayers.length === 0) {
+      console.log('renderPins: no pin layers found yet');
+      return;
+    }
+
     pinLayers.forEach(layer => {
       layer.innerHTML = '';
     });
@@ -332,7 +352,10 @@ export const PDFViewer: React.FC<PDFViewerProps> = ({ paper }) => {
         `.pin-layer[data-page="${highlight.page}"]`
       ) as HTMLElement;
 
-      if (!pinLayer) return;
+      if (!pinLayer) {
+        console.log(`renderPins: pin layer not found for page ${highlight.page}`);
+        return;
+      }
 
       const x = highlight.anchor?.start?.x || 0;
       const y = highlight.anchor?.start?.y || 0;
@@ -349,7 +372,7 @@ export const PDFViewer: React.FC<PDFViewerProps> = ({ paper }) => {
       pinNumber.textContent = (index + 1).toString();
       pinEl.appendChild(pinNumber);
 
-      // Add click handler to expand/collapse
+      // Add click handler to expand/collapse (only if not dragging)
       pinEl.addEventListener('click', (e) => {
         e.stopPropagation();
         if (expandedPinId === highlight.id) {
@@ -359,7 +382,26 @@ export const PDFViewer: React.FC<PDFViewerProps> = ({ paper }) => {
         }
       });
 
+      // Add drag handlers for moving pins
+      pinEl.addEventListener('mousedown', (e) => {
+        e.stopPropagation();
+        e.preventDefault();
+
+        const rect = pinEl.getBoundingClientRect();
+        setDragOffset({
+          x: e.clientX - rect.left,
+          y: e.clientY - rect.top
+        });
+        setDraggingPinId(highlight.id);
+        setExpandedPinId(null); // Close sticky note while dragging
+      });
+
+      // Make pin draggable
+      pinEl.style.cursor = 'move';
+
       pinLayer.appendChild(pinEl);
+
+      console.log(`Rendered pin ${index + 1} on page ${highlight.page} at (${x}, ${y})`);
 
       // If this pin is expanded, show sticky note
       if (expandedPinId === highlight.id) {
@@ -377,16 +419,24 @@ export const PDFViewer: React.FC<PDFViewerProps> = ({ paper }) => {
           textArea.className = 'pin-text-input';
           textArea.value = editingPinText;
           textArea.rows = 4;
+
+          // Store text updates locally without triggering re-render
           textArea.addEventListener('input', (e) => {
-            setEditingPinText((e.target as HTMLTextAreaElement).value);
+            const newValue = (e.target as HTMLTextAreaElement).value;
+            setEditingPinText(newValue);
           });
+
           textArea.addEventListener('keydown', (e) => {
             if (e.key === 'Escape') {
               setEditingPinId(null);
               setEditingPinText('');
             }
           });
+
           editForm.appendChild(textArea);
+
+          // Auto-focus the textarea after a small delay to ensure it's in the DOM
+          setTimeout(() => textArea.focus(), 0);
 
           const buttonContainer = document.createElement('div');
           buttonContainer.style.display = 'flex';
@@ -447,18 +497,6 @@ export const PDFViewer: React.FC<PDFViewerProps> = ({ paper }) => {
           });
           actionButtons.appendChild(editButton);
 
-          const moveButton = document.createElement('button');
-          moveButton.className = 'btn';
-          moveButton.textContent = movingPinId === highlight.id ? '🔄' : '↔️';
-          moveButton.style.fontSize = '11px';
-          moveButton.style.padding = '0.25rem 0.5rem';
-          moveButton.title = movingPinId === highlight.id ? 'Click to place pin' : 'Move pin';
-          moveButton.addEventListener('click', (e) => {
-            e.stopPropagation();
-            startMovingPin(highlight.id);
-          });
-          actionButtons.appendChild(moveButton);
-
           const deleteButton = document.createElement('button');
           deleteButton.className = 'btn btn-secondary';
           deleteButton.textContent = '🗑️';
@@ -482,14 +520,17 @@ export const PDFViewer: React.FC<PDFViewerProps> = ({ paper }) => {
         });
       }
     });
+
+    const endTime = performance.now();
+    console.log(`renderPins: Rendered ${paper.highlights?.length || 0} pins in ${(endTime - startTime).toFixed(2)}ms`);
   };
 
-  // Re-render pins when expandedPinId, editingPinId, editingPinText, or movingPinId changes
+  // Re-render pins when expandedPinId or editingPinId changes (but NOT editingPinText to avoid focus loss)
   useEffect(() => {
     if (pdfDoc) {
       renderPins();
     }
-  }, [expandedPinId, editingPinId, editingPinText, movingPinId]);
+  }, [expandedPinId, editingPinId]);
 
   const loadPDF = async () => {
     try {
@@ -514,8 +555,20 @@ export const PDFViewer: React.FC<PDFViewerProps> = ({ paper }) => {
       await renderAllPages(pdf);
       console.log('PDF rendering complete');
 
-      // Render pins after pages are ready
-      renderPins();
+      // Render pins immediately after pages are rendered
+      // Wait a bit for DOM to be fully ready, then render
+      console.log('Rendering pins...');
+      const tryRenderPins = () => {
+        const pinLayers = containerRef.current?.querySelectorAll('.pin-layer');
+        if (pinLayers && pinLayers.length > 0) {
+          renderPins();
+          console.log('Pins rendered successfully');
+        } else {
+          console.log('Pin layers not ready, retrying...');
+          setTimeout(tryRenderPins, 50);
+        }
+      };
+      setTimeout(tryRenderPins, 10);
     } catch (err) {
       console.error('Error loading PDF:', err);
       setError(`Failed to load PDF: ${err instanceof Error ? err.message : String(err)}`);
