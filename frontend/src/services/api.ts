@@ -79,7 +79,12 @@ export const api = {
     return handleResponse(response);
   },
 
-  async updateHighlight(paperId: string, highlightId: string, data: { comment?: string; color?: string }): Promise<any> {
+  async updateHighlight(paperId: string, highlightId: string, data: {
+    comment?: string;
+    color?: string;
+    text?: string;
+    anchor?: { start: { page: number; offset: number; x?: number; y?: number }; end: { page: number; offset: number; x?: number; y?: number } };
+  }): Promise<any> {
     const response = await fetch(`${API_BASE}/papers/${paperId}/highlights/${highlightId}`, {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },

@@ -25,9 +25,9 @@ export const AnnotationPanel: React.FC<AnnotationPanelProps> = ({ paper }) => {
 
   const sortedPages = Object.keys(groupedHighlights).map(Number).sort((a, b) => a - b);
 
-  const handleEditComment = async (highlightId: string) => {
+  const handleEditText = async (highlightId: string) => {
     try {
-      await api.updateHighlight(paper.id, highlightId, { comment: editComment });
+      await api.updateHighlight(paper.id, highlightId, { text: editComment });
 
       // Refresh paper
       if ((window as any).refreshPaper) {
@@ -40,8 +40,8 @@ export const AnnotationPanel: React.FC<AnnotationPanelProps> = ({ paper }) => {
       setEditingId(null);
       setEditComment('');
     } catch (err) {
-      console.error('Error updating highlight:', err);
-      alert('Failed to update highlight');
+      console.error('Error updating pin:', err);
+      alert('Failed to update pin');
     }
   };
 
@@ -66,7 +66,7 @@ export const AnnotationPanel: React.FC<AnnotationPanelProps> = ({ paper }) => {
 
   const startEdit = (highlight: Highlight) => {
     setEditingId(highlight.id);
-    setEditComment(highlight.comment || '');
+    setEditComment(highlight.text || '');
   };
 
   return (
@@ -130,14 +130,14 @@ export const AnnotationPanel: React.FC<AnnotationPanelProps> = ({ paper }) => {
                           <button
                             onClick={() => startEdit(hl)}
                             style={{ fontSize: '11px', padding: '0.15rem 0.4rem', cursor: 'pointer' }}
-                            title="Edit comment"
+                            title="Edit pin text"
                           >
                             ✏️
                           </button>
                           <button
                             onClick={() => handleDeleteHighlight(hl.id)}
                             style={{ fontSize: '11px', padding: '0.15rem 0.4rem', cursor: 'pointer' }}
-                            title="Delete highlight"
+                            title="Delete pin"
                           >
                             🗑️
                           </button>
@@ -148,26 +148,24 @@ export const AnnotationPanel: React.FC<AnnotationPanelProps> = ({ paper }) => {
                       </div>
                       {editingId === hl.id ? (
                         <div style={{ marginTop: '0.5rem' }}>
-                          <input
-                            type="text"
+                          <textarea
                             className="comment-input"
                             value={editComment}
                             onChange={(e) => setEditComment(e.target.value)}
                             onKeyDown={(e) => {
-                              if (e.key === 'Enter') {
-                                handleEditComment(hl.id);
-                              } else if (e.key === 'Escape') {
+                              if (e.key === 'Escape') {
                                 setEditingId(null);
                                 setEditComment('');
                               }
                             }}
-                            placeholder="Add a comment"
+                            placeholder="Edit pin text"
+                            rows={3}
                             autoFocus
                           />
                           <div style={{ display: 'flex', gap: '0.5rem', marginTop: '0.25rem' }}>
                             <button
                               className="btn"
-                              onClick={() => handleEditComment(hl.id)}
+                              onClick={() => handleEditText(hl.id)}
                               style={{ fontSize: '12px', padding: '0.25rem 0.5rem' }}
                             >
                               Save
@@ -184,13 +182,7 @@ export const AnnotationPanel: React.FC<AnnotationPanelProps> = ({ paper }) => {
                             </button>
                           </div>
                         </div>
-                      ) : (
-                        hl.comment && (
-                          <div style={{ fontSize: '12px', color: '#555', fontStyle: 'italic', marginTop: '0.25rem' }}>
-                            → {hl.comment}
-                          </div>
-                        )
-                      )}
+                      ) : null}
                     </div>
                   ))}
                 </div>

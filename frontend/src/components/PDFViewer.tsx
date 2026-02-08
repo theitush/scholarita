@@ -92,6 +92,9 @@ export const PDFViewer: React.FC<PDFViewerProps> = ({ paper }) => {
     text: ''
   });
   const [expandedPinId, setExpandedPinId] = useState<string | null>(null);
+  const [editingPinId, setEditingPinId] = useState<string | null>(null);
+  const [editingPinText, setEditingPinText] = useState('');
+  const [movingPinId, setMovingPinId] = useState<string | null>(null);
   const { config, lastUsedHighlightColor, setLastUsedHighlightColor, setCurrentPaper } = useAppStore();
 
   useEffect(() => {
@@ -145,16 +148,37 @@ export const PDFViewer: React.FC<PDFViewerProps> = ({ paper }) => {
         setContextMenu({ ...contextMenu, visible: false });
         setPinForm({ ...pinForm, visible: false });
       }
+
+      // End pin moving on click
+      if (movingPinId) {
+        setMovingPinId(null);
+      }
+    };
+
+    // Handle pin moving
+    const handleMouseMove = (event: MouseEvent) => {
+      if (!movingPinId) return;
+
+      const target = event.target as HTMLElement;
+      const pageContainer = target.closest('.pdf-page');
+      if (!pageContainer) return;
+
+      const pageNumber = parseInt(pageContainer.getAttribute('data-page-number') || '0');
+      if (!pageNumber) return;
+
+      handlePinMove(event, movingPinId, pageNumber);
     };
 
     document.addEventListener('contextmenu', handleContextMenu);
     document.addEventListener('click', handleClick);
+    document.addEventListener('mousemove', handleMouseMove);
 
     return () => {
       document.removeEventListener('contextmenu', handleContextMenu);
       document.removeEventListener('click', handleClick);
+      document.removeEventListener('mousemove', handleMouseMove);
     };
-  }, [contextMenu, pinForm]);
+  }, [contextMenu, pinForm, movingPinId]);
 
   const handleAddPin = () => {
     const color = lastUsedHighlightColor || 'yellow';
@@ -204,6 +228,92 @@ export const PDFViewer: React.FC<PDFViewerProps> = ({ paper }) => {
     } catch (err) {
       console.error('Error creating pin:', err);
       alert(`Failed to create pin: ${err instanceof Error ? err.message : String(err)}`);
+    }
+  };
+
+  const handleEditPin = async (pinId: string) => {
+    if (!editingPinText.trim()) {
+      alert('Please enter text for the pin');
+      return;
+    }
+
+    try {
+      await api.updateHighlight(paper.id, pinId, { text: editingPinText });
+
+      // Refresh paper
+      if ((window as any).refreshPaper) {
+        await (window as any).refreshPaper(paper.id);
+      } else {
+        const updatedPaper = await api.getPaper(paper.id);
+        setCurrentPaper(updatedPaper);
+      }
+
+      setEditingPinId(null);
+      setEditingPinText('');
+    } catch (err) {
+      console.error('Error updating pin:', err);
+      alert('Failed to update pin');
+    }
+  };
+
+  const handleDeletePin = async (pinId: string) => {
+    if (!confirm('Delete this pin?')) return;
+
+    try {
+      await api.deleteHighlight(paper.id, pinId);
+
+      // Refresh paper
+      if ((window as any).refreshPaper) {
+        await (window as any).refreshPaper(paper.id);
+      } else {
+        const updatedPaper = await api.getPaper(paper.id);
+        setCurrentPaper(updatedPaper);
+      }
+
+      setExpandedPinId(null);
+    } catch (err) {
+      console.error('Error deleting pin:', err);
+      alert('Failed to delete pin');
+    }
+  };
+
+  const startMovingPin = (pinId: string) => {
+    setMovingPinId(pinId);
+    setExpandedPinId(null);
+  };
+
+  const handlePinMove = async (event: MouseEvent, pinId: string, pageNumber: number) => {
+    if (movingPinId !== pinId) return;
+
+    const pageContainer = (event.target as HTMLElement).closest('.pdf-page');
+    if (!pageContainer) return;
+
+    const pageRect = pageContainer.getBoundingClientRect();
+    const newX = event.clientX - pageRect.left;
+    const newY = event.clientY - pageRect.top;
+
+    // Find the pin to get its current data
+    const pin = paper.highlights?.find(h => h.id === pinId);
+    if (!pin) return;
+
+    try {
+      // Update pin position
+      await api.updateHighlight(paper.id, pinId, {
+        anchor: {
+          start: { page: pageNumber, offset: 0, x: newX, y: newY },
+          end: { page: pageNumber, offset: 0, x: newX, y: newY }
+        }
+      });
+
+      // Refresh paper
+      if ((window as any).refreshPaper) {
+        await (window as any).refreshPaper(paper.id);
+      } else {
+        const updatedPaper = await api.getPaper(paper.id);
+        setCurrentPaper(updatedPaper);
+      }
+    } catch (err) {
+      console.error('Error moving pin:', err);
     }
   };
 
@@ -258,11 +368,109 @@ export const PDFViewer: React.FC<PDFViewerProps> = ({ paper }) => {
         stickyNote.style.left = `${x + 30}px`;
         stickyNote.style.top = `${y}px`;
 
-        const noteText = document.createElement('div');
-        noteText.className = 'sticky-note-text';
-        noteText.textContent = highlight.text;
+        // Check if this pin is being edited
+        if (editingPinId === highlight.id) {
+          // Show edit form
+          const editForm = document.createElement('div');
 
-        stickyNote.appendChild(noteText);
+          const textArea = document.createElement('textarea');
+          textArea.className = 'pin-text-input';
+          textArea.value = editingPinText;
+          textArea.rows = 4;
+          textArea.addEventListener('input', (e) => {
+            setEditingPinText((e.target as HTMLTextAreaElement).value);
+          });
+          textArea.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+              setEditingPinId(null);
+              setEditingPinText('');
+            }
+          });
+          editForm.appendChild(textArea);
+
+          const buttonContainer = document.createElement('div');
+          buttonContainer.style.display = 'flex';
+          buttonContainer.style.gap = '0.5rem';
+          buttonContainer.style.marginTop = '0.5rem';
+
+          const saveButton = document.createElement('button');
+          saveButton.className = 'btn';
+          saveButton.textContent = 'Save';
+          saveButton.style.fontSize = '12px';
+          saveButton.style.padding = '0.25rem 0.5rem';
+          saveButton.addEventListener('click', (e) => {
+            e.stopPropagation();
+            handleEditPin(highlight.id);
+          });
+          buttonContainer.appendChild(saveButton);
+
+          const cancelButton = document.createElement('button');
+          cancelButton.className = 'btn btn-secondary';
+          cancelButton.textContent = 'Cancel';
+          cancelButton.style.fontSize = '12px';
+          cancelButton.style.padding = '0.25rem 0.5rem';
+          cancelButton.addEventListener('click', (e) => {
+            e.stopPropagation();
+            setEditingPinId(null);
+            setEditingPinText('');
+          });
+          buttonContainer.appendChild(cancelButton);
+
+          editForm.appendChild(buttonContainer);
+          stickyNote.appendChild(editForm);
+        } else {
+          // Show pin text and action buttons
+          const noteText = document.createElement('div');
+          noteText.className = 'sticky-note-text';
+          noteText.textContent = highlight.text;
+          stickyNote.appendChild(noteText);
+
+          // Action buttons
+          const actionButtons = document.createElement('div');
+          actionButtons.className = 'pin-actions';
+          actionButtons.style.display = 'flex';
+          actionButtons.style.gap = '0.5rem';
+          actionButtons.style.marginTop = '0.5rem';
+          actionButtons.style.paddingTop = '0.5rem';
+          actionButtons.style.borderTop = '1px solid #d4af37';
+
+          const editButton = document.createElement('button');
+          editButton.className = 'btn';
+          editButton.textContent = 'Edit';
+          editButton.style.fontSize = '11px';
+          editButton.style.padding = '0.25rem 0.5rem';
+          editButton.addEventListener('click', (e) => {
+            e.stopPropagation();
+            setEditingPinId(highlight.id);
+            setEditingPinText(highlight.text);
+          });
+          actionButtons.appendChild(editButton);
+
+          const moveButton = document.createElement('button');
+          moveButton.className = 'btn';
+          moveButton.textContent = movingPinId === highlight.id ? 'Moving...' : 'Move';
+          moveButton.style.fontSize = '11px';
+          moveButton.style.padding = '0.25rem 0.5rem';
+          moveButton.addEventListener('click', (e) => {
+            e.stopPropagation();
+            startMovingPin(highlight.id);
+          });
+          actionButtons.appendChild(moveButton);
+
+          const deleteButton = document.createElement('button');
+          deleteButton.className = 'btn btn-secondary';
+          deleteButton.textContent = 'Delete';
+          deleteButton.style.fontSize = '11px';
+          deleteButton.style.padding = '0.25rem 0.5rem';
+          deleteButton.addEventListener('click', (e) => {
+            e.stopPropagation();
+            handleDeletePin(highlight.id);
+          });
+          actionButtons.appendChild(deleteButton);
+
+          stickyNote.appendChild(actionButtons);
+        }
+
         pinLayer.appendChild(stickyNote);
 
         // Prevent click on sticky note from closing it
@@ -273,12 +481,12 @@ export const PDFViewer: React.FC<PDFViewerProps> = ({ paper }) => {
     });
   };
 
-  // Re-render pins when expandedPinId changes
+  // Re-render pins when expandedPinId, editingPinId, or movingPinId changes
   useEffect(() => {
     if (pdfDoc) {
       renderPins();
     }
-  }, [expandedPinId]);
+  }, [expandedPinId, editingPinId, movingPinId]);
 
   const loadPDF = async () => {
     try {
