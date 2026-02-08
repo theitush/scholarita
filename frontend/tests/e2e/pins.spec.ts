@@ -1,6 +1,8 @@
 import { test, expect } from '@playwright/test';
 
 test.describe('Pin Annotation Features', () => {
+  let initialPinCount = 0;
+
   test.beforeEach(async ({ page }) => {
     // Listen for console messages
     page.on('console', msg => console.log('Browser console:', msg.text()));
@@ -10,6 +12,62 @@ test.describe('Pin Annotation Features', () => {
     // Wait for app to load
     await page.waitForLoadState('networkidle');
     await page.waitForTimeout(1000);
+
+    // Record initial pin count
+    const firstPaper = page.locator('.paper-item').first();
+    if (await firstPaper.isVisible()) {
+      await firstPaper.click();
+      await page.waitForSelector('.pdf-container', { timeout: 10000 });
+      await page.waitForTimeout(2000);
+
+      const annotationPanel = page.locator('.annotation-panel-header');
+      const headerText = await annotationPanel.textContent();
+      initialPinCount = parseInt(headerText?.match(/(\d+)/)?.[1] || '0');
+      console.log(`Initial pin count: ${initialPinCount}`);
+    }
+  });
+
+  test.afterEach(async ({ page }) => {
+    // Delete any pins created during the test
+    const annotationPanel = page.locator('.annotation-panel-header');
+    const panelHeader = page.locator('.annotation-panel-header');
+
+    // Expand annotation panel if needed
+    const panel = page.locator('.annotation-panel');
+    const isCollapsed = await panel.evaluate(el => el.classList.contains('collapsed'));
+    if (isCollapsed) {
+      await panelHeader.click();
+      await page.waitForTimeout(300);
+    }
+
+    // Get current pin count
+    const headerText = await annotationPanel.textContent();
+    const currentPinCount = parseInt(headerText?.match(/(\d+)/)?.[1] || '0');
+    const pinsToDelete = currentPinCount - initialPinCount;
+
+    if (pinsToDelete > 0) {
+      console.log(`Cleaning up ${pinsToDelete} pins created during test`);
+
+      // Set up dialog handler to accept all confirmations
+      page.on('dialog', dialog => dialog.accept());
+
+      for (let i = 0; i < pinsToDelete; i++) {
+        const annotationItems = page.locator('.annotation-item');
+        const count = await annotationItems.count();
+
+        if (count > 0) {
+          const lastItem = annotationItems.last();
+          const deleteButton = lastItem.locator('button[title="Delete pin"]');
+
+          if (await deleteButton.isVisible()) {
+            await deleteButton.click();
+            await page.waitForTimeout(500);
+          }
+        }
+      }
+
+      console.log('Cleanup complete');
+    }
   });
 
   test('should display context menu on right-click in PDF', async ({ page }) => {

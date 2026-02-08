@@ -43,10 +43,14 @@ Scholarita is a functional local-first research paper annotation tool with a wor
 - ✅ Pin loading after PDF render (now ~200ms)
 - ✅ Pin persistence (backend anchor updates fixed)
 - ✅ Pin editing from annotation panel
-- ✅ Pin drag-and-drop movement (basic functionality works)
-- ⚠️ Pin editing from sticky note (not working yet)
-- ⚠️ Pin drag offset issue (pins jump when clicked)
-- ⚠️ Some E2E tests failing (overlapping pin test data)
+- ✅ Pin editing from sticky note (click vs drag distinction working)
+- ✅ Pin drag-and-drop movement (drag offset fixed)
+- ✅ E2E tests with cleanup (tests now delete pins after creation)
+
+**Known Issues:**
+- ⚠️ Pin edits from sticky note don't persist correctly
+- ⚠️ Pins jump back to original position after drag when reopened (position not being saved properly)
+- ⚠️ Text selection occurs during pin drag (need to prevent default on drag start)
 
 ### ❌ Not Yet Implemented
 
@@ -64,16 +68,12 @@ Scholarita is a functional local-first research paper annotation tool with a wor
 - No tag filter in sidebar
 
 **Polish Features:**
+- Resize functionality of bottom panel
 - Keyboard shortcuts (Ctrl+F, Ctrl+1-4, etc.)
-- Right-click context menus (partial - only PDF viewer)
 - Manual save button visual feedback
 - Better error messages and loading states
 - Empty states for sidebar/panels
 
-**Testing:**
-- Some E2E tests failing due to timing issues
-- Need more comprehensive backend unit tests
-- Missing E2E tests for search and tags
 
 ## Known Issues
 
@@ -83,10 +83,13 @@ Scholarita is a functional local-first research paper annotation tool with a wor
    - Need to add better wait conditions
 
 2. **Pin System:**
-   - ✅ Pin persistence now works (anchor updates fixed)
-   - ✅ Pin loading timing fixed (now renders immediately)
-   - ⚠️ Pin editing from sticky note not working (only works from annotation panel)
-   - ⚠️ Pin drag offset issue - pins jump up/left when first clicked
+   - ✅ Pin persistence works for initial creation
+   - ✅ Pin loading timing fixed (renders immediately)
+   - ✅ Pin editing from sticky note UI works (click vs drag distinction)
+   - ✅ Pin drag offset fixed (no more jumping on click)
+   - ⚠️ **Pin edits from sticky note don't save** - edit form appears but changes aren't persisted
+   - ⚠️ **Pin positions reset after drag** - pins jump back to original position when reopened (drag position not being saved to backend)
+   - ⚠️ **Text selection during drag** - dragging pins selects PDF text underneath, needs preventDefault
    - Missing backend Pin model (currently using Highlight model - works fine)
 
 3. **Highlight System:**
@@ -104,9 +107,9 @@ Scholarita is a functional local-first research paper annotation tool with a wor
 ### Immediate (Fix Current Work)
 
 1. **Fix Remaining Pin System Issues**
-   - Fix pin editing from sticky note (currently only works from annotation panel)
-   - Fix pin drag offset issue (pins jump up/left on first click)
-   - Clean up test data to prevent overlapping pins in E2E tests
+   - ⚠️ **CRITICAL:** Fix pin edit from sticky note not saving (handleEditPin may not be called correctly)
+   - ⚠️ **CRITICAL:** Fix pin drag positions not persisting (handlePinDrop may have wrong coordinates or not updating backend)
+   - Prevent text selection during pin drag (add preventDefault on mousedown when dragging starts)
    - Consider renaming "highlight" terminology to "pin" throughout codebase
 
 2. **Fix Highlighting System**

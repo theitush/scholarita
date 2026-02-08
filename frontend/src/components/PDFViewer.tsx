@@ -153,6 +153,27 @@ export const PDFViewer: React.FC<PDFViewerProps> = ({ paper }) => {
 
     // Handle pin dragging
     const handleMouseMove = (event: MouseEvent) => {
+      // Check if any pin is ready to drag (hasn't started dragging yet)
+      const readyPins = document.querySelectorAll('[data-drag-ready="true"]');
+
+      readyPins.forEach((pinEl) => {
+        const startX = parseFloat(pinEl.getAttribute('data-drag-start-x') || '0');
+        const startY = parseFloat(pinEl.getAttribute('data-drag-start-y') || '0');
+        const dragDist = Math.hypot(event.clientX - startX, event.clientY - startY);
+
+        // If moved more than 5 pixels, start dragging
+        if (dragDist > 5) {
+          const pinId = pinEl.getAttribute('data-pin-id');
+          if (pinId) {
+            pinEl.setAttribute('data-drag-ready', 'false');
+            pinEl.setAttribute('data-was-drag', 'true');
+            setDraggingPinId(pinId);
+            setExpandedPinId(null);
+          }
+        }
+      });
+
+      // Handle active drag
       if (!draggingPinId) return;
 
       const target = event.target as HTMLElement;
@@ -160,8 +181,9 @@ export const PDFViewer: React.FC<PDFViewerProps> = ({ paper }) => {
       if (!pageContainer) return;
 
       const pageRect = pageContainer.getBoundingClientRect();
-      const newX = event.clientX - pageRect.left - dragOffset.x;
-      const newY = event.clientY - pageRect.top - dragOffset.y;
+      // Calculate the new position: mouse position minus offset, plus half pin size (14px) to center
+      const newX = event.clientX - pageRect.left - dragOffset.x + 14;
+      const newY = event.clientY - pageRect.top - dragOffset.y + 14;
 
       // Update pin position visually (optimistic update)
       const pinEl = pageContainer.querySelector(`[data-pin-id="${draggingPinId}"]`) as HTMLElement;
@@ -172,6 +194,12 @@ export const PDFViewer: React.FC<PDFViewerProps> = ({ paper }) => {
     };
 
     const handleMouseUp = async (event: MouseEvent) => {
+      // Clear drag-ready state for all pins
+      const readyPins = document.querySelectorAll('[data-drag-ready="true"]');
+      readyPins.forEach((pinEl) => {
+        pinEl.setAttribute('data-drag-ready', 'false');
+      });
+
       if (!draggingPinId) return;
 
       const target = event.target as HTMLElement;
@@ -188,8 +216,9 @@ export const PDFViewer: React.FC<PDFViewerProps> = ({ paper }) => {
       }
 
       const pageRect = pageContainer.getBoundingClientRect();
-      const newX = event.clientX - pageRect.left - dragOffset.x;
-      const newY = event.clientY - pageRect.top - dragOffset.y;
+      // Calculate the new position: mouse position minus offset, plus half pin size (14px) to center
+      const newX = event.clientX - pageRect.left - dragOffset.x + 14;
+      const newY = event.clientY - pageRect.top - dragOffset.y + 14;
 
       await handlePinDrop(draggingPinId, pageNumber, newX, newY);
       setDraggingPinId(null);
@@ -372,9 +401,22 @@ export const PDFViewer: React.FC<PDFViewerProps> = ({ paper }) => {
       pinNumber.textContent = (index + 1).toString();
       pinEl.appendChild(pinNumber);
 
-      // Add click handler to expand/collapse (only if not dragging)
+      // Store drag state in data attributes to avoid closure issues
+      pinEl.setAttribute('data-drag-ready', 'false');
+
+      // Add click handler to expand/collapse
       pinEl.addEventListener('click', (e) => {
         e.stopPropagation();
+
+        // Check if this was a drag - if so, ignore click
+        const wasDrag = pinEl.getAttribute('data-was-drag') === 'true';
+        pinEl.setAttribute('data-was-drag', 'false');
+
+        if (wasDrag) {
+          return;
+        }
+
+        // Toggle expanded state
         if (expandedPinId === highlight.id) {
           setExpandedPinId(null);
         } else {
@@ -384,16 +426,28 @@ export const PDFViewer: React.FC<PDFViewerProps> = ({ paper }) => {
 
       // Add drag handlers for moving pins
       pinEl.addEventListener('mousedown', (e) => {
-        e.stopPropagation();
-        e.preventDefault();
+        // Only left mouse button
+        if (e.button !== 0) return;
 
-        const rect = pinEl.getBoundingClientRect();
+        e.stopPropagation();
+
+        // Mark as ready to drag
+        pinEl.setAttribute('data-drag-ready', 'true');
+        pinEl.setAttribute('data-was-drag', 'false');
+        pinEl.setAttribute('data-drag-start-x', e.clientX.toString());
+        pinEl.setAttribute('data-drag-start-y', e.clientY.toString());
+
+        // Get the pin's current position
+        const pinRect = pinEl.getBoundingClientRect();
+
+        // Calculate offset from mouse to pin's visual center
+        const pinCenterX = pinRect.left + pinRect.width / 2;
+        const pinCenterY = pinRect.top + pinRect.height / 2;
+
         setDragOffset({
-          x: e.clientX - rect.left,
-          y: e.clientY - rect.top
+          x: e.clientX - pinCenterX,
+          y: e.clientY - pinCenterY
         });
-        setDraggingPinId(highlight.id);
-        setExpandedPinId(null); // Close sticky note while dragging
       });
 
       // Make pin draggable
