@@ -874,6 +874,64 @@ body {
   cursor: not-allowed;
 }
 
+.btn-danger {
+  background: #dc3545;
+}
+
+.btn-danger:hover {
+  background: #c82333;
+}
+
+/* Modal Overlay and Dialog */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10000;
+}
+
+.modal {
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+  padding: 1.5rem;
+  max-width: 500px;
+  width: 90%;
+}
+
+.modal h2 {
+  margin-top: 0;
+  margin-bottom: 1rem;
+  font-size: 20px;
+}
+
+.modal p {
+  margin: 0.75rem 0;
+  color: #333;
+}
+
+.modal ul {
+  margin: 0.5rem 0;
+  padding-left: 1.5rem;
+}
+
+.modal li {
+  margin: 0.25rem 0;
+}
+
+.modal-buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.5rem;
+  margin-top: 1.5rem;
+}
+
 /* Tag Color Picker Styles */
 .tag-with-color-picker {
   display: flex;

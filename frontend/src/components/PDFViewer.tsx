@@ -763,9 +763,6 @@ export const PDFViewer: React.FC<PDFViewerProps> = ({ paper }) => {
           <div className="context-menu-item" onClick={handleAddPin}>
             Add Pin
           </div>
-          <div className="context-menu-item" onClick={() => alert('Tag feature coming soon')}>
-            Tag (coming soon)
-          </div>
         </div>
       )}
 

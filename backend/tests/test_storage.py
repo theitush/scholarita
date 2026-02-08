@@ -7,7 +7,8 @@ from datetime import datetime
 from models import Paper, Author, Highlight, HighlightAnchor
 from storage import (
     slugify_doi, generate_paper_id, save_paper, load_paper,
-    paper_exists, find_paper_by_doi
+    paper_exists, find_paper_by_doi, delete_paper, save_pdf,
+    get_pdf_path, save_extracted_text, get_paper_path
 )
 import config
 
@@ -104,3 +105,82 @@ def test_find_paper_by_doi(temp_library):
     # Non-existent DOI
     not_found = find_paper_by_doi("10.1234/notfound")
     assert not_found is None
+
+
+def test_delete_paper_metadata_only(temp_library):
+    """Test deleting a paper with only metadata."""
+    now = datetime.utcnow().isoformat() + 'Z'
+
+    paper = Paper(
+        id="paper-to-delete-1",
+        doi="10.1038/delete123",
+        title="Paper to Delete",
+        authors=[Author(name="Jane Doe", affiliation="MIT")],
+        abstract="This paper will be deleted",
+        date_added=now,
+        date_modified=now,
+        tags=["test"],
+        highlights=[]
+    )
+
+    # Save paper
+    save_paper(paper)
+    assert paper_exists("paper-to-delete-1")
+
+    # Delete paper
+    result = delete_paper("paper-to-delete-1")
+    assert result is True
+
+    # Verify paper is gone
+    assert not paper_exists("paper-to-delete-1")
+    assert load_paper("paper-to-delete-1") is None
+
+
+def test_delete_paper_with_pdf_and_text(temp_library):
+    """Test deleting a paper with metadata, PDF, and extracted text."""
+    now = datetime.utcnow().isoformat() + 'Z'
+
+    paper = Paper(
+        id="paper-to-delete-2",
+        doi="10.1038/delete456",
+        title="Paper with PDF",
+        authors=[],
+        date_added=now,
+        date_modified=now,
+        tags=[],
+        highlights=[]
+    )
+
+    # Save paper metadata
+    save_paper(paper)
+
+    # Save a fake PDF
+    fake_pdf_content = b"%PDF-1.4 fake content"
+    save_pdf("paper-to-delete-2", fake_pdf_content)
+
+    # Save extracted text
+    save_extracted_text("paper-to-delete-2", "This is extracted text from the PDF")
+
+    # Verify all files exist
+    assert paper_exists("paper-to-delete-2")
+    assert get_pdf_path("paper-to-delete-2") is not None
+    json_path, pdf_path, text_path = get_paper_path("paper-to-delete-2")
+    assert text_path.exists()
+
+    # Delete paper
+    result = delete_paper("paper-to-delete-2")
+    assert result is True
+
+    # Verify all files are gone
+    assert not paper_exists("paper-to-delete-2")
+    assert get_pdf_path("paper-to-delete-2") is None
+    json_path, pdf_path, text_path = get_paper_path("paper-to-delete-2")
+    assert not json_path.exists()
+    assert not pdf_path.exists()
+    assert not text_path.exists()
+
+
+def test_delete_nonexistent_paper(temp_library):
+    """Test deleting a paper that doesn't exist."""
+    result = delete_paper("nonexistent-paper")
+    assert result is False

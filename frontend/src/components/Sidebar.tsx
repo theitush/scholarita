@@ -13,6 +13,7 @@ export const Sidebar: React.FC = () => {
     selectedPaperIds,
     sidebarCollapsed,
     config,
+    tabs,
     setFilterText,
     setTagFilter,
     togglePaperSelection,
@@ -20,10 +21,20 @@ export const Sidebar: React.FC = () => {
     addTab,
     setPapers,
     updatePaperInList,
+    removePaperFromList,
+    closeTab,
   } = useAppStore();
 
   const [editingPaperId, setEditingPaperId] = useState<string | null>(null);
   const [showBulkTagEditor, setShowBulkTagEditor] = useState(false);
+  const [contextMenu, setContextMenu] = useState<{ visible: boolean; x: number; y: number; paperId: string | null }>({
+    visible: false,
+    x: 0,
+    y: 0,
+    paperId: null,
+  });
+  const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
+  const [paperToDelete, setPaperToDelete] = useState<string | null>(null);
 
   const filteredPapers = useMemo(() => {
     return papers.filter(paper => {
@@ -133,6 +144,62 @@ export const Sidebar: React.FC = () => {
     }
   };
 
+  const handlePaperContextMenu = (paperId: string, event: React.MouseEvent) => {
+    event.preventDefault();
+    event.stopPropagation();
+    setContextMenu({
+      visible: true,
+      x: event.clientX,
+      y: event.clientY,
+      paperId,
+    });
+  };
+
+  const handleDeleteClick = () => {
+    if (contextMenu.paperId) {
+      setPaperToDelete(contextMenu.paperId);
+      setShowDeleteConfirm(true);
+      setContextMenu({ visible: false, x: 0, y: 0, paperId: null });
+    }
+  };
+
+  const handleDeleteConfirm = async () => {
+    if (!paperToDelete) return;
+
+    try {
+      await api.deletePaper(paperToDelete);
+
+      // Remove from paper list
+      removePaperFromList(paperToDelete);
+
+      // Close any tabs associated with this paper
+      const paperTabs = tabs.filter(tab => tab.type === 'paper' && tab.paperId === paperToDelete);
+      paperTabs.forEach(tab => closeTab(tab.id));
+
+      setShowDeleteConfirm(false);
+      setPaperToDelete(null);
+    } catch (error) {
+      console.error('Error deleting paper:', error);
+      alert(`Failed to delete paper: ${error instanceof Error ? error.message : String(error)}`);
+    }
+  };
+
+  const handleDeleteCancel = () => {
+    setShowDeleteConfirm(false);
+    setPaperToDelete(null);
+  };
+
+  // Close context menu when clicking outside
+  React.useEffect(() => {
+    const handleClick = () => {
+      if (contextMenu.visible) {
+        setContextMenu({ visible: false, x: 0, y: 0, paperId: null });
+      }
+    };
+    document.addEventListener('click', handleClick);
+    return () => document.removeEventListener('click', handleClick);
+  }, [contextMenu.visible]);
+
   const getTagStyle = (tag: string, isActive: boolean = false) => {
     const tagColor = config?.tag_colors?.[tag];
     if (!tagColor) return undefined;
@@ -236,6 +303,7 @@ export const Sidebar: React.FC = () => {
               key={paper.id}
               className={`paper-item ${selectedPaperIds.includes(paper.id) ? 'selected' : ''}`}
               onClick={(e) => handlePaperClick(paper, e)}
+              onContextMenu={(e) => handlePaperContextMenu(paper.id, e)}
             >
               <div className="paper-title">
                 {paper.title}
@@ -271,6 +339,51 @@ export const Sidebar: React.FC = () => {
           ))
         )}
       </div>
+
+      {/* Context Menu */}
+      {contextMenu.visible && (
+        <div
+          className="context-menu"
+          style={{
+            position: 'fixed',
+            left: `${contextMenu.x}px`,
+            top: `${contextMenu.y}px`,
+            zIndex: 1000,
+          }}
+          onClick={(e) => e.stopPropagation()}
+        >
+          <div className="context-menu-item" onClick={handleDeleteClick}>
+            Delete Paper
+          </div>
+        </div>
+      )}
+
+      {/* Delete Confirmation Dialog */}
+      {showDeleteConfirm && paperToDelete && (
+        <div className="modal-overlay" onClick={handleDeleteCancel}>
+          <div className="modal" onClick={(e) => e.stopPropagation()}>
+            <h2>Delete Paper</h2>
+            <p>
+              Are you sure you want to delete this paper? This will permanently remove:
+            </p>
+            <ul>
+              <li>Paper metadata</li>
+              <li>PDF file</li>
+              <li>Extracted text</li>
+              <li>All highlights and annotations</li>
+            </ul>
+            <p><strong>This action cannot be undone.</strong></p>
+            <div className="modal-buttons">
+              <button className="btn btn-secondary" onClick={handleDeleteCancel}>
+                Cancel
+              </button>
+              <button className="btn btn-danger" onClick={handleDeleteConfirm}>
+                Delete Paper
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* Tag Editor Modal */}
       {editingPaperId && editingPaper && (
