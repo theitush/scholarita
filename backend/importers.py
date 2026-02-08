@@ -141,17 +141,76 @@ async def fetch_pdf_scihub(doi: str) -> Optional[bytes]:
         config = load_config()
         scihub_domain = config.scihub_domain
 
-        # Try sci-hub
+        # Fetch the Sci-Hub page
         url = f"https://{scihub_domain}/{doi}"
         async with httpx.AsyncClient(timeout=TIMEOUT, follow_redirects=True) as client:
             response = await client.get(url)
             if response.status_code == 200:
-                # Sci-hub returns HTML, need to parse for PDF link
-                # For simplicity, try direct PDF URL pattern
-                pdf_url = f"https://{scihub_domain}/downloads/{doi}.pdf"
-                pdf_content = await download_pdf_from_url(pdf_url)
-                if pdf_content:
-                    return pdf_content
+                html = response.text
+
+                # Sci-Hub embeds PDFs in different ways. Try multiple patterns:
+
+                # Pattern 1: <object data="/storage/..." or <embed src="..."
+                object_match = re.search(r'<(?:object|embed)[^>]+(?:data|src)=["\']([^"\'#]+\.pdf)[^"\']*["\']', html, re.IGNORECASE)
+                if object_match:
+                    pdf_url = object_match.group(1)
+                    # Handle relative URLs
+                    if pdf_url.startswith('//'):
+                        pdf_url = f"https:{pdf_url}"
+                    elif pdf_url.startswith('/'):
+                        pdf_url = f"https://{scihub_domain}{pdf_url}"
+                    elif not pdf_url.startswith('http'):
+                        pdf_url = f"https://{scihub_domain}/{pdf_url}"
+
+                    print(f"Trying PDF URL from object/embed: {pdf_url}")
+                    pdf_content = await download_pdf_from_url(pdf_url)
+                    if pdf_content:
+                        return pdf_content
+
+                # Pattern 2: <iframe src="...pdf"
+                iframe_match = re.search(r'<iframe[^>]+src=["\']([^"\']+\.pdf[^"\']*)["\']', html, re.IGNORECASE)
+                if iframe_match:
+                    pdf_url = iframe_match.group(1)
+                    if pdf_url.startswith('//'):
+                        pdf_url = f"https:{pdf_url}"
+                    elif pdf_url.startswith('/'):
+                        pdf_url = f"https://{scihub_domain}{pdf_url}"
+                    elif not pdf_url.startswith('http'):
+                        pdf_url = f"https://{scihub_domain}/{pdf_url}"
+
+                    print(f"Trying PDF URL from iframe: {pdf_url}")
+                    pdf_content = await download_pdf_from_url(pdf_url)
+                    if pdf_content:
+                        return pdf_content
+
+                # Pattern 3: Download button/link href="/download/..." or href="/storage/..."
+                download_match = re.search(r'href=["\'](/(?:download|storage)/[^"\'#]+\.pdf)["\']', html, re.IGNORECASE)
+                if download_match:
+                    pdf_url = f"https://{scihub_domain}{download_match.group(1)}"
+                    print(f"Trying PDF URL from download link: {pdf_url}")
+                    pdf_content = await download_pdf_from_url(pdf_url)
+                    if pdf_content:
+                        return pdf_content
+
+                # Pattern 4: Try any relative URL ending in .pdf in the HTML
+                all_pdf_urls = re.findall(r'/[^\s"\'<>]+\.pdf', html, re.IGNORECASE)
+                for pdf_path in all_pdf_urls:
+                    pdf_url = f"https://{scihub_domain}{pdf_path}"
+                    print(f"Trying PDF URL from pattern search: {pdf_url}")
+                    pdf_content = await download_pdf_from_url(pdf_url)
+                    if pdf_content:
+                        return pdf_content
+
+                # Pattern 5: Try any absolute URL ending in .pdf
+                abs_pdf_urls = re.findall(r'(?:https?:)?//[^\s"\'<>]+\.pdf', html, re.IGNORECASE)
+                for pdf_url in abs_pdf_urls:
+                    if pdf_url.startswith('//'):
+                        pdf_url = f"https:{pdf_url}"
+                    print(f"Trying absolute PDF URL: {pdf_url}")
+                    pdf_content = await download_pdf_from_url(pdf_url)
+                    if pdf_content:
+                        return pdf_content
+
     except Exception as e:
         print(f"Sci-Hub error: {e}")
     return None
