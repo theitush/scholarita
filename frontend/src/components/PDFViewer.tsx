@@ -415,16 +415,22 @@ export const PDFViewer: React.FC<PDFViewerProps> = ({ paper }) => {
         pinEl.setAttribute('data-drag-start-x', e.clientX.toString());
         pinEl.setAttribute('data-drag-start-y', e.clientY.toString());
 
-        // Get the pin's current position
-        const pinRect = pinEl.getBoundingClientRect();
+        // Get the page container to calculate relative position
+        const pageContainer = pinEl.closest('.pdf-page');
+        if (!pageContainer) return;
 
-        // Calculate offset from mouse to pin's visual center
-        const pinCenterX = pinRect.left + pinRect.width / 2;
-        const pinCenterY = pinRect.top + pinRect.height / 2;
+        const pageRect = pageContainer.getBoundingClientRect();
 
+        // Get the CURRENT position from the DOM element's style, not the closure variable
+        // This is important because the pin may have been moved before this mousedown
+        const currentX = parseFloat(pinEl.style.left) || 0;
+        const currentY = parseFloat(pinEl.style.top) || 0;
+
+        // Calculate offset from mouse to pin's TOP-LEFT corner (not center)
+        // The pin's position is stored as the top-left, and CSS centers it with transform
         setDragOffset({
-          x: e.clientX - pinCenterX,
-          y: e.clientY - pinCenterY
+          x: e.clientX - pageRect.left - currentX,
+          y: e.clientY - pageRect.top - currentY
         });
       });
 
@@ -432,8 +438,6 @@ export const PDFViewer: React.FC<PDFViewerProps> = ({ paper }) => {
       pinEl.style.cursor = 'move';
 
       pinLayer.appendChild(pinEl);
-
-      console.log(`Rendered pin ${index + 1} on page ${highlight.page} at (${x}, ${y})`);
 
       // If this pin is expanded, show sticky note
       if (expandedPinId === highlight.id) {

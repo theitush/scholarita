@@ -34,29 +34,20 @@ Scholarita is a functional local-first research paper annotation tool with a wor
 - E2E tests with Playwright
 - Backend unit tests with pytest
 
-### 🚧 In Progress
+### ✅ Pin Annotation System (Complete)
 
 **Pin Annotation System:**
 - ✅ Context menu on right-click in PDF
 - ✅ Pin creation at clicked coordinates
 - ✅ Pin display with icons (numbered circles)
-- ✅ Pin loading after PDF render (now ~200ms)
-- ✅ Pin persistence (backend anchor updates fixed)
+- ✅ Pin loading after PDF render (~200ms)
+- ✅ Pin persistence fully working
 - ✅ Pin editing from annotation panel
 - ✅ Pin editing from sticky note (click vs drag distinction working)
-- ✅ Pin drag-and-drop movement (drag offset fixed)
+- ✅ Pin drag-and-drop movement with position persistence
 - ✅ E2E tests with cleanup (tests now delete pins after creation)
 
-**Known Issues:**
-- ⚠️ Pins jump back to original position after drag when reopened (position not being saved properly) - **STILL INVESTIGATING**
-
 ### ❌ Not Yet Implemented
-
-**Search UI:**
-- Backend search API is ready and functional
-- Search tab component not yet created
-- No search results display UI
-- Missing click-to-navigate from results
 
 **Tag Management UI:**
 - Backend tag API is ready
@@ -64,6 +55,12 @@ Scholarita is a functional local-first research paper annotation tool with a wor
 - No tag autocomplete
 - No bulk tagging UI
 - No tag filter in sidebar
+
+**Search UI:**
+- Backend search API is ready and functional
+- Search tab component not yet created
+- No search results display UI
+- Missing click-to-navigate from results
 
 **Polish Features:**
 - Resize functionality of bottom panel
@@ -81,14 +78,7 @@ Scholarita is a functional local-first research paper annotation tool with a wor
    - Need to add better wait conditions
 
 2. **Pin System:**
-   - ✅ Pin persistence works for initial creation
-   - ✅ Pin loading timing fixed (renders immediately)
-   - ✅ Pin editing from sticky note UI works (click vs drag distinction)
-   - ✅ Pin drag offset fixed (no more jumping on click)
-   - ✅ **FIXED:** Pin edits from sticky note now save correctly (moved API call to button handler to avoid state race condition)
-   - ✅ **FIXED:** Text selection during drag prevented (added preventDefault on mousedown)
-   - ⚠️ **Pin positions reset after drag** - pins jump back to original position when reopened (drag position not being saved to backend) - **STILL INVESTIGATING**
-   - Missing backend Pin model (currently using Highlight model - works fine)
+   - Missing backend Pin model (currently using Highlight model - works fine for now)
 
 3. **Highlight System:**
    - Text selection to highlight flow incomplete
@@ -102,29 +92,15 @@ Scholarita is a functional local-first research paper annotation tool with a wor
 
 ## Next Steps (Priority Order)
 
-### Immediate (Fix Current Work)
-
-1. **Fix Remaining Pin System Issues**
-   - ✅ **FIXED:** Pin edit from sticky note now saves correctly
-   - ✅ **FIXED:** Text selection during pin drag prevented
-   - ⚠️ **CRITICAL:** Fix pin drag positions not persisting (handlePinDrop may have wrong coordinates or not updating backend) - **STILL NEEDS INVESTIGATION**
-   - Consider renaming "highlight" terminology to "pin" throughout codebase
-
-2. **Fix Highlighting System**
-   - Fix highlight popover timing/visibility
-   - Complete highlight rendering on PDF
-   - Wire up highlight edit/delete functionality
-   - Fix E2E tests for highlighting
-
 ### Short Term (Complete Core Features)
 
-3. **Search UI**
+1. **Search UI**
    - Create Search tab component
    - Display search results with snippets
    - Implement click-to-navigate to matching paper/highlight
    - Add E2E tests for search
 
-4. **Tag Management UI**
+2. **Tag Management UI**
    - Create tag editor dialog
    - Add tag autocomplete from existing tags
    - Implement bulk tagging UI
@@ -133,14 +109,14 @@ Scholarita is a functional local-first research paper annotation tool with a wor
 
 ### Medium Term (Polish)
 
-5. **Keyboard Shortcuts**
+3. **Keyboard Shortcuts**
    - Ctrl+F for search
    - Ctrl+1-4 for highlight colors
    - Ctrl+W for close tab
    - Ctrl+Tab for tab navigation
    - Ctrl+B for annotation panel toggle
 
-6. **UI Polish**
+4. **UI Polish**
    - Better loading states
    - Empty states for new users
    - Error message improvements
@@ -165,8 +141,8 @@ Status: ⚠️ Pin tests: 10/14 passing (4 fail due to overlapping pin test data
 - ✅ Backend API endpoints via Swagger UI
 - ✅ Paper import flow
 - ✅ PDF viewing
-- ⚠️ Pin creation (needs verification)
-- ⚠️ Highlighting (incomplete)
+- ✅ Pin creation and drag-and-drop
+- ⚠️ Text highlighting (incomplete)
 
 ## How to Verify Current State
 
