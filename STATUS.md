@@ -77,7 +77,7 @@ Scholarita is a functional local-first research paper annotation tool with a wor
 - Click on search result opens paper in new tab
 
 ## Next Steps (Priority Order)
-
+- cleanup current state in status to contain only necessary stuff, maybe move some of it to README? or somewhere else?
 - more informative error messages when pdf download fails
 - upload pdf manually when missing (dont forget to index!)
 - filtering multiple tags should be AND not OR!!!
