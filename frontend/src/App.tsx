@@ -4,6 +4,7 @@ import { Sidebar } from './components/Sidebar';
 import { TabBar } from './components/TabBar';
 import { PDFViewer } from './components/PDFViewer';
 import { AnnotationPanel } from './components/AnnotationPanel';
+import { SearchTab } from './components/SearchTab';
 import { api } from './services/api';
 import './App.css';
 
@@ -149,23 +150,44 @@ function App() {
 
           {/* Render all tabs but only show the active one */}
           {tabs.map(tab => {
-            if (tab.type !== 'paper' || !tab.paperId) return null;
-            const paper = loadedPapers.get(tab.paperId);
-            if (!paper) return null;
-
             const isActive = tab.id === activeTabId;
-            return (
-              <div
-                key={tab.id}
-                style={{
-                  display: isActive ? 'contents' : 'none',
-                  pointerEvents: isActive ? 'auto' : 'none'
-                }}
-              >
-                <PDFViewer paper={paper} />
-                <AnnotationPanel paper={paper} />
-              </div>
-            );
+
+            // Render search tabs
+            if (tab.type === 'search' && tab.searchQuery) {
+              return (
+                <div
+                  key={tab.id}
+                  style={{
+                    display: isActive ? 'flex' : 'none',
+                    flex: 1,
+                    overflow: 'auto'
+                  }}
+                >
+                  <SearchTab query={tab.searchQuery} />
+                </div>
+              );
+            }
+
+            // Render paper tabs
+            if (tab.type === 'paper' && tab.paperId) {
+              const paper = loadedPapers.get(tab.paperId);
+              if (!paper) return null;
+
+              return (
+                <div
+                  key={tab.id}
+                  style={{
+                    display: isActive ? 'contents' : 'none',
+                    pointerEvents: isActive ? 'auto' : 'none'
+                  }}
+                >
+                  <PDFViewer paper={paper} />
+                  <AnnotationPanel paper={paper} />
+                </div>
+              );
+            }
+
+            return null;
           })}
         </div>
       </div>

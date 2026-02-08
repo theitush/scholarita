@@ -20,9 +20,11 @@ Scholarita is a functional local-first research paper annotation tool with a wor
 - Configuration management
 
 **Frontend (React + TypeScript):**
-- Paper list sidebar with text filtering
+- Paper list sidebar with search (filters title, authors, tags, abstracts)
+- Full-text search UI with search button and Enter key support
+- Search results tab with snippets and match highlighting
 - Tag management UI (editor, bulk operations, filtering, color picker)
-- Multi-tab interface for viewing papers
+- Multi-tab interface for viewing papers and search results
 - PDF.js integration for PDF rendering
 - Pin-based annotation system (complete)
 - Resizable annotation panel
@@ -58,23 +60,23 @@ Scholarita is a functional local-first research paper annotation tool with a wor
 - Active filter display with clear buttons
 - Backend tag API fully functional
 
-### Full-Text Search Backend (Complete)
+### Full-Text Search (Complete)
 
-**Search Index:**
+**Backend:**
 - Full PDF text extraction using PyMuPDF ([storage.py:209-272](backend/storage.py#L209-L272))
 - Text caching in `library/papers/text/*.txt` files
 - Weighted search index: title (10), tags (8), authors (7), pins (6), abstract (4), full text (2)
 - Search API endpoint with snippets and match highlighting ([main.py:327](backend/main.py#L327))
 - Migration script for existing papers ([migrate_library_structure.py](backend/migrate_library_structure.py))
 
-### Not Yet Implemented
+**Frontend:**
+- Sidebar search input filters papers by title, authors, tags, and abstracts
+- Search button appears when typing, triggers full-text backend search
+- Enter key in search input opens search results tab
+- SearchTab component displays results with snippets and highlighting ([SearchTab.tsx](frontend/src/components/SearchTab.tsx))
+- Click on search result opens paper in new tab
 
-**Search UI (Backend Ready):**
-- ❌ Search tab component not yet created
-- ❌ No search results display UI
-- ❌ Missing click-to-navigate from results
-- ❌ Sidebar filter doesn't search abstracts client-side yet
-- ❌ No search button in sidebar input
+### Not Yet Implemented
 
 **Polish Features:**
 - Keyboard shortcuts (Ctrl+F for search, Ctrl+1-4 for highlight colors, etc.)

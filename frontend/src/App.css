@@ -88,14 +88,36 @@ body {
 .sidebar-filter {
   padding: 0.75rem;
   border-bottom: 1px solid #eee;
+  position: relative;
 }
 
 .filter-input {
   width: 100%;
-  padding: 0.4rem;
+  padding: 0.4rem 2.5rem 0.4rem 0.4rem;
   border: 1px solid #ddd;
   border-radius: 4px;
   font-size: 13px;
+}
+
+.search-button {
+  position: absolute;
+  right: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+  padding: 0.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.7;
+  transition: opacity 0.2s;
+}
+
+.search-button:hover {
+  opacity: 1;
 }
 
 .read-status-filters {
@@ -988,4 +1010,125 @@ body {
   border-radius: 4px;
   cursor: pointer;
   padding: 2px;
+}
+
+/* Search Tab Styles */
+.search-tab {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  overflow: hidden;
+}
+
+.search-header {
+  padding: 1.5rem;
+  border-bottom: 2px solid #eee;
+  background: #fafafa;
+}
+
+.search-header h2 {
+  font-size: 18px;
+  margin-bottom: 0.5rem;
+  color: #333;
+}
+
+.search-count {
+  font-size: 13px;
+  color: #666;
+}
+
+.search-loading,
+.search-error,
+.search-empty {
+  padding: 3rem;
+  text-align: center;
+  color: #666;
+}
+
+.search-error {
+  color: #d32f2f;
+}
+
+.search-results {
+  flex: 1;
+  overflow-y: auto;
+  padding: 1rem;
+}
+
+.search-result-item {
+  background: #fff;
+  border: 1px solid #e0e0e0;
+  border-radius: 6px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.search-result-item:hover {
+  border-color: #0066cc;
+  box-shadow: 0 2px 8px rgba(0, 102, 204, 0.1);
+}
+
+.search-result-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 0.75rem;
+}
+
+.search-result-title {
+  font-size: 16px;
+  font-weight: 500;
+  color: #0066cc;
+  margin: 0;
+  flex: 1;
+}
+
+.search-result-score {
+  font-size: 12px;
+  color: #666;
+  background: #f5f5f5;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  margin-left: 1rem;
+}
+
+.search-result-matches {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.search-match {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.search-match-field {
+  font-size: 11px;
+  text-transform: uppercase;
+  color: #666;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+.search-match-page {
+  font-size: 11px;
+  color: #999;
+  margin-left: 0.5rem;
+}
+
+.search-match-snippet {
+  font-size: 13px;
+  color: #333;
+  line-height: 1.5;
+}
+
+.search-match-snippet mark {
+  background: #ffeb3b;
+  font-weight: 500;
+  padding: 0 2px;
 }

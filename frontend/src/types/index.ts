@@ -63,4 +63,5 @@ export interface Tab {
   type: 'paper' | 'search' | 'settings';
   title: string;
   paperId?: string;
+  searchQuery?: string;
 }

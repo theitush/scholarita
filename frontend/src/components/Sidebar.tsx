@@ -33,7 +33,8 @@ export const Sidebar: React.FC = () => {
         const matchesText =
           paper.title.toLowerCase().includes(searchText) ||
           paper.authors.some(a => a.name.toLowerCase().includes(searchText)) ||
-          paper.tags.some(t => t.toLowerCase().includes(searchText));
+          paper.tags.some(t => t.toLowerCase().includes(searchText)) ||
+          (paper.abstract && paper.abstract.toLowerCase().includes(searchText));
         if (!matchesText) return false;
       }
 
@@ -114,6 +115,24 @@ export const Sidebar: React.FC = () => {
     setSelectedPaperIds([]);
   };
 
+  const handleSearch = async () => {
+    if (!filterText.trim()) return;
+
+    // Open a new search tab
+    addTab({
+      id: `search-${Date.now()}`,
+      type: 'search',
+      title: `Search: ${filterText.slice(0, 20)}${filterText.length > 20 ? '...' : ''}`,
+      searchQuery: filterText,
+    });
+  };
+
+  const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Enter') {
+      handleSearch();
+    }
+  };
+
   const getTagStyle = (tag: string, isActive: boolean = false) => {
     const tagColor = config?.tag_colors?.[tag];
     if (!tagColor) return undefined;
@@ -147,10 +166,20 @@ export const Sidebar: React.FC = () => {
         <input
           type="text"
           className="filter-input"
-          placeholder="Filter papers..."
+          placeholder="Search papers..."
           value={filterText}
           onChange={(e) => setFilterText(e.target.value)}
+          onKeyPress={handleKeyPress}
         />
+        {filterText && (
+          <button
+            className="search-button"
+            onClick={handleSearch}
+            title="Search in full text"
+          >
+            🔍
+          </button>
+        )}
       </div>
 
       {/* Active tag filters */}
