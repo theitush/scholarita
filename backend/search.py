@@ -3,7 +3,7 @@ import re
 from collections import defaultdict
 from typing import List, Dict, Set
 from models import Paper, SearchResult, SearchMatch
-from storage import list_papers, load_paper
+from storage import list_papers, load_paper, get_or_extract_text
 
 
 # Common English stopwords
@@ -41,6 +41,11 @@ class SearchIndex:
             for token in self.tokenize(tag):
                 self.index[token].append((paper.id, 'tag', 8))
 
+        # Index authors (weight: 7)
+        for author in paper.authors:
+            for token in self.tokenize(author.name):
+                self.index[token].append((paper.id, 'author', 7))
+
         # Index highlights (weight: 6)
         for hl in paper.highlights:
             highlight_text = hl.text + ' ' + (hl.comment or '')
@@ -52,10 +57,11 @@ class SearchIndex:
             for token in self.tokenize(paper.abstract):
                 self.index[token].append((paper.id, 'abstract', 4))
 
-        # Index authors (weight: 7)
-        for author in paper.authors:
-            for token in self.tokenize(author.name):
-                self.index[token].append((paper.id, 'author', 7))
+        # Index full PDF text (weight: 2)
+        pdf_text = get_or_extract_text(paper.id)
+        if pdf_text:
+            for token in self.tokenize(pdf_text):
+                self.index[token].append((paper.id, 'fulltext', 2))
 
     def rebuild(self):
         """Rebuild the entire search index."""
@@ -156,6 +162,12 @@ class SearchIndex:
             for author in paper.authors:
                 if token in author.name.lower():
                     return self._highlight_text(author.name, query)
+        elif field == 'fulltext':
+            # Extract context from full text
+            pdf_text = get_or_extract_text(paper.id)
+            if pdf_text:
+                snippet = self._extract_context(pdf_text, token)
+                return self._highlight_text(snippet, query)
 
         return ''
 

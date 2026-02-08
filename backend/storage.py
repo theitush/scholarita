@@ -1,6 +1,7 @@
 """JSON file I/O operations for papers."""
 import json
 import uuid
+import fitz  # PyMuPDF
 from pathlib import Path
 from typing import List, Optional
 from datetime import datetime
@@ -20,17 +21,29 @@ def generate_paper_id(doi: Optional[str] = None) -> str:
     return f"uuid-{uuid.uuid4()}"
 
 
-def get_paper_path(paper_id: str) -> tuple[Path, Path]:
-    """Get paths for paper JSON and PDF files."""
+def get_paper_path(paper_id: str) -> tuple[Path, Path, Path]:
+    """Get paths for paper JSON, PDF, and text files."""
     library_path = get_library_path()
-    json_path = library_path / f"{paper_id}.json"
-    pdf_path = library_path / f"{paper_id}.pdf"
-    return json_path, pdf_path
+
+    # Create subdirectories if they don't exist
+    metadata_dir = library_path / "metadata"
+    pdfs_dir = library_path / "pdfs"
+    text_dir = library_path / "text"
+
+    metadata_dir.mkdir(parents=True, exist_ok=True)
+    pdfs_dir.mkdir(parents=True, exist_ok=True)
+    text_dir.mkdir(parents=True, exist_ok=True)
+
+    json_path = metadata_dir / f"{paper_id}.json"
+    pdf_path = pdfs_dir / f"{paper_id}.pdf"
+    text_path = text_dir / f"{paper_id}.txt"
+
+    return json_path, pdf_path, text_path
 
 
 def paper_exists(paper_id: str) -> bool:
     """Check if a paper exists."""
-    json_path, _ = get_paper_path(paper_id)
+    json_path, _, _ = get_paper_path(paper_id)
     return json_path.exists()
 
 
@@ -49,7 +62,7 @@ def find_paper_by_doi(doi: str) -> Optional[str]:
 
 def load_paper(paper_id: str) -> Optional[Paper]:
     """Load a paper from JSON."""
-    json_path, _ = get_paper_path(paper_id)
+    json_path, _, _ = get_paper_path(paper_id)
     if not json_path.exists():
         return None
 
@@ -64,7 +77,7 @@ def load_paper(paper_id: str) -> Optional[Paper]:
 
 def save_paper(paper: Paper) -> None:
     """Save a paper to JSON."""
-    json_path, _ = get_paper_path(paper.id)
+    json_path, _, _ = get_paper_path(paper.id)
     paper.date_modified = datetime.utcnow().isoformat() + 'Z'
 
     with open(json_path, 'w', encoding='utf-8') as f:
@@ -72,8 +85,8 @@ def save_paper(paper: Paper) -> None:
 
 
 def delete_paper(paper_id: str) -> bool:
-    """Delete a paper and its PDF."""
-    json_path, pdf_path = get_paper_path(paper_id)
+    """Delete a paper, its PDF, and extracted text."""
+    json_path, pdf_path, text_path = get_paper_path(paper_id)
 
     deleted = False
     if json_path.exists():
@@ -82,6 +95,9 @@ def delete_paper(paper_id: str) -> bool:
     if pdf_path.exists():
         pdf_path.unlink()
         deleted = True
+    if text_path.exists():
+        text_path.unlink()
+        deleted = True
 
     return deleted
 
@@ -89,9 +105,13 @@ def delete_paper(paper_id: str) -> bool:
 def list_papers() -> List[PaperMetadata]:
     """List all papers (metadata only, no highlights)."""
     library_path = get_library_path()
-    papers = []
+    metadata_dir = library_path / "metadata"
 
-    for json_file in library_path.glob("*.json"):
+    # Create metadata directory if it doesn't exist
+    metadata_dir.mkdir(parents=True, exist_ok=True)
+
+    papers = []
+    for json_file in metadata_dir.glob("*.json"):
         try:
             with open(json_file, 'r', encoding='utf-8') as f:
                 data = json.load(f)
@@ -109,14 +129,14 @@ def list_papers() -> List[PaperMetadata]:
 
 def save_pdf(paper_id: str, pdf_content: bytes) -> None:
     """Save PDF file."""
-    _, pdf_path = get_paper_path(paper_id)
+    _, pdf_path, _ = get_paper_path(paper_id)
     with open(pdf_path, 'wb') as f:
         f.write(pdf_content)
 
 
 def get_pdf_path(paper_id: str) -> Optional[Path]:
     """Get PDF path if it exists."""
-    _, pdf_path = get_paper_path(paper_id)
+    _, pdf_path, _ = get_paper_path(paper_id)
     return pdf_path if pdf_path.exists() else None
 
 
@@ -204,3 +224,69 @@ def bulk_update_tags(paper_ids: List[str], add_tags: List[str], remove_tags: Lis
         updated_count += 1
 
     return updated_count
+
+
+def extract_text_from_pdf(paper_id: str) -> Optional[str]:
+    """Extract full text from a PDF file."""
+    _, pdf_path, _ = get_paper_path(paper_id)
+
+    if not pdf_path.exists():
+        print(f"PDF not found for paper {paper_id}")
+        return None
+
+    try:
+        doc = fitz.open(pdf_path)
+        text_parts = []
+
+        for page_num in range(len(doc)):
+            page = doc[page_num]
+            text = page.get_text()
+            if text:
+                text_parts.append(text)
+
+        doc.close()
+
+        full_text = "\n\n".join(text_parts)
+        return full_text if full_text.strip() else None
+
+    except Exception as e:
+        print(f"Error extracting text from PDF {paper_id}: {e}")
+        return None
+
+
+def save_extracted_text(paper_id: str, text: str) -> None:
+    """Save extracted text to file."""
+    _, _, text_path = get_paper_path(paper_id)
+
+    with open(text_path, 'w', encoding='utf-8') as f:
+        f.write(text)
+
+
+def load_extracted_text(paper_id: str) -> Optional[str]:
+    """Load extracted text from file."""
+    _, _, text_path = get_paper_path(paper_id)
+
+    if not text_path.exists():
+        return None
+
+    try:
+        with open(text_path, 'r', encoding='utf-8') as f:
+            return f.read()
+    except Exception as e:
+        print(f"Error loading extracted text for {paper_id}: {e}")
+        return None
+
+
+def get_or_extract_text(paper_id: str) -> Optional[str]:
+    """Get cached text or extract it from PDF if not cached."""
+    # Try to load cached text first
+    text = load_extracted_text(paper_id)
+    if text:
+        return text
+
+    # Extract from PDF and cache it
+    text = extract_text_from_pdf(paper_id)
+    if text:
+        save_extracted_text(paper_id, text)
+
+    return text

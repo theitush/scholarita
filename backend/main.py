@@ -103,7 +103,13 @@ async def import_paper(request: ImportRequest):
         if pdf_content:
             save_pdf(paper.id, pdf_content)
 
-        # Add to search index
+            # Extract and save text from PDF
+            from storage import extract_text_from_pdf, save_extracted_text
+            extracted_text = extract_text_from_pdf(paper.id)
+            if extracted_text:
+                save_extracted_text(paper.id, extracted_text)
+
+        # Add to search index (will automatically load extracted text if available)
         add_paper_to_index(paper)
 
         if import_status == 'success':

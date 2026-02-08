@@ -6,26 +6,27 @@
 
 Scholarita is a functional local-first research paper annotation tool with a working backend API and frontend UI. The core paper management and PDF viewing features are operational.
 
-### ✅ What's Working
+### What's Working
 
 **Backend (FastAPI):**
 - Complete REST API with all endpoints
 - DOI/URL import with metadata fetching (Semantic Scholar, CrossRef)
 - PDF download from multiple sources (Semantic Scholar, Unpaywall, arXiv, Sci-Hub)
-- File-based JSON storage in `library/papers/`
-- In-memory search index with weighted field ranking
-- Highlight CRUD operations
+- Organized library structure: `metadata/`, `pdfs/`, `text/` directories
+- Full PDF text extraction and caching on import
+- In-memory search index with weighted field ranking (title, tags, authors, pins, abstract, full text)
+- Highlight/Pin CRUD operations
 - Tag management and bulk operations
 - Configuration management
 
 **Frontend (React + TypeScript):**
-- Paper list sidebar with filtering
+- Paper list sidebar with text filtering
+- Tag management UI (editor, bulk operations, filtering, color picker)
 - Multi-tab interface for viewing papers
 - PDF.js integration for PDF rendering
-- Pin-based annotation system (work in progress)
+- Pin-based annotation system (complete)
 - Resizable annotation panel
 - Context menu for adding pins
-- Basic highlight functionality
 
 **Infrastructure:**
 - CORS configured for local development
@@ -34,38 +35,49 @@ Scholarita is a functional local-first research paper annotation tool with a wor
 - E2E tests with Playwright
 - Backend unit tests with pytest
 
-### ✅ Pin Annotation System (Complete)
+### Pin Annotation System (Complete)
 
 **Pin Annotation System:**
-- ✅ Context menu on right-click in PDF
-- ✅ Pin creation at clicked coordinates
-- ✅ Pin display with icons (numbered circles)
-- ✅ Pin loading after PDF render (~200ms)
-- ✅ Pin persistence fully working
-- ✅ Pin editing from annotation panel
-- ✅ Pin editing from sticky note (click vs drag distinction working)
-- ✅ Pin drag-and-drop movement with position persistence
-- ✅ E2E tests with cleanup (tests now delete pins after creation)
+- Context menu on right-click in PDF
+- Pin creation at clicked coordinates
+- Pin display with icons (numbered circles)
+- Pin loading after PDF render (~200ms)
+- Pin persistence fully working
+- Pin editing from annotation panel
+- Pin editing from sticky note (click vs drag distinction working)
+- Pin drag-and-drop movement with position persistence
+- E2E tests with cleanup (tests now delete pins after creation)
 
-### ❌ Not Yet Implemented
+### Tag Management (Complete)
 
-**Tag Management UI:**
-- Backend tag API is ready
-- No tag editor dialog
-- No tag autocomplete
-- No bulk tagging UI
-- No tag filter in sidebar
+**Tag System:**
+- Tag editor dialog with autocomplete ([TagEditor.tsx](frontend/src/components/TagEditor.tsx))
+- Bulk tag editor for multiple papers ([BulkTagEditor.tsx](frontend/src/components/BulkTagEditor.tsx))
+- Tag color picker ([TagColorPicker.tsx](frontend/src/components/TagColorPicker.tsx))
+- Tag filtering in sidebar (click tags to filter)
+- Active filter display with clear buttons
+- Backend tag API fully functional
 
-**Search UI:**
-- Backend search API is ready and functional
-- Search tab component not yet created
-- No search results display UI
-- Missing click-to-navigate from results
+### Full-Text Search Backend (Complete)
+
+**Search Index:**
+- Full PDF text extraction using PyMuPDF ([storage.py:209-272](backend/storage.py#L209-L272))
+- Text caching in `library/papers/text/*.txt` files
+- Weighted search index: title (10), tags (8), authors (7), pins (6), abstract (4), full text (2)
+- Search API endpoint with snippets and match highlighting ([main.py:327](backend/main.py#L327))
+- Migration script for existing papers ([migrate_library_structure.py](backend/migrate_library_structure.py))
+
+### Not Yet Implemented
+
+**Search UI (Backend Ready):**
+- ❌ Search tab component not yet created
+- ❌ No search results display UI
+- ❌ Missing click-to-navigate from results
+- ❌ Sidebar filter doesn't search abstracts client-side yet
+- ❌ No search button in sidebar input
 
 **Polish Features:**
-- Resize functionality of bottom panel
-- Refactor library to have pdfs in diff folder and use git to save the jsons (ask about specific specs before implementing)
-- Keyboard shortcuts (Ctrl+F, Ctrl+1-4, etc.)
+- Keyboard shortcuts (Ctrl+F for search, Ctrl+1-4 for highlight colors, etc.)
 - Better error messages and loading states
 - Empty states for sidebar/panels
 
@@ -129,7 +141,7 @@ Scholarita is a functional local-first research paper annotation tool with a wor
 ```bash
 cd backend && pytest -v
 ```
-Status: ✅ Basic tests passing (storage, importers)
+Status: All tests passing (9/9) - storage, importers, new directory structure verified
 
 **E2E Tests:**
 ```bash
@@ -137,12 +149,6 @@ cd frontend && npm run test:e2e
 ```
 Status: ⚠️ Pin tests: 10/14 passing (4 fail due to overlapping pin test data)
 
-**Manual Testing:**
-- ✅ Backend API endpoints via Swagger UI
-- ✅ Paper import flow
-- ✅ PDF viewing
-- ✅ Pin creation and drag-and-drop
-- ⚠️ Text highlighting (incomplete)
 
 ## How to Verify Current State
 
