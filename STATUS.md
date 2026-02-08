@@ -64,28 +64,34 @@ Scholarita is a functional local-first research paper annotation tool with a wor
 
 **Polish Features:**
 - Resize functionality of bottom panel
+- Refactor library to have pdfs in diff folder and use git to save the jsons (ask about specific specs before implementing)
 - Keyboard shortcuts (Ctrl+F, Ctrl+1-4, etc.)
-- Manual save button visual feedback
 - Better error messages and loading states
 - Empty states for sidebar/panels
 
 
 ## Known Issues
 
-1. **E2E Test Failures:**
+1. **Pin Position Jumping (CRITICAL):**
+   - After moving a pin, it sometimes jumps back to its original position
+   - Issue appears to be triggered when changing tabs
+   - Works correctly initially but stops persisting position after some time
+   - Needs investigation of tab switching logic and position update timing
+
+2. **E2E Test Failures:**
    - Highlight popover not appearing reliably (text layer timing)
    - Some pin tests flaky due to PDF rendering timing
    - Need to add better wait conditions
 
-2. **Pin System:**
+3. **Pin System:**
    - Missing backend Pin model (currently using Highlight model - works fine for now)
 
-3. **Highlight System:**
+4. **Highlight System:**
    - Text selection to highlight flow incomplete
    - Highlight rendering overlay not visible
    - Missing highlight edit/delete in UI
 
-4. **Missing Features:**
+5. **Missing Features:**
    - No search UI
    - No tag management UI
    - No keyboard shortcuts implemented
