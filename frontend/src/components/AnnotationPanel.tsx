@@ -9,7 +9,6 @@ interface AnnotationPanelProps {
 
 export const AnnotationPanel: React.FC<AnnotationPanelProps> = ({ paper }) => {
   const { annotationPanelCollapsed, annotationPanelHeight, toggleAnnotationPanel, setCurrentPaper } = useAppStore();
-  const [filter, setFilter] = useState<'all' | 'current'>('all');
   const [editingId, setEditingId] = useState<string | null>(null);
   const [editComment, setEditComment] = useState('');
 
@@ -69,6 +68,29 @@ export const AnnotationPanel: React.FC<AnnotationPanelProps> = ({ paper }) => {
     setEditComment(highlight.text || '');
   };
 
+  const scrollToPinInPDF = (highlight: Highlight) => {
+    // Find the PDF page element
+    const pageElement = document.querySelector(`[data-page-number="${highlight.page}"]`);
+    if (!pageElement) {
+      console.warn(`Could not find page element for page ${highlight.page}`);
+      return;
+    }
+
+    // Scroll the page into view
+    pageElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+    // Optionally flash the pin to show which one was clicked
+    const pinElement = pageElement.querySelector(`[data-pin-id="${highlight.id}"]`) as HTMLElement;
+    if (pinElement) {
+      // Add a temporary highlight effect
+      pinElement.style.transform = 'translate(-14px, -14px) scale(1.3)';
+      pinElement.style.transition = 'transform 0.3s ease-out';
+      setTimeout(() => {
+        pinElement.style.transform = 'translate(-14px, -14px) scale(1)';
+      }, 300);
+    }
+  };
+
   return (
     <div
       className={`annotation-panel ${annotationPanelCollapsed ? 'collapsed' : ''}`}
@@ -81,23 +103,6 @@ export const AnnotationPanel: React.FC<AnnotationPanelProps> = ({ paper }) => {
 
       {!annotationPanelCollapsed && (
         <>
-          <div style={{ padding: '0.5rem', borderBottom: '1px solid #eee', display: 'flex', gap: '0.5rem' }}>
-            <button
-              className={`btn ${filter === 'all' ? '' : 'btn-secondary'}`}
-              onClick={() => setFilter('all')}
-              style={{ padding: '0.25rem 0.5rem', fontSize: '12px' }}
-            >
-              All pins
-            </button>
-            <button
-              className={`btn ${filter === 'current' ? '' : 'btn-secondary'}`}
-              onClick={() => setFilter('current')}
-              style={{ padding: '0.25rem 0.5rem', fontSize: '12px' }}
-            >
-              Current page
-            </button>
-          </div>
-
           <div className="annotation-panel-content">
             {highlights.length === 0 ? (
               <div style={{ textAlign: 'center', padding: '1rem', color: '#666' }}>
@@ -110,7 +115,12 @@ export const AnnotationPanel: React.FC<AnnotationPanelProps> = ({ paper }) => {
                     Page {page}
                   </div>
                   {groupedHighlights[page].map(hl => (
-                    <div key={hl.id} className="annotation-item">
+                    <div
+                      key={hl.id}
+                      className="annotation-item"
+                      onClick={() => scrollToPinInPDF(hl)}
+                      style={{ cursor: 'pointer' }}
+                    >
                       <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.25rem', justifyContent: 'space-between' }}>
                         <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
                           <div
@@ -128,14 +138,20 @@ export const AnnotationPanel: React.FC<AnnotationPanelProps> = ({ paper }) => {
                         </div>
                         <div style={{ display: 'flex', gap: '0.25rem' }}>
                           <button
-                            onClick={() => startEdit(hl)}
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              startEdit(hl);
+                            }}
                             style={{ fontSize: '11px', padding: '0.15rem 0.4rem', cursor: 'pointer' }}
                             title="Edit pin text"
                           >
                             ✏️
                           </button>
                           <button
-                            onClick={() => handleDeleteHighlight(hl.id)}
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              handleDeleteHighlight(hl.id);
+                            }}
                             style={{ fontSize: '11px', padding: '0.15rem 0.4rem', cursor: 'pointer' }}
                             title="Delete pin"
                           >

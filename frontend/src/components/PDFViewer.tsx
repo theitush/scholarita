@@ -107,12 +107,8 @@ export const PDFViewer: React.FC<PDFViewerProps> = ({ paper }) => {
     };
   }, [paper.id]);
 
-  useEffect(() => {
-    // Render pins when paper changes or on initial load
-    if (pdfDoc) {
-      renderPins();
-    }
-  }, [paper.highlights, pdfDoc]);
+  // Note: We don't auto-re-render pins on paper.highlights changes to avoid jumping during drags
+  // Pins are rendered after PDF load and when expandedPinId/editingPinId changes
 
   useEffect(() => {
     // Add right-click listener for context menu
@@ -278,6 +274,9 @@ export const PDFViewer: React.FC<PDFViewerProps> = ({ paper }) => {
         setCurrentPaper(updatedPaper);
       }
 
+      // Re-render pins after creating new pin
+      setTimeout(() => renderPins(), 50);
+
       // Remember color if config says so
       if (config?.remember_last_color) {
         setLastUsedHighlightColor(pinForm.color);
@@ -304,6 +303,8 @@ export const PDFViewer: React.FC<PDFViewerProps> = ({ paper }) => {
         setCurrentPaper(updatedPaper);
       }
 
+      // Re-render pins after deletion
+      setTimeout(() => renderPins(), 50);
       setExpandedPinId(null);
     } catch (err) {
       console.error('Error deleting pin:', err);
@@ -321,7 +322,7 @@ export const PDFViewer: React.FC<PDFViewerProps> = ({ paper }) => {
         }
       });
 
-      // Refresh paper
+      // Refresh paper data (but don't re-render pins - they're already in the right position)
       if ((window as any).refreshPaper) {
         await (window as any).refreshPaper(paper.id);
       } else {
@@ -330,6 +331,8 @@ export const PDFViewer: React.FC<PDFViewerProps> = ({ paper }) => {
       }
     } catch (err) {
       console.error('Error moving pin:', err);
+      // On error, re-render pins to reset to saved position
+      renderPins();
     }
   };
 
@@ -506,6 +509,8 @@ export const PDFViewer: React.FC<PDFViewerProps> = ({ paper }) => {
 
               setEditingPinId(null);
               setEditingPinText('');
+              // Re-render to update sticky note text
+              setTimeout(() => renderPins(), 50);
             } catch (err) {
               console.error('Error updating pin:', err);
               alert('Failed to update pin');
